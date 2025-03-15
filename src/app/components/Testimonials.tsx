@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { FaStar, FaQuoteLeft, FaGoogle, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 // Interfaz para las reseñas de Google
 interface GoogleReview {
@@ -17,42 +16,42 @@ interface GoogleReview {
   relative_time_description: string;
 }
 
-// Fotos de alumnos para la galería
-const studentPhotos = [
+// Información para los bloques de contenido que reemplazan a las fotos
+const contentBlocks = [
   {
-    src: '/Alumnos_7.jpg',
-    alt: 'Celebración con alumnos de español en Málaga',
-    caption: 'Nuestros alumnos celebrando'
+    emoji: '🌊',
+    title: 'Experiencias inmersivas',
+    description: 'Inmersión total en la cultura española'
   },
   {
-    src: '/Alumnos_1.jpg',
-    alt: 'Alumnos en el centro de Málaga',
-    caption: 'Clase en el centro'
+    emoji: '🗣️',
+    title: 'Conversación práctica',
+    description: 'Enfoque en hablar español desde el primer día'
   },
   {
-    src: '/Alumnos_2.jpg',
-    alt: 'Estudiantes practicando conversación',
-    caption: 'Práctica de conversación'
+    emoji: '📚',
+    title: 'Métodos efectivos',
+    description: 'Aprendizaje basado en situaciones reales'
   },
   {
-    src: '/Alumnos_4.jpg',
-    alt: 'Estudiantes disfrutando de actividades culturales',
-    caption: 'Actividades culturales'
+    emoji: '🏙️',
+    title: 'Málaga cultural',
+    description: 'Descubre la historia y tradiciones locales'
   },
   {
-    src: '/Alumnos_5.jpg',
-    alt: 'Grupo de estudiantes internacionales',
-    caption: 'Grupo internacional'
+    emoji: '🎭',
+    title: 'Eventos sociales',
+    description: 'Participa en actividades con otros estudiantes'
   },
   {
-    src: '/Alumnos_6.jpg',
-    alt: 'Alumnos practicando español en contexto real',
-    caption: 'Aprendizaje práctico'
+    emoji: '🎓',
+    title: 'Certificaciones DELE',
+    description: 'Preparación para exámenes oficiales'
   },
   {
-    src: '/Alumnos_3.jpg',
-    alt: 'Estudiantes celebrando su progreso',
-    caption: 'Celebrando el progreso'
+    emoji: '✈️',
+    title: 'Estudiar en España',
+    description: 'La mejor forma de aprender español'
   }
 ];
 
@@ -88,7 +87,7 @@ const Testimonials = () => {
           {
             id: '1',
             author_name: 'Ana Schmidt',
-            profile_photo_url: '/images/testimonial-1.jpg',
+            profile_photo_url: '',
             rating: 5,
             text: '"Llegué a Málaga sin saber nada de español. En 3 meses con Virginia, ¡ya puedo mantener conversaciones con locales! Su método es divertido y efectivo."',
             time: Date.now() - 7776000000, // 90 días atrás
@@ -97,7 +96,7 @@ const Testimonials = () => {
           {
             id: '2',
             author_name: 'James Wilson',
-            profile_photo_url: '/images/testimonial-2.jpg',
+            profile_photo_url: '',
             rating: 5,
             text: '"Las clases online con Virginia son fantásticas. Me encanta su enfoque práctico y cómo adapta todo a mi trabajo en el sector turístico. ¡Recomendado 100%!"',
             time: Date.now() - 2592000000, // 30 días atrás
@@ -106,7 +105,7 @@ const Testimonials = () => {
           {
             id: '3',
             author_name: 'Sophie Dupont',
-            profile_photo_url: '/images/testimonial-3.jpg',
+            profile_photo_url: '',
             rating: 5,
             text: '"Después de 6 meses de clases, aprobé el examen DELE B2 con una puntuación de 85/100. Virginia conoce perfectamente el formato del examen."',
             time: Date.now() - 1209600000, // 14 días atrás
@@ -115,7 +114,7 @@ const Testimonials = () => {
           {
             id: '4',
             author_name: 'Hiroshi Tanaka',
-            profile_photo_url: '/images/testimonial-4.jpg',
+            profile_photo_url: '',
             rating: 5,
             text: '"Lo que más valoro es cómo Virginia adapta sus clases a mi ritmo y forma de aprender. Tiene mucha paciencia con la pronunciación."',
             time: Date.now() - 604800000, // 7 días atrás
@@ -137,14 +136,21 @@ const Testimonials = () => {
     return colors[index];
   };
 
+  // Función para generar color de texto que contraste con el fondo
+  const getTextColor = (name: string) => {
+    const colors = ['text-blue-600', 'text-green-600', 'text-purple-600', 'text-amber-600', 'text-red-600', 'text-pink-600'];
+    const index = name.charCodeAt(0) % colors.length;
+    return colors[index];
+  };
+
   return (
     <section className="py-12 bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-blue-950">
       <div className="container mx-auto px-4 md:px-6">
-        {/* Nueva sección de galería de alumnos */}
+        {/* Nueva sección de bloques de contenido */}
         <div className="mb-16">
           <div className="text-center mb-8">
             <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-              <span className="mr-1">🎉</span> Alumnos disfrutando del español
+              <span className="mr-1">🎉</span> Aprende español en Málaga
             </span>
             <h2 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 dark:text-white">
               Experiencias reales en Málaga
@@ -155,26 +161,33 @@ const Testimonials = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {studentPhotos.map((photo, index) => (
+            {contentBlocks.map((block, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                className={`relative overflow-hidden rounded-xl shadow-lg ${index === 0 ? 'col-span-2 row-span-2 md:col-span-2 md:row-span-2' : ''}`}
-                style={{ height: index === 0 ? '500px' : '220px' }}
+                style={{ 
+                  height: index === 0 ? '300px' : '180px',
+                }}
+                className={`relative overflow-hidden rounded-xl shadow-lg ${
+                  index === 0 ? 'col-span-2 row-span-2 md:col-span-2 md:row-span-2 from-amber-500 to-amber-300' : 
+                  index % 6 === 1 ? 'from-blue-500 to-blue-300' :
+                  index % 6 === 2 ? 'from-green-500 to-green-300' :
+                  index % 6 === 3 ? 'from-purple-500 to-purple-300' :
+                  index % 6 === 4 ? 'from-red-500 to-red-300' :
+                  'from-pink-500 to-pink-300'
+                } bg-gradient-to-br`}
               >
-                <div className={`absolute inset-0 ${index === 0 ? 'bg-amber-500/10' : 'bg-blue-500/10'} hover:bg-transparent transition-all duration-300 z-10`}></div>
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  className="object-cover w-full h-full transition-all duration-500 hover:scale-105"
-                  loading={index === 0 ? "eager" : "lazy"}
-                />
-                <div className={`absolute bottom-0 left-0 right-0 p-4 ${index === 0 ? 'bg-gradient-to-t from-amber-900/80 to-transparent' : 'bg-gradient-to-t from-black/70 to-transparent'} text-white z-20`}>
-                  <p className={`${index === 0 ? 'text-xl font-bold' : 'text-sm font-medium'}`}>{photo.caption}</p>
-                  {index === 0 && (
-                    <p className="text-sm mt-1 text-amber-100">Celebra tu aprendizaje con nosotros</p>
+                <div className="flex flex-col items-center justify-center h-full p-6 text-white">
+                  <div className="text-4xl mb-3">{block.emoji}</div>
+                  <h3 className={`${index === 0 ? 'text-2xl' : 'text-lg'} font-bold text-center`}>
+                    {block.title}
+                  </h3>
+                  {index === 0 ? (
+                    <p className="text-white/90 mt-2 text-center">{block.description}</p>
+                  ) : (
+                    <p className="text-white/80 mt-1 text-sm text-center">{block.description}</p>
                   )}
                 </div>
               </motion.div>
@@ -218,20 +231,11 @@ const Testimonials = () => {
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md h-full flex flex-col"
               >
                 <div className="flex items-start mb-4">
-                  {review.profile_photo_url.includes('testimonial') ? (
-                    <div className="relative w-12 h-12 rounded-full mr-3 overflow-hidden flex-shrink-0">
-                      <Image
-                        src={review.profile_photo_url}
-                        alt={`Foto de ${review.author_name}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className={`relative w-12 h-12 rounded-full mr-3 overflow-hidden ${getRandomBgColor(review.author_name)} flex items-center justify-center flex-shrink-0`}>
-                      <span className="text-lg font-bold">{review.author_name.charAt(0).toUpperCase()}</span>
-                    </div>
-                  )}
+                  <div className={`relative w-12 h-12 rounded-full mr-3 overflow-hidden ${getRandomBgColor(review.author_name)} flex items-center justify-center flex-shrink-0`}>
+                    <span className={`text-lg font-bold ${getTextColor(review.author_name)}`}>
+                      {review.author_name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white">{review.author_name}</h4>
                     <div className="flex">

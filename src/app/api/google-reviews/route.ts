@@ -1,5 +1,9 @@
 import { NextResponse } from 'next/server';
 
+// Configuración para permitir la exportación estática
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 // Usando reseñas reales proporcionadas por el usuario
 export async function GET() {
   try {
@@ -16,21 +20,39 @@ export async function GET() {
           author_name: 'Ahyeon Hwang',
           profile_photo_url: '/placeholder-profile.jpg',
           rating: 5,
-          text: 'Hola a todos!! Vengo aqui para informarselo a mi encantadora profesora, mama (en malaga) y amiga!!! Ella es realmente una gran profesora de espanol. Mi espafiol esta mejorando a un ritmo sorprendente. A diferencia de otras academias en Malaga, nuestro tiempo es como una obra de teatro, una fiesta y una clase. Simplemente no puedo evitar recomendar esta escuela a todas las personas que quieran aprender espafiol. Con ella, cada mafiana podras empezar con risas y sentirte fresco.',
+          text: 'Hola a todos!! Vengo aqui para informarselo a mi encantadora profesora, mama (en malaga) y amiga!!! Ella es realmente una gran profesora de espanol. Mi espafiol esta mejorando a un ritmo sorprendente. A diferencia de otras academias en Malaga, nuestro tiempo es como una obra de teatro, una fiesta y una clase. Simplemente no puedo evitar recomendar esta escuela a todas las personas que quieran aprender espafiol. Con ella, cada mafiana podras empezar con risas y sentirte fresco. Después de terminar la clase, siempre espero mafiana para pasar mi precioso tiempo con ella. jjAh!! jTienes que conocer este! Nuestra clase se compone de una excelente vista desde el balcon, lo que hace que la clase sea mas eficiente, feliz y fresca. Acerca de la clase, toda nuestra conversacion es material de aprendizaje, en otras palabras, tu forma de hablar sera cada vez mejor sorprendentemente. Consideré muchas escuelas cuando elegi y recomiendo encarecidamente registrarse sin pensarlo mas. jSi realmente quieres aprender espajfiol, debes venir aqui para conseguir un hablante nativo de espanol!',
           time: Date.now() - 189216000000, // 6 años en milisegundos
           relative_time_description: 'Hace 6 años'
         },
         {
           id: '2',
-          author_name: 'Norman Nemitz',
+          author_name: 'Anónimo',
           profile_photo_url: '/placeholder-profile.jpg',
           rating: 5,
-          text: 'Virginia es una profesora fantastica y recomiendo encarecidamente su escuela de idiomas. Sin conocimientos previos, con la ayuda de Virginia, aprendi los conceptos basicos de este hermoso idioma en unas pocas semanas y me diverti mucho haciéndolo. Ademas de los conceptos basicos de gramatica, lo principal es hablar el idioma con confianza y ahora puedo afirmar que puedo comunicarme sobre casi cualquier tema.',
+          text: 'Al principio me preocupé porque no habia muchas resefias sobre esta academia, pero jjme gusta mucho!! Elegi mejorar mis habilidades de conversacion y fue realmente util poder hablar continuamente con el profesor, en lugar de tener un grupo de estudiantes reunidos y solo poder hablar un poco como en una escuela de idiomas normal. Me encanta poder experimentar la verdadera Espafia comprando en el mercado con mi profesor todas las mafianas, dando un paseo por el puerto y desayunando en una cafeteria de al lado. jjEs la mejor academia para conversar!!',
           time: Date.now() - 189216000000, // 6 años en milisegundos
           relative_time_description: 'Hace 6 años'
         },
         {
           id: '3',
+          author_name: 'Norman Nemitz',
+          profile_photo_url: '/placeholder-profile.jpg',
+          rating: 5,
+          text: 'Virginia es una profesora fantastica y recomiendo encarecidamente su escuela de idiomas. Sin conocimientos previos, con la ayuda de Virginia, aprendi los conceptos basicos de este hermoso idioma en unas pocas semanas y me diverti mucho haciéndolo. Ademas de los conceptos basicos de gramatica, lo principal es hablar el idioma con confianza y ahora puedo afirmar que puedo comunicarme sobre casi cualquier tema. Con su cardacter calido y su personalidad divertida, Virginia crea una atmosfera de bienestar al aprender un idioma tan diferente a lo que estas acostumbrado en otras escuelas de idiomas. Las clases en grupos reducidos o los cursos de idiomas individuales te permiten potenciar tus puntos fuertes personales y areas de desarrollo a la hora de aprender idiomas, lo que a mi me ayud6 mucho. En grupos pequefios os conocéis mucho mejor que en grupos grandes y podéis aprender unos de otros. Para aquellos que estén planeando un viaje de idiomas a Malaga, la escuela de idiomas de Virginia también es ideal, ya que alquila apartamentos a viajeros (de idiomas) en el corazon del casco antiguo de Malaga y en el mismo edificio. Para los viajeros de idiomas, ofrece un agradable programa de apoyo que les muestra la Malaga auténtica y les permite sumergirse en la cultura espafiola/andaluza. Por todo ello le doy 5 estrellas a Virginia School en Malaga. jGracias Virginia por todo!',
+          time: Date.now() - 189216000000, // 6 años en milisegundos
+          relative_time_description: 'Hace 6 años'
+        },
+        {
+          id: '4',
+          author_name: 'Ruta Z.',
+          profile_photo_url: '/placeholder-profile.jpg',
+          rating: 5,
+          text: 'Virginia es una maestra increible, amigable, atenta y ensefia desde el fondo de su corazon. Mis lecciones de espafiol fueron divertidas y muy informativas, ya que como soy nuevo en el idioma, he aprendido mucho. La escuela esta en el corazon de la ciudad y es facil de recorrer, ademas es muy luminosa y te hace sentir bienvenido y feliz en todo momento. Muy agradecido por la oportunidad de ser su alumno, gracias por todo. jMuy recomendable! Me encanta la escuela Virginia ®',
+          time: Date.now() - 157680000000, // 5 años en milisegundos
+          relative_time_description: 'Hace 5 años'
+        },
+        {
+          id: '5',
           author_name: 'Michael Rafi',
           profile_photo_url: '/placeholder-profile.jpg',
           rating: 5,
@@ -39,31 +61,13 @@ export async function GET() {
           relative_time_description: 'Hace 5 años'
         },
         {
-          id: '4',
+          id: '6',
           author_name: 'Steve Noyce',
           profile_photo_url: '/placeholder-profile.jpg',
           rating: 5,
           text: 'Mi esposa y yo tomamos clases de conversacién durante varias semanas este invierno con Virginia. Ella fue absolutamente fantastica. Realmente disfrutamos nuestro tiempo con ella y nos encantd escuchar sus historias. Es una mujer maravillosa con un sentido del humor estupendo y las horas hablando con ella pasaron muy rapido. Cuando volvamos a Malaga, sin duda volveremos a tomar clases con ella.',
           time: Date.now() - 126144000000, // 4 años en milisegundos
           relative_time_description: 'Hace 4 años'
-        },
-        {
-          id: '5',
-          author_name: 'Ruta Z.',
-          profile_photo_url: '/placeholder-profile.jpg',
-          rating: 5,
-          text: 'Virginia es una maestra increible, amigable, atenta y ensefia desde el fondo de su corazon. Mis lecciones de espafiol fueron divertidas y muy informativas, ya que como soy nuevo en el idioma, he aprendido mucho. La escuela esta en el corazon de la ciudad y es facil de recorrer, ademas es muy luminosa y te hace sentir bienvenido y feliz en todo momento. Muy agradecido por la oportunidad de ser su alumno, gracias por todo. jMuy recomendable! Me encanta la escuela Virginia.',
-          time: Date.now() - 157680000000, // 5 años en milisegundos
-          relative_time_description: 'Hace 5 años'
-        },
-        {
-          id: '6',
-          author_name: 'Anónimo',
-          profile_photo_url: '/placeholder-profile.jpg',
-          rating: 5,
-          text: 'Al principio me preocupé porque no habia muchas resefias sobre esta academia, pero jjme gusta mucho!! Elegi mejorar mis habilidades de conversacion y fue realmente util poder hablar continuamente con el profesor, en lugar de tener un grupo de estudiantes reunidos y solo poder hablar un poco como en una escuela de idiomas normal. Me encanta poder experimentar la verdadera Espafia comprando en el mercado con mi profesor todas las mafianas, dando un paseo por el puerto y desayunando en una cafeteria de al lado. jjEs la mejor academia para conversar!!',
-          time: Date.now() - 189216000000, // 6 años en milisegundos
-          relative_time_description: 'Hace 6 años'
         },
         {
           id: '7',

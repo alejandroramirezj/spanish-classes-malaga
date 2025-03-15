@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { FaGraduationCap, FaBook, FaUserFriends, FaGlobe } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = {
   title: 'Sobre Virginia | Spanish Classes Malaga',
@@ -22,8 +23,14 @@ export default function AboutPage() {
             
             <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg bg-blue-100 h-80 flex items-center justify-center">
-                  <p className="text-blue-800 font-medium">Foto de Virginia - Profesora de español</p>
+                <div className="rounded-lg overflow-hidden shadow-lg h-80 flex items-center justify-center relative">
+                  <Image 
+                    src="/virginia-profile.jpg" 
+                    alt="Virginia - Profesora de español"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
                 </div>
               </div>
               
