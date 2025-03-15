@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaStar, FaQuoteLeft, FaGoogle, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Interface for Google reviews
 interface GoogleReview {
@@ -135,43 +136,31 @@ const realReviews: GoogleReview[] = [
   }
 ];
 
-// Information for content blocks that replace photos
-const contentBlocks = [
-  {
-    emoji: '🌊',
-    title: 'Immersive Experiences',
-    description: 'Total immersion in Spanish culture'
-  },
-  {
-    emoji: '🗣️',
-    title: 'Practical Conversation',
-    description: 'Focus on speaking Spanish from day one'
-  },
-  {
-    emoji: '📚',
-    title: 'Effective Methods',
-    description: 'Learning based on real-life situations'
-  },
-  {
-    emoji: '🏙️',
-    title: 'Cultural Málaga',
-    description: 'Discover local history and traditions'
-  },
-  {
-    emoji: '🎭',
-    title: 'Social Events',
-    description: 'Participate in activities with other students'
-  },
-  {
-    emoji: '🎓',
-    title: 'DELE Certifications',
-    description: 'Preparation for official exams'
-  },
-  {
-    emoji: '✈️',
-    title: 'Study in Spain',
-    description: 'The best way to learn Spanish'
-  }
+// Array of image filenames for the gallery
+const galleryImages = [
+  'Alumnos_1.jpg',
+  'Alumnos_2.jpg',
+  'Alumnos_3.jpg',
+  'Alumnos_4.jpg',
+  'Alumnos_5.jpg',
+  'Alumnos_6.jpg',
+  'Alumnos_7.jpg',
+  'Alumnos_8.jpg',
+  'Alumnos_9.jpg',
+  'Alumnos_10.jpg',
+  'Alumnos_11.jpg',
+  'Alumnos_12.jpg',
+  'Alumnos_13.jpg',
+  'Alumnos_14.jpg',
+  'Alumnos_15.jpg',
+  'Alumnos_16.jpg',
+  'Alumnos_17.jpg',
+  'Alumnos_18.jpg',
+  'Alumnos_19.jpg',
+  'Alumnos_20.jpg',
+  'Alumnos_21.jpg',
+  'vinos.jpg',
+  'tortilla.jpg'
 ];
 
 const Testimonials = () => {
@@ -201,7 +190,7 @@ const Testimonials = () => {
   return (
     <section className="py-12 bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-blue-950">
       <div className="container mx-auto px-4 md:px-6">
-        {/* New content blocks section */}
+        {/* Gallery section */}
         <div className="mb-16">
           <div className="text-center mb-8">
             <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
@@ -216,34 +205,62 @@ const Testimonials = () => {
           </div>
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {contentBlocks.map((block, index) => (
+            {galleryImages.slice(0, 1).map((image, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                style={{ 
-                  height: index === 0 ? '300px' : '180px',
-                }}
-                className={`relative overflow-hidden rounded-xl shadow-lg ${
-                  index === 0 ? 'col-span-2 row-span-2 md:col-span-2 md:row-span-2 from-amber-500 to-amber-300' : 
-                  index % 6 === 1 ? 'from-blue-500 to-blue-300' :
-                  index % 6 === 2 ? 'from-green-500 to-green-300' :
-                  index % 6 === 3 ? 'from-purple-500 to-purple-300' :
-                  index % 6 === 4 ? 'from-red-500 to-red-300' :
-                  'from-pink-500 to-pink-300'
-                } bg-gradient-to-br`}
+                className="col-span-2 row-span-2 md:col-span-2 md:row-span-2 rounded-xl overflow-hidden h-[300px] relative"
               >
-                <div className="flex flex-col items-center justify-center h-full p-6 text-white">
-                  <div className="text-4xl mb-3">{block.emoji}</div>
-                  <h3 className={`${index === 0 ? 'text-2xl' : 'text-lg'} font-bold text-center`}>
-                    {block.title}
-                  </h3>
-                  {index === 0 ? (
-                    <p className="text-white/90 mt-2 text-center">{block.description}</p>
-                  ) : (
-                    <p className="text-white/80 mt-1 text-sm text-center">{block.description}</p>
-                  )}
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image 
+                    src={`/${image}`} 
+                    alt={`Spanish students in Málaga - ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform hover:scale-105 duration-500"
+                  />
+                </div>
+              </motion.div>
+            ))}
+            
+            {galleryImages.slice(1, 7).map((image, index) => (
+              <motion.div
+                key={index + 1}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: (index + 1) * 0.1 }}
+                className="rounded-xl overflow-hidden h-[180px] relative"
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image 
+                    src={`/${image}`} 
+                    alt={`Spanish students in Málaga - ${index + 2}`}
+                    fill
+                    className="object-cover transition-transform hover:scale-105 duration-500"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Second row of images */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto mt-4">
+            {galleryImages.slice(7, 15).map((image, index) => (
+              <motion.div
+                key={index + 7}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: (index + 7) * 0.05 }}
+                className={`rounded-xl overflow-hidden ${index === 0 ? 'col-span-2 md:col-span-2 h-[240px]' : 'h-[180px]'} relative`}
+              >
+                <div className="relative w-full h-full overflow-hidden">
+                  <Image 
+                    src={`/${image}`} 
+                    alt={`Spanish culture and learning - ${index + 8}`}
+                    fill
+                    className="object-cover transition-transform hover:scale-105 duration-500"
+                  />
                 </div>
               </motion.div>
             ))}
