@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FaStar, FaQuoteLeft, FaGoogle, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 
-// Interfaz para las reseñas de Google
+// Interface for Google reviews
 interface GoogleReview {
   id: string;
   author_name: string;
@@ -13,120 +13,137 @@ interface GoogleReview {
   text: string;
   time: number;
   relative_time_description: string;
+  original_spanish?: string;
+  spanish_expression?: {
+    phrase: string;
+    literal: string;
+    meaning: string;
+  };
 }
 
-// Reseñas reales proporcionadas por el usuario
+// Real reviews provided by the user, translated to English
 const realReviews: GoogleReview[] = [
   {
     id: '1',
-    author_name: 'Anónimo',
+    author_name: 'Anonymous',
     profile_photo_url: '',
     rating: 5,
-    text: 'Pasé buen tiempo en esta escuela aprendiendo español durante 6 meses. El ambiente de clase era muy bueno y divertido, por eso pude disfrutar del estudio de español sin dificultad encontrando con tanta gente de aquí. Nunca me arrepiento de estudiar en esta escuela ni me olvidaré de los recuerdos inolvidables. Antes de marcharme a mi país, dejo mi comentario en esta página para que vean la información y varias fotos de esta escuela.',
-    time: Date.now() - 252288000000, // 8 años en milisegundos
-    relative_time_description: 'Hace 8 años'
+    text: 'I had a great time at this school learning Spanish for 6 months. The classroom environment was very good and fun, which is why I was able to enjoy studying Spanish without difficulty while meeting so many local people. I never regret studying at this school and I will never forget the unforgettable memories. Before leaving for my country, I leave my comment on this page so they can see the information and various photos of this school.',
+    time: Date.now() - 252288000000, // 8 years in milliseconds
+    relative_time_description: '8 years ago',
+    original_spanish: 'Pasé buen tiempo en esta escuela aprendiendo español durante 6 meses.'
   },
   {
     id: '2',
     author_name: 'Marta',
     profile_photo_url: '',
     rating: 5,
-    text: 'Actualmente estoy dando clases de inglés para sacarme la titulación B1, compaginándolo con mi trabajo. Horarios flexibles. Lo recomiendo 100%.',
-    time: Date.now() - 220752000000, // 7 años en milisegundos
-    relative_time_description: 'Hace 7 años'
+    text: 'I am currently taking English classes to obtain my B1 certification, while balancing it with my work. Flexible schedules. I recommend it 100%.',
+    time: Date.now() - 220752000000, // 7 years in milliseconds
+    relative_time_description: '7 years ago'
   },
   {
     id: '3',
     author_name: 'Norman Nemitz',
     profile_photo_url: '',
     rating: 5,
-    text: 'Virginia es una profesora fantástica y recomiendo encarecidamente su escuela de idiomas. Sin conocimientos previos, con la ayuda de Virginia, aprendí los conceptos básicos de este hermoso idioma en unas pocas semanas y me divertí mucho haciéndolo. Además de los conceptos básicos de gramática, lo principal es hablar el idioma con confianza y ahora puedo afirmar que puedo comunicarme sobre casi cualquier tema. Con su carácter cálido y su personalidad divertida, Virginia crea una atmósfera de bienestar al aprender un idioma tan diferente a lo que estás acostumbrado en otras escuelas de idiomas. Las clases en grupos reducidos o los cursos de idiomas individuales te permiten potenciar tus puntos fuertes personales y áreas de desarrollo a la hora de aprender idiomas, lo que a mí me ayudó mucho. En grupos pequeños os conocéis mucho mejor que en grupos grandes y podéis aprender unos de otros. Para aquellos que estén planeando un viaje de idiomas a Málaga, la escuela de idiomas de Virginia también es ideal, ya que alquila apartamentos a viajeros (de idiomas) en el corazón del casco antiguo de Málaga y en el mismo edificio. Para los viajeros de idiomas, ofrece un agradable programa de apoyo que les muestra la Málaga auténtica y les permite sumergirse en la cultura española/andaluza. Por todo ello le doy 5 estrellas a Virginia School en Málaga. ¡Gracias Virginia por todo!',
-    time: Date.now() - 189216000000, // 6 años en milisegundos
-    relative_time_description: 'Hace 6 años'
+    text: 'Virginia is a fantastic teacher and I highly recommend her language school. With no previous knowledge, with Virginia\'s help, I learned the basics of this beautiful language in just a few weeks and had a lot of fun doing it. Besides the basics of grammar, the main thing is to speak the language with confidence, and now I can say I can communicate on almost any topic. With her warm character and fun personality, Virginia creates an atmosphere of well-being when learning a language so different from what you\'re used to in other language schools. The small group classes or individual language courses allow you to enhance your personal strengths and areas for development when learning languages, which helped me a lot. In small groups, you get to know each other much better than in large groups and can learn from each other. For those planning a language trip to Malaga, Virginia\'s language school is also ideal, as she rents apartments to language travelers in the heart of old town Malaga and in the same building. For language travelers, she offers a nice support program that shows them the authentic Malaga and allows them to immerse themselves in Spanish/Andalusian culture. For all these reasons, I give Virginia School in Malaga 5 stars. Thank you Virginia for everything!',
+    time: Date.now() - 189216000000, // 6 years in milliseconds
+    relative_time_description: '6 years ago',
+    spanish_expression: {
+      phrase: "¡Me quedé con la boca abierta!",
+      literal: "I was left with an open mouth!",
+      meaning: "I was amazed/speechless"
+    }
   },
   {
     id: '4',
     author_name: 'Michael Rafi',
     profile_photo_url: '',
     rating: 5,
-    text: 'Recomiendo ALTAMENTE Virginia y esta escuela. Tomé clases privadas durante 2 horas al día, 4 días a la semana durante los dos meses que estuve visitando Málaga. Virginia adaptó las clases exactamente a lo que necesitaba y fue de GRAN ayuda. Cada día tomábamos un café juntos y hablábamos durante aproximadamente una hora, y luego, en la segunda hora, pasábamos a algunas lecciones del libro de trabajo. ¡Virginia es una persona maravillosa y realmente disfruté mi tiempo en la escuela! 5 estrellas!!',
-    time: Date.now() - 157680000000, // 5 años en milisegundos
-    relative_time_description: 'Hace 5 años'
+    text: 'I HIGHLY recommend Virginia and this school. I took private classes 2 hours a day, 4 days a week during the two months I was visiting Malaga. Virginia tailored the classes exactly to what I needed and was a GREAT help. Every day we would have coffee together and talk for about an hour, and then in the second hour, we would move on to some workbook lessons. Virginia is a wonderful person and I really enjoyed my time at the school! 5 stars!!',
+    time: Date.now() - 157680000000, // 5 years in milliseconds
+    relative_time_description: '5 years ago'
   },
   {
     id: '5',
     author_name: 'Steve Noyce',
     profile_photo_url: '',
     rating: 5,
-    text: 'Mi esposa y yo tomamos clases de conversación durante varias semanas este invierno con Virginia. Ella fue absolutamente fantástica. Realmente disfrutamos nuestro tiempo con ella y nos encantó escuchar sus historias. Es una mujer maravillosa con un sentido del humor estupendo y las horas hablando con ella pasaron muy rápido. Cuando volvamos a Málaga, sin duda volveremos a tomar clases con ella.',
-    time: Date.now() - 126144000000, // 4 años en milisegundos
-    relative_time_description: 'Hace 4 años'
+    text: 'My wife and I took conversation classes for several weeks this winter with Virginia. She was absolutely fantastic. We really enjoyed our time with her and loved hearing her stories. She is a wonderful woman with a great sense of humor and the hours talking with her flew by. When we return to Malaga, we will definitely take classes with her again.',
+    time: Date.now() - 126144000000, // 4 years in milliseconds
+    relative_time_description: '4 years ago'
   },
   {
     id: '6',
     author_name: 'Ruta Z.',
     profile_photo_url: '',
     rating: 5,
-    text: 'Virginia es una maestra increíble, amigable, atenta y enseña desde el fondo de su corazón. Mis lecciones de español fueron divertidas y muy informativas, ya que como soy nuevo en el idioma, he aprendido mucho. La escuela está en el corazón de la ciudad y es fácil de recorrer, además es muy luminosa y te hace sentir bienvenido y feliz en todo momento. Muy agradecido por la oportunidad de ser su alumno, gracias por todo. ¡Muy recomendable! Me encanta la escuela Virginia ®',
-    time: Date.now() - 157680000000, // 5 años en milisegundos
-    relative_time_description: 'Hace 5 años'
+    text: 'Virginia is an incredible teacher, friendly, attentive, and teaches from the heart. My Spanish lessons were fun and very informative, and as someone new to the language, I learned a lot. The school is in the heart of the city and is easy to get around, plus it\'s very bright and makes you feel welcome and happy at all times. Very grateful for the opportunity to be her student, thank you for everything. Highly recommended! I love Virginia\'s school ®',
+    time: Date.now() - 157680000000, // 5 years in milliseconds
+    relative_time_description: '5 years ago',
+    spanish_expression: {
+      phrase: "¡Es la caña!",
+      literal: "It's the cane/rod!",
+      meaning: "It's awesome/amazing"
+    }
   },
   {
     id: '7',
-    author_name: 'Anónimo',
+    author_name: 'Anonymous',
     profile_photo_url: '',
     rating: 5,
-    text: 'Al principio me preocupé porque no había muchas reseñas sobre esta academia, pero ¡¡me gusta mucho!! Elegí mejorar mis habilidades de conversación y fue realmente útil poder hablar continuamente con el profesor, en lugar de tener un grupo de estudiantes reunidos y solo poder hablar un poco como en una escuela de idiomas normal. Me encanta poder experimentar la verdadera España comprando en el mercado con mi profesor todas las mañanas, dando un paseo por el puerto y desayunando en una cafetería de al lado. ¡¡Es la mejor academia para conversar!!',
-    time: Date.now() - 189216000000, // 6 años en milisegundos
-    relative_time_description: 'Hace 6 años'
+    text: 'At first I was worried because there weren\'t many reviews about this academy, but I love it!! I chose to improve my conversation skills and it was really useful to be able to talk continuously with the teacher, instead of having a group of students gathered and only being able to talk a little bit like in a normal language school. I love being able to experience the real Spain by shopping at the market with my teacher every morning, walking around the port, and having breakfast at a nearby cafe. It\'s the best academy for conversation!!',
+    time: Date.now() - 189216000000, // 6 years in milliseconds
+    relative_time_description: '6 years ago'
   },
   {
     id: '8',
     author_name: 'Ahyeon Hwang',
     profile_photo_url: '',
     rating: 5,
-    text: 'Hola a todos!! Vengo aquí para informárselo a mi encantadora profesora, mamá (en Málaga) y amiga!!! Ella es realmente una gran profesora de español. Mi español está mejorando a un ritmo sorprendente. A diferencia de otras academias en Málaga, nuestro tiempo es como una obra de teatro, una fiesta y una clase. Simplemente no puedo evitar recomendar esta escuela a todas las personas que quieran aprender español. Con ella, cada mañana podrás empezar con risas y sentirte fresco. Después de terminar la clase, siempre espero mañana para pasar mi precioso tiempo con ella. ¡¡Ah!! ¡Tienes que conocer este! Nuestra clase se compone de una excelente vista desde el balcón, lo que hace que la clase sea más eficiente, feliz y fresca. Acerca de la clase, toda nuestra conversación es material de aprendizaje, en otras palabras, tu forma de hablar será cada vez mejor sorprendentemente. Consideré muchas escuelas cuando elegí y recomiendo encarecidamente registrarse sin pensarlo más. ¡Si realmente quieres aprender español, debes venir aquí para conseguir un hablante nativo de español!',
-    time: Date.now() - 189216000000, // 6 años en milisegundos
-    relative_time_description: 'Hace 6 años'
+    text: 'Hello everyone!! I\'m coming here to tell you about my charming teacher, mom (in Malaga), and friend!!! She is truly a great Spanish teacher. My Spanish is improving at an amazing pace. Unlike other academies in Malaga, our time is like a play, a party, and a class. I simply can\'t help but recommend this school to anyone who wants to learn Spanish. With her, every morning you can start with laughter and feel fresh. After finishing the class, I always look forward to tomorrow to spend my precious time with her. Ah!! You have to know this! Our class features an excellent view from the balcony, which makes the class more efficient, happy, and fresh. About the class, all our conversation is learning material, in other words, your way of speaking will get surprisingly better and better. I considered many schools when choosing and I highly recommend registering without thinking further. If you really want to learn Spanish, you should come here to get a native Spanish speaker!',
+    time: Date.now() - 189216000000, // 6 years in milliseconds
+    relative_time_description: '6 years ago'
   }
 ];
 
-// Información para los bloques de contenido que reemplazan a las fotos
+// Information for content blocks that replace photos
 const contentBlocks = [
   {
     emoji: '🌊',
-    title: 'Experiencias inmersivas',
-    description: 'Inmersión total en la cultura española'
+    title: 'Immersive Experiences',
+    description: 'Total immersion in Spanish culture'
   },
   {
     emoji: '🗣️',
-    title: 'Conversación práctica',
-    description: 'Enfoque en hablar español desde el primer día'
+    title: 'Practical Conversation',
+    description: 'Focus on speaking Spanish from day one'
   },
   {
     emoji: '📚',
-    title: 'Métodos efectivos',
-    description: 'Aprendizaje basado en situaciones reales'
+    title: 'Effective Methods',
+    description: 'Learning based on real-life situations'
   },
   {
     emoji: '🏙️',
-    title: 'Málaga cultural',
-    description: 'Descubre la historia y tradiciones locales'
+    title: 'Cultural Málaga',
+    description: 'Discover local history and traditions'
   },
   {
     emoji: '🎭',
-    title: 'Eventos sociales',
-    description: 'Participa en actividades con otros estudiantes'
+    title: 'Social Events',
+    description: 'Participate in activities with other students'
   },
   {
     emoji: '🎓',
-    title: 'Certificaciones DELE',
-    description: 'Preparación para exámenes oficiales'
+    title: 'DELE Certifications',
+    description: 'Preparation for official exams'
   },
   {
     emoji: '✈️',
-    title: 'Estudiar en España',
-    description: 'La mejor forma de aprender español'
+    title: 'Study in Spain',
+    description: 'The best way to learn Spanish'
   }
 ];
 
@@ -134,15 +151,15 @@ const Testimonials = () => {
   const reviews = realReviews;
   const totalReviews = realReviews.length;
 
-  // Función para generar color de fondo aleatorio para cada avatar
+  // Function to generate random background color for each avatar
   const getRandomBgColor = (name: string) => {
     const colors = ['bg-blue-100', 'bg-green-100', 'bg-purple-100', 'bg-amber-100', 'bg-red-100', 'bg-pink-100'];
-    // Usamos el nombre como semilla para generar un color consistente para el mismo autor
+    // We use the name as a seed to generate a consistent color for the same author
     const index = name.charCodeAt(0) % colors.length;
     return colors[index];
   };
 
-  // Función para generar color de texto que contraste con el fondo
+  // Function to generate text color that contrasts with the background
   const getTextColor = (name: string) => {
     const colors = ['text-blue-600', 'text-green-600', 'text-purple-600', 'text-amber-600', 'text-red-600', 'text-pink-600'];
     const index = name.charCodeAt(0) % colors.length;
@@ -152,17 +169,17 @@ const Testimonials = () => {
   return (
     <section className="py-12 bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-blue-950">
       <div className="container mx-auto px-4 md:px-6">
-        {/* Nueva sección de bloques de contenido */}
+        {/* New content blocks section */}
         <div className="mb-16">
           <div className="text-center mb-8">
             <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-              <span className="mr-1">🎉</span> Aprende español en Málaga
+              <span className="mr-1">🎉</span> Learn Spanish in Málaga
             </span>
             <h2 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 dark:text-white">
-              Experiencias reales en Málaga
+              Real Experiences in Málaga
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Descubre cómo nuestros estudiantes disfrutan aprendiendo español mientras se sumergen en la cultura española y crean recuerdos inolvidables
+              Discover how our students enjoy learning Spanish while immersing themselves in Spanish culture and creating unforgettable memories
             </p>
           </div>
           
@@ -201,24 +218,24 @@ const Testimonials = () => {
           </div>
         </div>
         
-        {/* Sección de testimonios existente */}
+        {/* Testimonials section */}
         <div className="text-center mb-8">
           <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-            <span className="mr-1">❤️</span> Reseñas verificadas de Google
+            <span className="mr-1">❤️</span> Verified Google Reviews
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-900 dark:text-white">
-            Lo que dicen nuestros estudiantes
+            What Our Students Say
           </h2>
           <div className="flex justify-center">
             <Link href="https://g.co/kgs/GAXQqPf" target="_blank" className="flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium">
-              <FaGoogle className="mr-2" /> 5.0 en Google ({totalReviews} reseñas)
+              <FaGoogle className="mr-2" /> 5.0 on Google ({totalReviews} reviews)
             </Link>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {reviews.map((review, index) => (
-            <motion.div 
+            <motion.div
               key={review.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -248,6 +265,13 @@ const Testimonials = () => {
                 <FaQuoteLeft className="absolute top-0 left-0 text-blue-200 dark:text-blue-900 opacity-50 w-8 h-8" />
                 <p className="text-gray-700 dark:text-gray-300 relative z-10 pl-6 pt-2 text-sm">
                   {review.text}
+                  {review.spanish_expression && (
+                    <span className="block mt-2 p-2 bg-amber-50 dark:bg-amber-950/30 rounded-md">
+                      <span className="font-bold text-amber-600 dark:text-amber-400">{review.spanish_expression.phrase}</span>
+                      <span className="block text-xs text-gray-500 italic">Literal: {review.spanish_expression.literal}</span>
+                      <span className="block text-xs text-gray-600 dark:text-gray-400">Means: {review.spanish_expression.meaning}</span>
+                    </span>
+                  )}
                 </p>
               </div>
             </motion.div>
@@ -256,12 +280,12 @@ const Testimonials = () => {
         
         <div className="mt-12 max-w-3xl mx-auto text-center">
           <div className="p-6 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-500/20">
-            <h3 className="text-xl font-bold mb-3">¿Quieres resultados similares?</h3>
+            <h3 className="text-xl font-bold mb-3">Want Similar Results?</h3>
             <Link 
               href="/booking" 
               className="inline-flex items-center bg-white text-blue-600 font-semibold px-5 py-2 rounded-lg transition-all transform hover:scale-105"
             >
-              Reserva tu primera clase gratis
+              Book Your Free Trial Class
               <FaArrowRight className="ml-2" />
             </Link>
           </div>
@@ -270,15 +294,15 @@ const Testimonials = () => {
         <div className="grid grid-cols-3 gap-4 max-w-5xl mx-auto mt-10 text-center">
           <div className="p-4">
             <div className="text-2xl mb-2">🚀</div>
-            <h4 className="text-lg font-bold text-gray-900 dark:text-white">Progreso rápido</h4>
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white">Rapid Progress</h4>
           </div>
           <div className="p-4">
             <div className="text-2xl mb-2">💬</div>
-            <h4 className="text-lg font-bold text-gray-900 dark:text-white">Hablar desde el día 1</h4>
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white">Speaking from Day 1</h4>
           </div>
           <div className="p-4">
             <div className="text-2xl mb-2">🏆</div>
-            <h4 className="text-lg font-bold text-gray-900 dark:text-white">Resultados garantizados</h4>
+            <h4 className="text-lg font-bold text-gray-900 dark:text-white">Guaranteed Results</h4>
           </div>
         </div>
       </div>

@@ -2,7 +2,7 @@
   "name": "spanish-classes-malaga",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://spanishclassesmalaga.com",
+  "homepage": "https://alejandroramirezj.github.io",
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

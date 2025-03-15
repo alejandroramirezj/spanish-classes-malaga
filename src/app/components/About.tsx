@@ -4,6 +4,27 @@ import { motion } from 'framer-motion';
 import { FaCheckCircle, FaGraduationCap, FaUserFriends, FaComment, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 
+// Interface for Spanish expressions
+interface SpanishExpressionProps {
+  phrase: string;
+  literal: string;
+  meaning: string;
+}
+
+// Component for Spanish expressions with tooltips
+const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps) => (
+  <div className="relative group inline-block">
+    <span className="font-bold text-amber-600 dark:text-amber-400 cursor-help border-b border-dashed border-amber-600 dark:border-amber-400">
+      {phrase}
+    </span>
+    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white dark:bg-gray-800 rounded shadow-lg text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-amber-200 dark:border-amber-800">
+      <p className="font-bold text-amber-600 dark:text-amber-400">{phrase}</p>
+      <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
+      <p className="text-gray-700 dark:text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
+    </div>
+  </div>
+);
+
 const About = () => {
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
@@ -17,21 +38,21 @@ const About = () => {
             className="lg:w-1/2"
           >
             <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-              <span className="mr-1">👋</span> ¡Hola! Soy Virginia
+              <span className="mr-1">👋</span> Hi! I&apos;m Virginia
             </span>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Tu profesora de español<br className="hidden md:block" /> en <span className="text-blue-600">Málaga</span>
+              Your Spanish Teacher<br className="hidden md:block" /> in <span className="text-blue-600">Málaga</span>
             </h2>
             
             <div className="prose prose-lg dark:prose-invert mb-8">
               <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-                <span className="font-semibold">¿Cansado de estudiar español sin poder hablarlo realmente?</span> Yo te enseño a comunicarte desde el primer día, no solo a memorizar reglas gramaticales.
+                <span className="font-semibold">Tired of studying Spanish without being able to actually speak it?</span> I&apos;ll teach you to communicate from day one, not just memorize grammar rules. As we say in Spain, <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it's never too late to start learning" />.
               </p>
               
               <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl mb-6 border-l-4 border-blue-500">
                 <p className="text-gray-700 dark:text-gray-300 italic">
-                  &ldquo;Después de 10 años enseñando español a más de 500 estudiantes, he creado un método que realmente funciona. Mi enfoque se basa en la <span className="font-semibold">conversación práctica y situaciones reales</span> que encontrarás en tu día a día en España.&rdquo;
+                  &ldquo;After 10 years teaching Spanish to more than 500 students, I&apos;ve created a method that really works. My approach is based on <span className="font-semibold">practical conversation and real-life situations</span> that you&apos;ll encounter in your daily life in Spain. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely comfortable/in your element" /> in no time!&rdquo;
                 </p>
               </div>
               
@@ -39,19 +60,19 @@ const About = () => {
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Personalizo cada clase</span> según tus objetivos, ya sea para trabajo, turismo o residencia permanente.
+                    <span className="font-semibold">I personalize each class</span> according to your goals, whether for work, tourism, or permanent residency. No <SpanishExpression phrase="paños calientes" literal="hot cloths" meaning="half-measures or useless solutions" /> here!
                   </p>
                 </div>
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Creo un ambiente relajado</span> donde puedes equivocarte sin miedo, la única forma de aprender un idioma de verdad.
+                    <span className="font-semibold">I create a relaxed environment</span> where you can make mistakes without fear, the only way to truly learn a language. Don&apos;t worry about <SpanishExpression phrase="meter la pata" literal="sticking in the leg" meaning="making a mistake/putting your foot in your mouth" />!
                   </p>
                 </div>
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Te muestro la cultura malagueña</span> y te ayudo a integrarte en la vida local para una inmersión completa.
+                    <span className="font-semibold">I show you Málaga&apos;s culture</span> and help you integrate into local life for complete immersion. You&apos;ll be <SpanishExpression phrase="de cine" literal="from the movies" meaning="fantastic/awesome" /> at Spanish in no time!
                   </p>
                 </div>
               </div>
@@ -61,7 +82,7 @@ const About = () => {
               href="/booking" 
               className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
-              Reserva una clase de prueba gratis
+              Book a Free Trial Class
               <FaArrowRight className="ml-2" />
             </Link>
           </motion.div>
@@ -80,20 +101,20 @@ const About = () => {
               <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-10">
                 <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-xl mb-6">
                   <div className="w-full h-full bg-blue-100 flex items-center justify-center p-8">
-                    <p className="text-blue-800 font-medium text-center">Foto de Virginia - Profesora de español en Málaga</p>
+                    <p className="text-blue-800 font-medium text-center">Photo of Virginia - Spanish Teacher in Málaga</p>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl flex flex-col items-center text-center">
                     <FaGraduationCap className="text-blue-600 dark:text-blue-400 text-2xl mb-2" />
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Certificada</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Máster en ELE y DELE</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Certified</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Master in ELE & DELE</p>
                   </div>
                   <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl flex flex-col items-center text-center">
                     <FaUserFriends className="text-blue-600 dark:text-blue-400 text-2xl mb-2" />
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Experiencia</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">+500 estudiantes</p>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Experience</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">+500 students</p>
                   </div>
                 </div>
                 
@@ -101,9 +122,9 @@ const About = () => {
                   <div className="flex items-start mb-4">
                     <FaComment className="text-white opacity-80 text-2xl mr-4 mt-1" />
                     <div>
-                      <h4 className="font-bold mb-2">Hablemos de tus objetivos</h4>
+                      <h4 className="font-bold mb-2">Let&apos;s talk about your goals</h4>
                       <p className="text-blue-100">
-                        ¿Necesitas aprender español para trabajo, integración o simplemente para disfrutar más de Málaga? Cuéntame tus metas y diseñaré un plan personalizado para ti.
+                        Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started <SpanishExpression phrase="a todo gas" literal="at full gas" meaning="full speed ahead/with great energy" />!
                       </p>
                     </div>
                   </div>
@@ -111,7 +132,7 @@ const About = () => {
                     href="/contact" 
                     className="inline-flex items-center bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg transition-all hover:bg-blue-50 text-sm float-right"
                   >
-                    Contáctame ahora
+                    Contact me now
                     <FaArrowRight className="ml-2 text-xs" />
                   </Link>
                 </div>
@@ -123,10 +144,10 @@ const About = () => {
         <div className="mt-20 max-w-5xl mx-auto">
           <div className="text-center mb-10">
             <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              ¿Por qué mis estudiantes aprenden más rápido?
+              Why my students learn faster
             </h3>
             <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-              Mi método se basa en 3 pilares fundamentales que te harán hablar español con fluidez en poco tiempo:
+              My method is based on 3 fundamental pillars that will have you speaking Spanish fluently in no time. As they say, <SpanishExpression phrase="al mal tiempo, buena cara" literal="to bad weather, good face" meaning="make the best of a difficult situation" />!
             </p>
           </div>
           
@@ -142,10 +163,10 @@ const About = () => {
                 <span className="text-2xl">🗣️</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Conversación Real
+                Real Conversation
               </h4>
               <p className="text-gray-700 dark:text-gray-300">
-                Desde el primer día hablarás español sobre temas que te interesan. Nada de ejercicios aburridos o diálogos artificiales.
+                From day one you&apos;ll speak Spanish about topics that interest you. No boring exercises or artificial dialogues. It&apos;s time to <SpanishExpression phrase="romper el hielo" literal="break the ice" meaning="overcome initial awkwardness and start talking" />!
               </p>
             </motion.div>
             
@@ -160,10 +181,10 @@ const About = () => {
                 <span className="text-2xl">🎯</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Método Personalizado
+                Personalized Method
               </h4>
               <p className="text-gray-700 dark:text-gray-300">
-                Adapto mi enseñanza a tu estilo de aprendizaje. No todos aprendemos igual, y tu curso se ajusta a como tú aprendes mejor.
+                I adapt my teaching to your learning style. We don&apos;t all learn the same way, and your course adjusts to how you learn best. You&apos;ll be <SpanishExpression phrase="como anillo al dedo" literal="like a ring to the finger" meaning="a perfect fit" />!
               </p>
             </motion.div>
             
@@ -178,10 +199,10 @@ const About = () => {
                 <span className="text-2xl">🌍</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                Inmersión Cultural
+                Cultural Immersion
               </h4>
               <p className="text-gray-700 dark:text-gray-300">
-                Aprenderás el idioma en su contexto cultural. Te mostraré la Málaga auténtica que solo los locales conocen.
+                You&apos;ll learn the language in its cultural context. I&apos;ll show you the authentic Málaga that only locals know. You&apos;ll be <SpanishExpression phrase="en tu salsa" literal="in your sauce" meaning="in your element/comfortable in your environment" /> here!
               </p>
             </motion.div>
           </div>

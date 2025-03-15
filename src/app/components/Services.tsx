@@ -4,70 +4,114 @@ import { motion } from 'framer-motion';
 import { FaUserFriends, FaUserGraduate, FaLaptop, FaBookOpen, FaCheck, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 
+// Interface for Spanish expressions
+interface SpanishExpression {
+  phrase: string;
+  literal: string;
+  meaning: string;
+}
+
+// Component to display Spanish expressions
+const ExpressTooltip = ({ expression }: { expression: SpanishExpression }) => {
+  return (
+    <div className="group relative inline-block">
+      <span className="cursor-help text-amber-600 dark:text-amber-400 font-bold border-b border-dashed border-amber-600 dark:border-amber-400">
+        {expression.phrase}
+      </span>
+      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-gray-800 text-sm p-2 rounded-md shadow-lg absolute z-10 left-1/2 -translate-x-1/2 w-48 mt-1 border border-gray-200 dark:border-gray-700">
+        <div className="text-xs text-gray-500 italic">Literal: {expression.literal}</div>
+        <div className="text-xs text-gray-600 dark:text-gray-400">Means: {expression.meaning}</div>
+      </div>
+    </div>
+  );
+};
+
 const servicesList = [
   {
     id: 1,
-    title: 'Clases Individuales',
+    title: 'Individual Classes',
     emoji: '👨‍🏫',
-    description: 'Atención 100% personalizada para avanzar rápidamente.',
+    description: '100% personalized attention to progress quickly.',
     icon: <FaUserGraduate className="h-8 w-8 text-blue-600" />,
     price: '25€',
-    period: 'hora',
+    period: 'hour',
     popular: false,
     details: [
-      'Programa adaptado a tus necesidades',
-      'Avance 3 veces más rápido',
-      'Horarios flexibles',
-      'Materiales personalizados incluidos'
-    ]
+      'Program tailored to your needs',
+      'Progress 3 times faster',
+      'Flexible scheduling',
+      'Personalized materials included'
+    ],
+    expression: {
+      phrase: "¡A toda pastilla!",
+      literal: "At full pill!",
+      meaning: "At full speed/very quickly"
+    }
   },
   {
     id: 2,
-    title: 'Plan Intensivo',
+    title: 'Intensive Plan',
     emoji: '🔥',
-    description: 'Aprende español en tiempo récord con sesiones intensivas.',
+    description: 'Learn Spanish in record time with intensive sessions.',
     icon: <FaBookOpen className="h-8 w-8 text-blue-600" />,
     price: '299€',
-    period: 'mes',
+    period: 'month',
     popular: true,
     details: [
-      '3 clases de 90 min. por semana',
-      'Acceso a la plataforma online',
-      'Práctica con nativos',
-      'Progreso garantizado o devolvemos tu dinero'
-    ]
+      '3 classes of 90 min. per week',
+      'Access to online platform',
+      'Practice with native speakers',
+      'Guaranteed progress or your money back'
+    ],
+    expression: {
+      phrase: "¡Vas a flipar!",
+      /* eslint-disable-next-line react/no-unescaped-entities */
+      literal: "You're going to flip!",
+      /* eslint-disable-next-line react/no-unescaped-entities */
+      meaning: "You'll be amazed/blown away"
+    }
   },
   {
     id: 3,
-    title: 'Clases en Pareja',
+    title: 'Couple Classes',
     emoji: '👫',
-    description: 'Ahorra compartiendo la experiencia con un amigo.',
+    description: 'Save by sharing the experience with a friend.',
     icon: <FaUserFriends className="h-8 w-8 text-blue-600" />,
     price: '40€',
-    period: 'hora',
+    period: 'hour',
     popular: false,
     details: [
-      'Dinámica de conversación real',
-      '20€ por persona',
-      'Aprendizaje colaborativo',
-      'Competición saludable'
-    ]
+      'Real conversation dynamics',
+      '€20 per person',
+      'Collaborative learning',
+      'Healthy competition'
+    ],
+    expression: {
+      phrase: "Dos pájaros de un tiro",
+      literal: "Two birds with one shot",
+      meaning: "Two for the price of one"
+    }
   },
   {
     id: 4,
-    title: 'Español Online',
+    title: 'Online Spanish',
     emoji: '💻',
-    description: 'Aprende desde cualquier lugar con clases virtuales efectivas.',
+    description: 'Learn from anywhere with effective virtual classes.',
     icon: <FaLaptop className="h-8 w-8 text-blue-600" />,
     price: '20€',
-    period: 'hora',
+    period: 'hour',
     popular: false,
     details: [
-      'Plataforma interactiva',
-      'Grabación de las sesiones',
-      'Material digital incluido',
-      'Sin límites geográficos'
-    ]
+      'Interactive platform',
+      'Session recordings',
+      'Digital materials included',
+      'No geographical limits'
+    ],
+    expression: {
+      phrase: "En un pispás",
+      literal: "In a pispás",
+      meaning: "In the blink of an eye/very quickly"
+    }
   }
 ];
 
@@ -77,13 +121,17 @@ const Services = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
           <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-            <span className="mr-1">💰</span> Planes que se ajustan a tu presupuesto
+            <span className="mr-1">💰</span> Plans that fit your budget
           </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-            Escoge el plan perfecto para ti
+            Choose the perfect plan for you
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Elige el programa que mejor se adapte a tus necesidades y comienza a hablar español desde la primera clase.
+            Select the program that best fits your needs and start speaking Spanish from the first class. As we say in Spain: <ExpressTooltip expression={{
+              phrase: "¡A por todas!",
+              literal: "Go for all!",
+              meaning: "Give it your all/Let's do this!"
+            }} />
           </p>
         </div>
 
@@ -99,7 +147,7 @@ const Services = () => {
             >
               {service.popular && (
                 <div className="absolute top-0 left-0 right-0 bg-blue-600 text-white py-1.5 text-center text-sm font-semibold">
-                  Más popular 🌟
+                  Most popular 🌟
                 </div>
               )}
               
@@ -107,7 +155,9 @@ const Services = () => {
                 <div className="text-center mb-4">
                   <span className="text-4xl mb-2 block">{service.emoji}</span>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white">{service.title}</h3>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 min-h-[40px]">{service.description}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm mt-2 min-h-[40px]">
+                    {service.description} <ExpressTooltip expression={service.expression} />
+                  </p>
                 </div>
                 
                 <div className="text-center my-6">
@@ -134,7 +184,7 @@ const Services = () => {
                       : 'bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-900 dark:text-white'
                   }`}
                 >
-                  {service.popular ? 'Empieza ahora' : 'Reservar'} 
+                  {service.popular ? 'Start now' : 'Book'} 
                   <FaArrowRight className="ml-2" />
                 </Link>
               </div>
@@ -144,15 +194,19 @@ const Services = () => {
         
         <div className="mt-16 max-w-3xl mx-auto text-center bg-blue-50 dark:bg-blue-900/20 rounded-2xl p-8">
           <div className="text-4xl mb-4">🎓</div>
-          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">¿No sabes qué plan elegir?</h3>
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Not sure which plan to choose?</h3>
           <p className="text-gray-700 dark:text-gray-300 mb-6">
-            Agenda una llamada de 15 minutos para analizar tu nivel y recomendarte el plan perfecto para tus objetivos.
+            Schedule a 15-minute call to analyze your level and recommend the perfect plan for your goals. As they say in Spain: <ExpressTooltip expression={{
+              phrase: "Tener enchufe",
+              literal: "To have a plug",
+              meaning: "To have connections/insider help"
+            }} />
           </p>
           <Link 
             href="/contact" 
             className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105"
           >
-            Llamada gratuita de 15 minutos
+            Free 15-minute consultation
             <FaArrowRight className="ml-2" />
           </Link>
         </div>
@@ -167,7 +221,7 @@ const Services = () => {
           <div className="inline-block border border-gray-200 dark:border-gray-700 rounded-full py-2 px-4 text-gray-700 dark:text-gray-300 text-sm">
             <div className="flex items-center">
               <span className="mr-2">🔒</span>
-              <span>Si no avanzas en 30 días, te devolvemos tu dinero</span>
+              <span>If you don't make progress in 30 days, we'll refund your money</span>
             </div>
           </div>
         </motion.div>
