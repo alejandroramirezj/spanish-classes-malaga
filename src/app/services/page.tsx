@@ -33,14 +33,8 @@ export default function ServicesPage() {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-10 items-center">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <Image 
-                    src="/individual-class.jpg" 
-                    alt="Clases individuales de español" 
-                    width={600} 
-                    height={400}
-                    className="w-full h-auto object-cover"
-                  />
+                <div className="rounded-lg overflow-hidden shadow-lg bg-blue-100 h-64 flex items-center justify-center">
+                  <p className="text-blue-800 font-medium">Clases individuales de español</p>
                 </div>
               </div>
               

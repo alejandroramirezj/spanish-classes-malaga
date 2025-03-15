@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Image from 'next/image';
 import { FaGraduationCap, FaBook, FaUserFriends, FaGlobe } from 'react-icons/fa';
+import Link from 'next/link';
 
 export const metadata = {
   title: 'Sobre Virginia | Spanish Classes Malaga',
@@ -22,14 +22,8 @@ export default function AboutPage() {
             
             <div className="flex flex-col md:flex-row gap-12 items-center mb-16">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <Image 
-                    src="/virginia-profile.jpg" 
-                    alt="Virginia - Profesora de español" 
-                    width={600} 
-                    height={800}
-                    className="w-full h-auto object-cover"
-                  />
+                <div className="rounded-lg overflow-hidden shadow-lg bg-blue-100 h-80 flex items-center justify-center">
+                  <p className="text-blue-800 font-medium">Foto de Virginia - Profesora de español</p>
                 </div>
               </div>
               
@@ -171,12 +165,12 @@ export default function AboutPage() {
               <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
                 ¿Listo para empezar?
               </h2>
-              <a 
+              <Link 
                 href="/booking" 
-                className="inline-block bg-amber-600 text-white font-medium px-8 py-3 rounded-md hover:bg-amber-700 transition-colors"
+                className="inline-block bg-blue-600 text-white font-medium px-8 py-3 rounded-md hover:bg-blue-700 transition-colors"
               >
                 Reserva tu primera clase
-              </a>
+              </Link>
             </div>
           </div>
         </div>

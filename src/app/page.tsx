@@ -8,7 +8,6 @@ import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { FaMapMarkerAlt, FaSun, FaWineGlassAlt, FaUmbrellaBeach, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 
@@ -41,12 +40,9 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative rounded-2xl overflow-hidden group h-80"
             >
-              <Image 
-                src="/malaga-beach.jpg" 
-                alt="Playas de Málaga" 
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              <div className="w-full h-full bg-blue-100 flex items-center justify-center">
+                <p className="text-blue-800 font-medium">Imagen: Playas de Málaga</p>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Playas Impresionantes</h3>
@@ -62,12 +58,9 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative rounded-2xl overflow-hidden group h-80"
             >
-              <Image 
-                src="/malaga-city-center.jpg" 
-                alt="Centro histórico de Málaga" 
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              <div className="w-full h-full bg-blue-200 flex items-center justify-center">
+                <p className="text-blue-800 font-medium">Imagen: Centro histórico de Málaga</p>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Centro Histórico</h3>
@@ -83,12 +76,9 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative rounded-2xl overflow-hidden group h-80"
             >
-              <Image 
-                src="/malaga-alcazaba.jpg" 
-                alt="La Alcazaba de Málaga" 
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
+              <div className="w-full h-full bg-blue-300 flex items-center justify-center">
+                <p className="text-blue-800 font-medium">Imagen: La Alcazaba de Málaga</p>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent">
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">Historia Fascinante</h3>

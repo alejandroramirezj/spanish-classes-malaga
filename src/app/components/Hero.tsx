@@ -9,7 +9,7 @@ const Hero = () => {
     <section className="relative pt-20 pb-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-700/90 to-blue-900/90 z-0">
-        <div className="absolute inset-0 bg-[url('/malaga-view.jpg')] bg-cover bg-center mix-blend-overlay opacity-30"></div>
+        <div className="absolute inset-0 bg-blue-800 opacity-20 pattern-dots pattern-blue-700 pattern-size-2 pattern-opacity-10"></div>
       </div>
       
       {/* Decorative elements */}

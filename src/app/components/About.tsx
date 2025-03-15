@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion';
 import { FaCheckCircle, FaGraduationCap, FaUserFriends, FaComment, FaArrowRight } from 'react-icons/fa';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const About = () => {
@@ -80,13 +79,9 @@ const About = () => {
               
               <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-10">
                 <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-xl mb-6">
-                  <Image
-                    src="/virginia-profile.jpg"
-                    alt="Virginia - Profesora de español en Málaga"
-                    width={600}
-                    height={450}
-                    className="object-cover"
-                  />
+                  <div className="w-full h-full bg-blue-100 flex items-center justify-center p-8">
+                    <p className="text-blue-800 font-medium text-center">Foto de Virginia - Profesora de español en Málaga</p>
+                  </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
