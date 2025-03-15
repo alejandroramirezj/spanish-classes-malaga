@@ -17,6 +17,45 @@ interface GoogleReview {
   relative_time_description: string;
 }
 
+// Fotos de alumnos para la galería
+const studentPhotos = [
+  {
+    src: '/Alumnos_7.jpg',
+    alt: 'Celebración con alumnos de español en Málaga',
+    caption: 'Nuestros alumnos celebrando'
+  },
+  {
+    src: '/Alumnos_1.jpg',
+    alt: 'Alumnos en el centro de Málaga',
+    caption: 'Clase en el centro'
+  },
+  {
+    src: '/Alumnos_2.jpg',
+    alt: 'Estudiantes practicando conversación',
+    caption: 'Práctica de conversación'
+  },
+  {
+    src: '/Alumnos_4.jpg',
+    alt: 'Estudiantes disfrutando de actividades culturales',
+    caption: 'Actividades culturales'
+  },
+  {
+    src: '/Alumnos_5.jpg',
+    alt: 'Grupo de estudiantes internacionales',
+    caption: 'Grupo internacional'
+  },
+  {
+    src: '/Alumnos_6.jpg',
+    alt: 'Alumnos practicando español en contexto real',
+    caption: 'Aprendizaje práctico'
+  },
+  {
+    src: '/Alumnos_3.jpg',
+    alt: 'Estudiantes celebrando su progreso',
+    caption: 'Celebrando el progreso'
+  }
+];
+
 const Testimonials = () => {
   const [reviews, setReviews] = useState<GoogleReview[]>([]);
   const [loading, setLoading] = useState(true);
@@ -101,6 +140,49 @@ const Testimonials = () => {
   return (
     <section className="py-12 bg-gradient-to-br from-white to-blue-50 dark:from-gray-900 dark:to-blue-950">
       <div className="container mx-auto px-4 md:px-6">
+        {/* Nueva sección de galería de alumnos */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <span className="bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
+              <span className="mr-1">🎉</span> Alumnos disfrutando del español
+            </span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-3 text-gray-900 dark:text-white">
+              Experiencias reales en Málaga
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              Descubre cómo nuestros estudiantes disfrutan aprendiendo español mientras se sumergen en la cultura española y crean recuerdos inolvidables
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+            {studentPhotos.map((photo, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                className={`relative overflow-hidden rounded-xl shadow-lg ${index === 0 ? 'col-span-2 row-span-2 md:col-span-2 md:row-span-2' : ''}`}
+                style={{ height: index === 0 ? '500px' : '220px' }}
+              >
+                <div className={`absolute inset-0 ${index === 0 ? 'bg-amber-500/10' : 'bg-blue-500/10'} hover:bg-transparent transition-all duration-300 z-10`}></div>
+                <img
+                  src={photo.src}
+                  alt={photo.alt}
+                  className="object-cover w-full h-full transition-all duration-500 hover:scale-105"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+                <div className={`absolute bottom-0 left-0 right-0 p-4 ${index === 0 ? 'bg-gradient-to-t from-amber-900/80 to-transparent' : 'bg-gradient-to-t from-black/70 to-transparent'} text-white z-20`}>
+                  <p className={`${index === 0 ? 'text-xl font-bold' : 'text-sm font-medium'}`}>{photo.caption}</p>
+                  {index === 0 && (
+                    <p className="text-sm mt-1 text-amber-100">Celebra tu aprendizaje con nosotros</p>
+                  )}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Sección de testimonios existente */}
         <div className="text-center mb-8">
           <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
             <span className="mr-1">❤️</span> Reseñas verificadas de Google

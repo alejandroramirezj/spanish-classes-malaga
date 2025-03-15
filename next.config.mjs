@@ -1,10 +1,15 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
+  output: 'export',
   images: {
-    domains: [],
-    remotePatterns: [],
     unoptimized: true,
+    domains: ['localhost'],
+    remotePatterns: [
+      {
+        protocol: 'file',
+        hostname: '**',
+      },
+    ],
   },
 };
 
