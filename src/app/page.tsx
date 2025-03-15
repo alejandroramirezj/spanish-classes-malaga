@@ -1,103 +1,178 @@
-import Image from "next/image";
+'use client';
+
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Services from './components/Services';
+import Testimonials from './components/Testimonials';
+import ContactForm from './components/ContactForm';
+import Footer from './components/Footer';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { FaMapMarkerAlt, FaSun, FaWineGlassAlt, FaUmbrellaBeach, FaArrowRight } from 'react-icons/fa';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main>
+      <Navbar />
+      <Hero />
+      
+      {/* Sección de imágenes de Málaga */}
+      <section className="py-16 bg-white dark:bg-gray-900">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col items-center text-center mb-12">
+            <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
+              <span className="mr-1">🌊</span> Aprende en el paraíso
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              Málaga: el mejor lugar para <span className="text-blue-600">aprender español</span>
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              ¿Por qué conformarte con un aula aburrida cuando puedes aprender español en una de las ciudades más bellas de España?
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="relative rounded-2xl overflow-hidden group h-80"
+            >
+              <Image 
+                src="/malaga-beach.jpg" 
+                alt="Playas de Málaga" 
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">Playas Impresionantes</h3>
+                  <p className="text-white/90">Practica español mientras disfrutas de más de 300 días de sol al año.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="relative rounded-2xl overflow-hidden group h-80"
+            >
+              <Image 
+                src="/malaga-city-center.jpg" 
+                alt="Centro histórico de Málaga" 
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">Centro Histórico</h3>
+                  <p className="text-white/90">Cultura, gastronomía y ambiente único en cada rincón de la ciudad.</p>
+                </div>
+              </div>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="relative rounded-2xl overflow-hidden group h-80"
+            >
+              <Image 
+                src="/malaga-alcazaba.jpg" 
+                alt="La Alcazaba de Málaga" 
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent">
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">Historia Fascinante</h3>
+                  <p className="text-white/90">Aprende español rodeado de más de 3000 años de historia.</p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+          
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 text-center"
+            >
+              <div className="bg-white dark:bg-gray-800 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                <FaMapMarkerAlt className="text-blue-600 text-2xl" />
+              </div>
+              <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">4ª</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Ciudad más visitada de España</p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 text-center"
+            >
+              <div className="bg-white dark:bg-gray-800 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                <FaSun className="text-blue-600 text-2xl" />
+              </div>
+              <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">320</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Días de sol al año</p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 text-center"
+            >
+              <div className="bg-white dark:bg-gray-800 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                <FaWineGlassAlt className="text-blue-600 text-2xl" />
+              </div>
+              <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">1000+</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Bares y restaurantes</p>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 text-center"
+            >
+              <div className="bg-white dark:bg-gray-800 w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 shadow-md">
+                <FaUmbrellaBeach className="text-blue-600 text-2xl" />
+              </div>
+              <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">16</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm">Playas en la provincia</p>
+            </motion.div>
+          </div>
+          
+          <div className="text-center mt-12">
+            <Link 
+              href="/booking" 
+              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105"
+            >
+              Reserva tu curso en Málaga
+              <FaArrowRight className="ml-2" />
+            </Link>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+      
+      <About />
+      <Services />
+      <Testimonials />
+      <ContactForm />
+      <Footer />
+    </main>
   );
 }
