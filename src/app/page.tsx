@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -8,7 +9,7 @@ import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaSun, FaWineGlassAlt, FaUmbrellaBeach, FaArrowRight } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaSun, FaWineGlassAlt, FaUmbrellaBeach, FaArrowRight, FaInfoCircle } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Interface for Spanish expressions
@@ -19,18 +20,41 @@ interface SpanishExpressionProps {
 }
 
 // Component for Spanish expressions with tooltips
-const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps) => (
-  <div className="relative group inline-block">
-    <span className="font-bold text-amber-600 dark:text-amber-400 cursor-help border-b border-dashed border-amber-600 dark:border-amber-400">
-      {phrase}
-    </span>
-    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white dark:bg-gray-800 rounded shadow-lg text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-amber-200 dark:border-amber-800">
-      <p className="font-bold text-amber-600 dark:text-amber-400">{phrase}</p>
-      <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
-      <p className="text-gray-700 dark:text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
+const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  
+  return (
+    <div className="relative inline-block">
+      <span 
+        className="font-bold text-amber-600 dark:text-amber-400 cursor-pointer border-b border-dashed border-amber-600 dark:border-amber-400 flex items-center gap-1"
+        onClick={() => setShowTooltip(!showTooltip)}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {phrase}
+        <FaInfoCircle className="text-xs text-amber-400" />
+      </span>
+      {showTooltip && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white dark:bg-gray-800 rounded shadow-lg text-sm z-50 border border-amber-200 dark:border-amber-800">
+          <div className="relative">
+            <p className="font-bold text-amber-600 dark:text-amber-400">{phrase}</p>
+            <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
+            <p className="text-gray-700 dark:text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTooltip(false);
+              }}
+              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xs"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 export default function Home() {
   return (

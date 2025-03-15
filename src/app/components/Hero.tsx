@@ -1,8 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaStar } from 'react-icons/fa';
+import { FaArrowRight, FaStar, FaInfoCircle } from 'react-icons/fa';
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface SpanishExpressionProps {
   expression: string;
@@ -10,18 +11,45 @@ interface SpanishExpressionProps {
   meaning: string;
 }
 
-const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionProps) => (
-  <div className="relative group">
-    <span className="underline decoration-dashed decoration-amber-400 cursor-help font-medium text-amber-600 dark:text-amber-400">
-      {expression}
-    </span>
-    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white dark:bg-gray-800 rounded shadow-lg text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-amber-200 dark:border-amber-800">
-      <p className="font-bold text-amber-600 dark:text-amber-400">{expression}</p>
-      <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
-      <p className="text-gray-700 dark:text-gray-300">Really means: &ldquo;{meaning}&rdquo;</p>
+const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionProps) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  
+  const toggleTooltip = () => {
+    setShowTooltip(!showTooltip);
+  };
+  
+  return (
+    <div className="relative inline-block">
+      <span 
+        className="underline decoration-dashed decoration-amber-400 cursor-pointer font-medium text-amber-600 dark:text-amber-400 flex items-center gap-1"
+        onClick={toggleTooltip}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {expression}
+        <FaInfoCircle className="text-xs text-amber-400" />
+      </span>
+      {showTooltip && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white dark:bg-gray-800 rounded shadow-lg text-sm z-50 border border-amber-200 dark:border-amber-800">
+          <div className="relative">
+            <p className="font-bold text-amber-600 dark:text-amber-400">{expression}</p>
+            <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
+            <p className="text-gray-700 dark:text-gray-300">Really means: &ldquo;{meaning}&rdquo;</p>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTooltip(false);
+              }}
+              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xs"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 const Hero = () => {
   return (
@@ -115,17 +143,25 @@ const Hero = () => {
                 <div className="absolute inset-0 opacity-20 bg-pattern"></div>
                 <span className="text-white text-2xl font-medium drop-shadow-md">Spanish Classes in Málaga</span>
                 
-                {/* First testimonial bubble */}
+                {/* First testimonial bubble - Student from USA */}
                 <div className="absolute bottom-6 right-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg max-w-xs transform transition-transform hover:scale-105">
-                  <p className="font-bold mb-1">Student from USA:</p>
+                  <p className="font-bold mb-2 flex items-center gap-2">
+                    <span>👩‍🦰</span>
+                    <span>🇺🇸</span>
+                    <span>Student from USA:</span>
+                  </p>
                   <p className="text-gray-700 dark:text-gray-300 text-sm">
                     &ldquo;Learning Spanish here was <SpanishExpression expression="la leche" literal="the milk" meaning="awesome/amazing" />! Virginia is <SpanishExpression expression="de primera" literal="of first" meaning="top-notch/excellent" />!&rdquo;
                   </p>
                 </div>
                 
-                {/* Second testimonial bubble */}
+                {/* Second testimonial bubble - Student from Germany */}
                 <div className="absolute top-6 left-6 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg max-w-xs transform transition-transform hover:scale-105">
-                  <p className="font-bold mb-1">Student from Germany:</p>
+                  <p className="font-bold mb-2 flex items-center gap-2">
+                    <span>👨</span>
+                    <span>🇩🇪</span>
+                    <span>Student from Germany:</span>
+                  </p>
                   <p className="text-gray-700 dark:text-gray-300 text-sm">
                     &ldquo;I was <SpanishExpression expression="en las nubes" literal="in the clouds" meaning="over the moon/extremely happy" /> with my progress!&rdquo;
                   </p>

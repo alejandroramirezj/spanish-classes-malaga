@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaArrowUp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaArrowUp, FaInfoCircle } from 'react-icons/fa';
 
 // Interface for Spanish expressions
 interface SpanishExpressionProps {
@@ -11,18 +12,41 @@ interface SpanishExpressionProps {
 }
 
 // Component for Spanish expressions with tooltips
-const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps) => (
-  <div className="relative group inline-block">
-    <span className="cursor-help text-amber-300 dark:text-amber-300 font-bold border-b border-dashed border-amber-300">
-      {phrase}
-    </span>
-    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-blue-950 rounded shadow-lg text-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 border border-blue-700">
-      <p className="font-bold text-amber-300">{phrase}</p>
-      <p className="text-gray-300 italic">Literal: &ldquo;{literal}&rdquo;</p>
-      <p className="text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
+const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  
+  return (
+    <div className="relative inline-block">
+      <span 
+        className="cursor-pointer text-amber-300 dark:text-amber-300 font-bold border-b border-dashed border-amber-300 flex items-center gap-1"
+        onClick={() => setShowTooltip(!showTooltip)}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
+        {phrase}
+        <FaInfoCircle className="text-xs text-amber-300" />
+      </span>
+      {showTooltip && (
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-blue-950 rounded shadow-lg text-sm z-50 border border-blue-700">
+          <div className="relative">
+            <p className="font-bold text-amber-300">{phrase}</p>
+            <p className="text-gray-300 italic">Literal: &ldquo;{literal}&rdquo;</p>
+            <p className="text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTooltip(false);
+              }}
+              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-300 text-xs"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

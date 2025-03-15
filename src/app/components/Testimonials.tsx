@@ -19,6 +19,9 @@ interface GoogleReview {
     literal: string;
     meaning: string;
   };
+  country?: string;
+  countryFlag?: string;
+  gender?: 'male' | 'female';
 }
 
 // Real reviews provided by the user, translated to English
@@ -31,7 +34,10 @@ const realReviews: GoogleReview[] = [
     text: 'I had a great time at this school learning Spanish for 6 months. The classroom environment was very good and fun, which is why I was able to enjoy studying Spanish without difficulty while meeting so many local people. I never regret studying at this school and I will never forget the unforgettable memories. Before leaving for my country, I leave my comment on this page so they can see the information and various photos of this school.',
     time: Date.now() - 252288000000, // 8 years in milliseconds
     relative_time_description: '8 years ago',
-    original_spanish: 'Pasé buen tiempo en esta escuela aprendiendo español durante 6 meses.'
+    original_spanish: 'Pasé buen tiempo en esta escuela aprendiendo español durante 6 meses.',
+    country: 'South Korea',
+    countryFlag: '🇰🇷',
+    gender: 'male'
   },
   {
     id: '2',
@@ -40,7 +46,10 @@ const realReviews: GoogleReview[] = [
     rating: 5,
     text: 'I am currently taking English classes to obtain my B1 certification, while balancing it with my work. Flexible schedules. I recommend it 100%.',
     time: Date.now() - 220752000000, // 7 years in milliseconds
-    relative_time_description: '7 years ago'
+    relative_time_description: '7 years ago',
+    country: 'Spain',
+    countryFlag: '🇪🇸',
+    gender: 'female'
   },
   {
     id: '3',
@@ -54,7 +63,10 @@ const realReviews: GoogleReview[] = [
       phrase: "¡Me quedé con la boca abierta!",
       literal: "I was left with an open mouth!",
       meaning: "I was amazed/speechless"
-    }
+    },
+    country: 'Germany',
+    countryFlag: '🇩🇪',
+    gender: 'male'
   },
   {
     id: '4',
@@ -63,7 +75,10 @@ const realReviews: GoogleReview[] = [
     rating: 5,
     text: 'I HIGHLY recommend Virginia and this school. I took private classes 2 hours a day, 4 days a week during the two months I was visiting Malaga. Virginia tailored the classes exactly to what I needed and was a GREAT help. Every day we would have coffee together and talk for about an hour, and then in the second hour, we would move on to some workbook lessons. Virginia is a wonderful person and I really enjoyed my time at the school! 5 stars!!',
     time: Date.now() - 157680000000, // 5 years in milliseconds
-    relative_time_description: '5 years ago'
+    relative_time_description: '5 years ago',
+    country: 'USA',
+    countryFlag: '🇺🇸',
+    gender: 'male'
   },
   {
     id: '5',
@@ -72,7 +87,10 @@ const realReviews: GoogleReview[] = [
     rating: 5,
     text: 'My wife and I took conversation classes for several weeks this winter with Virginia. She was absolutely fantastic. We really enjoyed our time with her and loved hearing her stories. She is a wonderful woman with a great sense of humor and the hours talking with her flew by. When we return to Malaga, we will definitely take classes with her again.',
     time: Date.now() - 126144000000, // 4 years in milliseconds
-    relative_time_description: '4 years ago'
+    relative_time_description: '4 years ago',
+    country: 'UK',
+    countryFlag: '🇬🇧',
+    gender: 'male'
   },
   {
     id: '6',
@@ -86,7 +104,10 @@ const realReviews: GoogleReview[] = [
       phrase: "¡Es la caña!",
       literal: "It's the cane/rod!",
       meaning: "It's awesome/amazing"
-    }
+    },
+    country: 'Lithuania',
+    countryFlag: '🇱🇹',
+    gender: 'female'
   },
   {
     id: '7',
@@ -95,7 +116,10 @@ const realReviews: GoogleReview[] = [
     rating: 5,
     text: 'At first I was worried because there weren\'t many reviews about this academy, but I love it!! I chose to improve my conversation skills and it was really useful to be able to talk continuously with the teacher, instead of having a group of students gathered and only being able to talk a little bit like in a normal language school. I love being able to experience the real Spain by shopping at the market with my teacher every morning, walking around the port, and having breakfast at a nearby cafe. It\'s the best academy for conversation!!',
     time: Date.now() - 189216000000, // 6 years in milliseconds
-    relative_time_description: '6 years ago'
+    relative_time_description: '6 years ago',
+    country: 'Japan',
+    countryFlag: '🇯🇵',
+    gender: 'female'
   },
   {
     id: '8',
@@ -104,7 +128,10 @@ const realReviews: GoogleReview[] = [
     rating: 5,
     text: 'Hello everyone!! I\'m coming here to tell you about my charming teacher, mom (in Malaga), and friend!!! She is truly a great Spanish teacher. My Spanish is improving at an amazing pace. Unlike other academies in Malaga, our time is like a play, a party, and a class. I simply can\'t help but recommend this school to anyone who wants to learn Spanish. With her, every morning you can start with laughter and feel fresh. After finishing the class, I always look forward to tomorrow to spend my precious time with her. Ah!! You have to know this! Our class features an excellent view from the balcony, which makes the class more efficient, happy, and fresh. About the class, all our conversation is learning material, in other words, your way of speaking will get surprisingly better and better. I considered many schools when choosing and I highly recommend registering without thinking further. If you really want to learn Spanish, you should come here to get a native Spanish speaker!',
     time: Date.now() - 189216000000, // 6 years in milliseconds
-    relative_time_description: '6 years ago'
+    relative_time_description: '6 years ago',
+    country: 'South Korea',
+    countryFlag: '🇰🇷', 
+    gender: 'female'
   }
 ];
 
@@ -164,6 +191,11 @@ const Testimonials = () => {
     const colors = ['text-blue-600', 'text-green-600', 'text-purple-600', 'text-amber-600', 'text-red-600', 'text-pink-600'];
     const index = name.charCodeAt(0) % colors.length;
     return colors[index];
+  };
+
+  // Function to get gender emoji
+  const getGenderEmoji = (review: GoogleReview) => {
+    return review.gender === 'female' ? '👩' : '👨';
   };
 
   return (
@@ -245,18 +277,21 @@ const Testimonials = () => {
               <div className="flex items-start mb-4">
                 <div className={`relative w-12 h-12 rounded-full mr-3 overflow-hidden ${getRandomBgColor(review.author_name)} flex items-center justify-center flex-shrink-0`}>
                   <span className={`text-lg font-bold ${getTextColor(review.author_name)}`}>
-                    {review.author_name.charAt(0).toUpperCase()}
+                    {getGenderEmoji(review)}
                   </span>
                 </div>
                 <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white">{review.author_name}</h4>
+                  <div className="flex items-center gap-2 mb-1">
+                    <h4 className="font-bold text-gray-900 dark:text-white">{review.author_name}</h4>
+                    {review.countryFlag && <span className="text-lg">{review.countryFlag}</span>}
+                  </div>
                   <div className="flex">
                     {[...Array(review.rating)].map((_, i) => (
                       <FaStar key={i} className="text-yellow-400 w-4 h-4" />
                     ))}
                   </div>
                   <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                    {review.relative_time_description}
+                    {review.relative_time_description} {review.country && `· ${review.country}`}
                   </div>
                 </div>
               </div>

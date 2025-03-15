@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaUserFriends, FaUserGraduate, FaLaptop, FaBookOpen, FaCheck, FaArrowRight } from 'react-icons/fa';
+import { FaUserFriends, FaUserGraduate, FaLaptop, FaBookOpen, FaCheck, FaArrowRight, FaInfoCircle } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Interface for Spanish expressions
@@ -13,15 +14,36 @@ interface SpanishExpression {
 
 // Component to display Spanish expressions
 const ExpressTooltip = ({ expression }: { expression: SpanishExpression }) => {
+  const [showTooltip, setShowTooltip] = useState(false);
+  
   return (
-    <div className="group relative inline-block">
-      <span className="cursor-help text-amber-600 dark:text-amber-400 font-bold border-b border-dashed border-amber-600 dark:border-amber-400">
+    <div className="relative inline-block">
+      <span 
+        className="cursor-pointer text-amber-600 dark:text-amber-400 font-bold border-b border-dashed border-amber-600 dark:border-amber-400 flex items-center gap-1"
+        onClick={() => setShowTooltip(!showTooltip)}
+        onMouseEnter={() => setShowTooltip(true)}
+        onMouseLeave={() => setShowTooltip(false)}
+      >
         {expression.phrase}
+        <FaInfoCircle className="text-xs text-amber-400" />
       </span>
-      <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-white dark:bg-gray-800 text-sm p-2 rounded-md shadow-lg absolute z-10 left-1/2 -translate-x-1/2 w-48 mt-1 border border-gray-200 dark:border-gray-700">
-        <div className="text-xs text-gray-500 italic">Literal: {expression.literal}</div>
-        <div className="text-xs text-gray-600 dark:text-gray-400">Means: {expression.meaning}</div>
-      </div>
+      {showTooltip && (
+        <div className="bg-white dark:bg-gray-800 text-sm p-2 rounded-md shadow-lg absolute z-50 left-1/2 -translate-x-1/2 w-48 mt-1 border border-gray-200 dark:border-gray-700">
+          <div className="relative">
+            <div className="text-xs text-gray-500 italic">Literal: {expression.literal}</div>
+            <div className="text-xs text-gray-600 dark:text-gray-400">Means: {expression.meaning}</div>
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowTooltip(false);
+              }}
+              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xs"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
