@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { FaStar, FaQuoteLeft, FaGoogle, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
 
 // Interfaz para las reseñas de Google
 interface GoogleReview {
@@ -15,6 +14,82 @@ interface GoogleReview {
   time: number;
   relative_time_description: string;
 }
+
+// Reseñas reales proporcionadas por el usuario
+const realReviews: GoogleReview[] = [
+  {
+    id: '1',
+    author_name: 'Anónimo',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Pasé buen tiempo en esta escuela aprendiendo español durante 6 meses. El ambiente de clase era muy bueno y divertido, por eso pude disfrutar del estudio de español sin dificultad encontrando con tanta gente de aquí. Nunca me arrepiento de estudiar en esta escuela ni me olvidaré de los recuerdos inolvidables. Antes de marcharme a mi país, dejo mi comentario en esta página para que vean la información y varias fotos de esta escuela.',
+    time: Date.now() - 252288000000, // 8 años en milisegundos
+    relative_time_description: 'Hace 8 años'
+  },
+  {
+    id: '2',
+    author_name: 'Marta',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Actualmente estoy dando clases de inglés para sacarme la titulación B1, compaginándolo con mi trabajo. Horarios flexibles. Lo recomiendo 100%.',
+    time: Date.now() - 220752000000, // 7 años en milisegundos
+    relative_time_description: 'Hace 7 años'
+  },
+  {
+    id: '3',
+    author_name: 'Norman Nemitz',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Virginia es una profesora fantástica y recomiendo encarecidamente su escuela de idiomas. Sin conocimientos previos, con la ayuda de Virginia, aprendí los conceptos básicos de este hermoso idioma en unas pocas semanas y me divertí mucho haciéndolo. Además de los conceptos básicos de gramática, lo principal es hablar el idioma con confianza y ahora puedo afirmar que puedo comunicarme sobre casi cualquier tema. Con su carácter cálido y su personalidad divertida, Virginia crea una atmósfera de bienestar al aprender un idioma tan diferente a lo que estás acostumbrado en otras escuelas de idiomas. Las clases en grupos reducidos o los cursos de idiomas individuales te permiten potenciar tus puntos fuertes personales y áreas de desarrollo a la hora de aprender idiomas, lo que a mí me ayudó mucho. En grupos pequeños os conocéis mucho mejor que en grupos grandes y podéis aprender unos de otros. Para aquellos que estén planeando un viaje de idiomas a Málaga, la escuela de idiomas de Virginia también es ideal, ya que alquila apartamentos a viajeros (de idiomas) en el corazón del casco antiguo de Málaga y en el mismo edificio. Para los viajeros de idiomas, ofrece un agradable programa de apoyo que les muestra la Málaga auténtica y les permite sumergirse en la cultura española/andaluza. Por todo ello le doy 5 estrellas a Virginia School en Málaga. ¡Gracias Virginia por todo!',
+    time: Date.now() - 189216000000, // 6 años en milisegundos
+    relative_time_description: 'Hace 6 años'
+  },
+  {
+    id: '4',
+    author_name: 'Michael Rafi',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Recomiendo ALTAMENTE Virginia y esta escuela. Tomé clases privadas durante 2 horas al día, 4 días a la semana durante los dos meses que estuve visitando Málaga. Virginia adaptó las clases exactamente a lo que necesitaba y fue de GRAN ayuda. Cada día tomábamos un café juntos y hablábamos durante aproximadamente una hora, y luego, en la segunda hora, pasábamos a algunas lecciones del libro de trabajo. ¡Virginia es una persona maravillosa y realmente disfruté mi tiempo en la escuela! 5 estrellas!!',
+    time: Date.now() - 157680000000, // 5 años en milisegundos
+    relative_time_description: 'Hace 5 años'
+  },
+  {
+    id: '5',
+    author_name: 'Steve Noyce',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Mi esposa y yo tomamos clases de conversación durante varias semanas este invierno con Virginia. Ella fue absolutamente fantástica. Realmente disfrutamos nuestro tiempo con ella y nos encantó escuchar sus historias. Es una mujer maravillosa con un sentido del humor estupendo y las horas hablando con ella pasaron muy rápido. Cuando volvamos a Málaga, sin duda volveremos a tomar clases con ella.',
+    time: Date.now() - 126144000000, // 4 años en milisegundos
+    relative_time_description: 'Hace 4 años'
+  },
+  {
+    id: '6',
+    author_name: 'Ruta Z.',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Virginia es una maestra increíble, amigable, atenta y enseña desde el fondo de su corazón. Mis lecciones de español fueron divertidas y muy informativas, ya que como soy nuevo en el idioma, he aprendido mucho. La escuela está en el corazón de la ciudad y es fácil de recorrer, además es muy luminosa y te hace sentir bienvenido y feliz en todo momento. Muy agradecido por la oportunidad de ser su alumno, gracias por todo. ¡Muy recomendable! Me encanta la escuela Virginia ®',
+    time: Date.now() - 157680000000, // 5 años en milisegundos
+    relative_time_description: 'Hace 5 años'
+  },
+  {
+    id: '7',
+    author_name: 'Anónimo',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Al principio me preocupé porque no había muchas reseñas sobre esta academia, pero ¡¡me gusta mucho!! Elegí mejorar mis habilidades de conversación y fue realmente útil poder hablar continuamente con el profesor, en lugar de tener un grupo de estudiantes reunidos y solo poder hablar un poco como en una escuela de idiomas normal. Me encanta poder experimentar la verdadera España comprando en el mercado con mi profesor todas las mañanas, dando un paseo por el puerto y desayunando en una cafetería de al lado. ¡¡Es la mejor academia para conversar!!',
+    time: Date.now() - 189216000000, // 6 años en milisegundos
+    relative_time_description: 'Hace 6 años'
+  },
+  {
+    id: '8',
+    author_name: 'Ahyeon Hwang',
+    profile_photo_url: '',
+    rating: 5,
+    text: 'Hola a todos!! Vengo aquí para informárselo a mi encantadora profesora, mamá (en Málaga) y amiga!!! Ella es realmente una gran profesora de español. Mi español está mejorando a un ritmo sorprendente. A diferencia de otras academias en Málaga, nuestro tiempo es como una obra de teatro, una fiesta y una clase. Simplemente no puedo evitar recomendar esta escuela a todas las personas que quieran aprender español. Con ella, cada mañana podrás empezar con risas y sentirte fresco. Después de terminar la clase, siempre espero mañana para pasar mi precioso tiempo con ella. ¡¡Ah!! ¡Tienes que conocer este! Nuestra clase se compone de una excelente vista desde el balcón, lo que hace que la clase sea más eficiente, feliz y fresca. Acerca de la clase, toda nuestra conversación es material de aprendizaje, en otras palabras, tu forma de hablar será cada vez mejor sorprendentemente. Consideré muchas escuelas cuando elegí y recomiendo encarecidamente registrarse sin pensarlo más. ¡Si realmente quieres aprender español, debes venir aquí para conseguir un hablante nativo de español!',
+    time: Date.now() - 189216000000, // 6 años en milisegundos
+    relative_time_description: 'Hace 6 años'
+  }
+];
 
 // Información para los bloques de contenido que reemplazan a las fotos
 const contentBlocks = [
@@ -56,77 +131,8 @@ const contentBlocks = [
 ];
 
 const Testimonials = () => {
-  const [reviews, setReviews] = useState<GoogleReview[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [totalReviews, setTotalReviews] = useState<number>(0);
-
-  useEffect(() => {
-    const fetchGoogleReviews = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/google-reviews');
-        
-        if (!response.ok) {
-          throw new Error('No se pudieron cargar las reseñas');
-        }
-        
-        const data = await response.json();
-        
-        // Usamos todas las reseñas sin truncar el texto
-        setReviews(data.reviews);
-        setTotalReviews(data.total);
-        setLoading(false);
-      } catch (err) {
-        console.error('Error al cargar reseñas de Google:', err);
-        setError('No se pudieron cargar las reseñas. Mostrando reseñas de ejemplo.');
-        setLoading(false);
-        
-        // Cargar reseñas de ejemplo en caso de error
-        setReviews([
-          {
-            id: '1',
-            author_name: 'Ana Schmidt',
-            profile_photo_url: '',
-            rating: 5,
-            text: '"Llegué a Málaga sin saber nada de español. En 3 meses con Virginia, ¡ya puedo mantener conversaciones con locales! Su método es divertido y efectivo."',
-            time: Date.now() - 7776000000, // 90 días atrás
-            relative_time_description: 'hace 3 meses'
-          },
-          {
-            id: '2',
-            author_name: 'James Wilson',
-            profile_photo_url: '',
-            rating: 5,
-            text: '"Las clases online con Virginia son fantásticas. Me encanta su enfoque práctico y cómo adapta todo a mi trabajo en el sector turístico. ¡Recomendado 100%!"',
-            time: Date.now() - 2592000000, // 30 días atrás
-            relative_time_description: 'hace 1 mes'
-          },
-          {
-            id: '3',
-            author_name: 'Sophie Dupont',
-            profile_photo_url: '',
-            rating: 5,
-            text: '"Después de 6 meses de clases, aprobé el examen DELE B2 con una puntuación de 85/100. Virginia conoce perfectamente el formato del examen."',
-            time: Date.now() - 1209600000, // 14 días atrás
-            relative_time_description: 'hace 2 semanas'
-          },
-          {
-            id: '4',
-            author_name: 'Hiroshi Tanaka',
-            profile_photo_url: '',
-            rating: 5,
-            text: '"Lo que más valoro es cómo Virginia adapta sus clases a mi ritmo y forma de aprender. Tiene mucha paciencia con la pronunciación."',
-            time: Date.now() - 604800000, // 7 días atrás
-            relative_time_description: 'hace 1 semana'
-          }
-        ]);
-        setTotalReviews(8);
-      }
-    };
-
-    fetchGoogleReviews();
-  }, []);
+  const reviews = realReviews;
+  const totalReviews = realReviews.length;
 
   // Función para generar color de fondo aleatorio para cada avatar
   const getRandomBgColor = (name: string) => {
@@ -208,57 +214,45 @@ const Testimonials = () => {
               <FaGoogle className="mr-2" /> 5.0 en Google ({totalReviews} reseñas)
             </Link>
           </div>
-          
-          {error && (
-            <div className="mt-4 text-amber-600 dark:text-amber-400">
-              {error}
-            </div>
-          )}
         </div>
 
-        {loading ? (
-          <div className="flex justify-center items-center py-12">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600"></div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {reviews.map((review, index) => (
-              <motion.div 
-                key={review.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md h-full flex flex-col"
-              >
-                <div className="flex items-start mb-4">
-                  <div className={`relative w-12 h-12 rounded-full mr-3 overflow-hidden ${getRandomBgColor(review.author_name)} flex items-center justify-center flex-shrink-0`}>
-                    <span className={`text-lg font-bold ${getTextColor(review.author_name)}`}>
-                      {review.author_name.charAt(0).toUpperCase()}
-                    </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
+          {reviews.map((review, index) => (
+            <motion.div 
+              key={review.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-md h-full flex flex-col"
+            >
+              <div className="flex items-start mb-4">
+                <div className={`relative w-12 h-12 rounded-full mr-3 overflow-hidden ${getRandomBgColor(review.author_name)} flex items-center justify-center flex-shrink-0`}>
+                  <span className={`text-lg font-bold ${getTextColor(review.author_name)}`}>
+                    {review.author_name.charAt(0).toUpperCase()}
+                  </span>
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-900 dark:text-white">{review.author_name}</h4>
+                  <div className="flex">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <FaStar key={i} className="text-yellow-400 w-4 h-4" />
+                    ))}
                   </div>
-                  <div>
-                    <h4 className="font-bold text-gray-900 dark:text-white">{review.author_name}</h4>
-                    <div className="flex">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <FaStar key={i} className="text-yellow-400 w-4 h-4" />
-                      ))}
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                      {review.relative_time_description}
-                    </div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    {review.relative_time_description}
                   </div>
                 </div>
-                
-                <div className="relative flex-grow">
-                  <FaQuoteLeft className="absolute top-0 left-0 text-blue-200 dark:text-blue-900 opacity-50 w-8 h-8" />
-                  <p className="text-gray-700 dark:text-gray-300 relative z-10 pl-6 pt-2 text-sm">
-                    {review.text}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
+              </div>
+              
+              <div className="relative flex-grow">
+                <FaQuoteLeft className="absolute top-0 left-0 text-blue-200 dark:text-blue-900 opacity-50 w-8 h-8" />
+                <p className="text-gray-700 dark:text-gray-300 relative z-10 pl-6 pt-2 text-sm">
+                  {review.text}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
         
         <div className="mt-12 max-w-3xl mx-auto text-center">
           <div className="p-6 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-500/20">
