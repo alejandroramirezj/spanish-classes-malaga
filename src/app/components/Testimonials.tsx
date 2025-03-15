@@ -215,7 +215,7 @@ const Testimonials = () => {
               >
                 <div className="relative w-full h-full overflow-hidden">
                   <Image 
-                    src={`/${image}`} 
+                    src={`/images/${image}`} 
                     alt={`Spanish students in Málaga - ${index + 1}`}
                     fill
                     className="object-cover transition-transform hover:scale-105 duration-500"
@@ -234,7 +234,7 @@ const Testimonials = () => {
               >
                 <div className="relative w-full h-full overflow-hidden">
                   <Image 
-                    src={`/${image}`} 
+                    src={`/images/${image}`} 
                     alt={`Spanish students in Málaga - ${index + 2}`}
                     fill
                     className="object-cover transition-transform hover:scale-105 duration-500"
@@ -256,7 +256,7 @@ const Testimonials = () => {
               >
                 <div className="relative w-full h-full overflow-hidden">
                   <Image 
-                    src={`/${image}`} 
+                    src={`/images/${image}`} 
                     alt={`Spanish culture and learning - ${index + 8}`}
                     fill
                     className="object-cover transition-transform hover:scale-105 duration-500"
