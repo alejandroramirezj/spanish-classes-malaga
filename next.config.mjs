@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/spanish-classes-malaga',
   images: {
     unoptimized: true,
-    domains: ['localhost'],
+    domains: ['localhost', 'spanishclassesmalaga.com'],
     remotePatterns: [
       {
         protocol: 'https',
