@@ -7,7 +7,6 @@ import Services from './components/Services';
 import Testimonials from './components/Testimonials';
 import ContactForm from './components/ContactForm';
 import Footer from './components/Footer';
-import Pricing from './components/Pricing';
 import MalagaExperience from './components/MalagaExperience';
 
 export default function Home() {
@@ -22,9 +21,6 @@ export default function Home() {
       <MalagaExperience />
       
       <Testimonials />
-      
-      {/* Sección de precios después de los testimonios */}
-      <Pricing />
       
       <ContactForm />
       <Footer />
