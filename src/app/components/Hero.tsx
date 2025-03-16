@@ -1,9 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaStar, FaInfoCircle, FaPlay, FaPause } from 'react-icons/fa';
+import { FaArrowRight, FaStar, FaInfoCircle, FaPlay, FaPause, FaImage } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
 
 interface SpanishExpressionProps {
   expression: string;
@@ -62,6 +63,12 @@ const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(true);
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoError, setVideoError] = useState<string | null>(null);
+  const [useStaticImage, setUseStaticImage] = useState(true); // Para móviles y conexiones lentas
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const [loadingStartTime, setLoadingStartTime] = useState(0);
+  
+  // Verificar si el dispositivo es probablemente móvil
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   // Función para iniciar reproducción del video
   const playVideo = () => {
@@ -97,6 +104,31 @@ const Hero = () => {
   useEffect(() => {
     console.log("🎬 Componente Hero montado");
     
+    // Iniciar temporizador para la carga
+    setLoadingStartTime(Date.now());
+    
+    // Si estamos en móvil, usar imagen estática por defecto
+    if (isMobile) {
+      setUseStaticImage(true);
+      return;
+    }
+    
+    // Si la conexión es lenta (basado en el tipo de conexión si está disponible)
+    interface NetworkInformation {
+      effectiveType: string;
+      downlink: number;
+      rtt: number;
+      saveData: boolean;
+      onchange?: () => void;
+    }
+
+    // Verificar si la conexión es lenta
+    const connection = (navigator as Navigator & { connection?: NetworkInformation }).connection;
+    if (connection && (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g')) {
+      setUseStaticImage(true);
+      return;
+    }
+    
     // Primer intento de reproducción al montar el componente
     if (videoRef.current) {
       // Configurar eventos para detectar problemas
@@ -104,21 +136,33 @@ const Hero = () => {
         console.error("❌ Error de video:", e);
         setVideoError(`Error al cargar el video. Por favor recarga la página.`);
         setVideoLoaded(false);
+        setUseStaticImage(true); // Fallback a imagen estática
       };
       
       const handleLoadedMetadata = () => {
         console.log("📊 Metadata del video cargada");
-        setVideoLoaded(true);
+        // No establecer videoLoaded aquí, esperar a loadeddata
       };
       
       const handleLoadedData = () => {
         console.log("📼 Datos del video cargados");
+        const loadTime = ((Date.now() - loadingStartTime) / 1000).toFixed(2);
+        console.log(`Video cargado en ${loadTime}s`);
         setVideoLoaded(true);
         playVideo();
       };
       
       const handleWaiting = () => {
         console.log("⏳ Video en espera (buffering)");
+      };
+      
+      const handleProgress = () => {
+        if (videoRef.current && videoRef.current.buffered.length > 0) {
+          const bufferedEnd = videoRef.current.buffered.end(0);
+          const duration = videoRef.current.duration;
+          const progress = (bufferedEnd / duration) * 100;
+          setLoadingProgress(Math.round(progress));
+        }
       };
       
       const handleEnded = () => {
@@ -131,25 +175,37 @@ const Hero = () => {
         }
       };
       
+      // Configurar un tiempo máximo de carga (10 segundos)
+      const loadTimeout = setTimeout(() => {
+        if (!videoLoaded) {
+          console.log("⏱️ Tiempo de carga excedido, usando imagen estática");
+          setUseStaticImage(true);
+          setVideoError("La carga está tardando demasiado. Usando imagen estática.");
+        }
+      }, 10000);
+      
       // Registrar eventos
       videoRef.current.addEventListener('error', handleError);
       videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
       videoRef.current.addEventListener('loadeddata', handleLoadedData);
       videoRef.current.addEventListener('waiting', handleWaiting);
+      videoRef.current.addEventListener('progress', handleProgress);
       videoRef.current.addEventListener('ended', handleEnded);
       
       // Limpiar eventos al desmontar
       return () => {
+        clearTimeout(loadTimeout);
         if (videoRef.current) {
           videoRef.current.removeEventListener('error', handleError);
           videoRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
           videoRef.current.removeEventListener('loadeddata', handleLoadedData);
           videoRef.current.removeEventListener('waiting', handleWaiting);
+          videoRef.current.removeEventListener('progress', handleProgress);
           videoRef.current.removeEventListener('ended', handleEnded);
         }
       };
     }
-  }, []);
+  }, [isMobile, loadingStartTime]);
 
   const togglePlayPause = () => {
     if (videoRef.current) {
@@ -158,6 +214,27 @@ const Hero = () => {
       } else {
         videoRef.current.pause();
         setIsPlaying(false);
+      }
+    }
+  };
+  
+  const toggleVideoMode = () => {
+    setUseStaticImage(!useStaticImage);
+    if (!useStaticImage) {
+      // Si cambiamos a modo de imagen estática, pausar el video
+      if (videoRef.current) {
+        videoRef.current.pause();
+        setIsPlaying(false);
+      }
+    } else {
+      // Si cambiamos a modo de video, intentar reproducirlo
+      if (videoRef.current) {
+        setVideoLoaded(false);
+        videoRef.current.load();
+        // Intentar reproducirlo después de un breve retraso
+        setTimeout(() => {
+          playVideo();
+        }, 500);
       }
     }
   };
@@ -240,7 +317,7 @@ const Hero = () => {
             </motion.div>
           </div>
           
-          {/* Right content - Video */}
+          {/* Right content - Video or Image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -252,72 +329,128 @@ const Hero = () => {
               <div className="glassmorphism dark:glassmorphism-dark rounded-2xl h-96 flex items-center justify-center relative overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white dark:bg-grid-dark"></div>
                 
-                {/* Video de Virginia */}
+                {/* Contenido principal (video o imagen) */}
                 <div className="absolute inset-0 flex items-center justify-center p-4">
-                  {/* Mostrar spinner de carga si el video no está cargado */}
-                  {!videoLoaded && !videoError && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl">
-                      <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">Cargando video...</p>
-                    </div>
-                  )}
-                  
-                  {/* Mostrar mensaje de error si hay algún problema */}
-                  {videoError && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-50 dark:bg-red-900/20 rounded-xl p-6 text-center">
-                      <div className="text-red-500 text-6xl mb-4">⚠️</div>
-                      <p className="text-red-700 dark:text-red-300 mb-2 font-bold">Error al cargar el video</p>
-                      <p className="text-sm text-red-600 dark:text-red-400 mb-4">{videoError}</p>
-                      <button 
-                        onClick={() => {
-                          setVideoError(null);
-                          setVideoLoaded(false);
-                          if (videoRef.current) {
-                            videoRef.current.load();
-                            playVideo();
-                          }
-                        }}
-                        className="px-4 py-2 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors"
+                  {/* Imagen estática (visible por defecto o como fallback) */}
+                  {useStaticImage && (
+                    <div className="relative w-full h-full overflow-hidden rounded-xl">
+                      <div className="w-full h-full relative bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden">
+                        <Image 
+                          src="/images/virginia-teaching.jpg" 
+                          alt="Virginia teaching Spanish in Málaga" 
+                          className="object-cover rounded-xl"
+                          fill
+                          priority
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                      
+                      {/* Botón para cambiar a video */}
+                      <button
+                        onClick={toggleVideoMode}
+                        className="absolute bottom-4 right-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50 text-xs font-medium"
                       >
-                        Reintentar
+                        <FaPlay className="text-accent w-3 h-3 mr-1" />
+                        <span className="text-accent">Ver video</span>
                       </button>
                     </div>
                   )}
                   
-                  {/* El video */}
-                  <video 
-                    ref={videoRef}
-                    className="w-full h-full rounded-xl object-cover shadow-lg"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="auto"
-                    controlsList="nodownload nofullscreen noremoteplayback"
-                    onLoadedData={() => setVideoLoaded(true)}
-                    style={{ visibility: videoLoaded ? 'visible' : 'hidden' }}
-                  >
-                    <source src="/videos/Video_virginia.mp4" type="video/mp4" />
-                    <p>Tu navegador no soporta videos HTML5.</p>
-                  </video>
-                </div>
-                
-                {/* Overlay con botón para control de video */}
-                {videoLoaded && !videoError && (
-                  <div className="absolute bottom-4 right-4 z-10">
-                    <button 
-                      onClick={togglePlayPause}
-                      className="w-12 h-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50"
-                      aria-label={isPlaying ? "Pause video" : "Play video"}
-                    >
-                      {isPlaying ? (
-                        <FaPause className="text-accent w-4 h-4" />
-                      ) : (
-                        <FaPlay className="text-accent w-4 h-4 ml-0.5" />
+                  {/* Video (solo visible cuando useStaticImage es false) */}
+                  {!useStaticImage && (
+                    <>
+                      {/* Mostrar spinner/progreso de carga si el video no está cargado */}
+                      {!videoLoaded && !videoError && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl">
+                          <div className="relative w-16 h-16 mb-4">
+                            <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
+                            <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-primary">
+                              {loadingProgress}%
+                            </div>
+                          </div>
+                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">Cargando video...</p>
+                          <button
+                            onClick={toggleVideoMode}
+                            className="text-xs text-primary hover:text-primary-dark underline"
+                          >
+                            Usar imagen en lugar de video
+                          </button>
+                        </div>
                       )}
-                    </button>
-                  </div>
-                )}
+                      
+                      {/* Mostrar mensaje de error si hay algún problema */}
+                      {videoError && (
+                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-50 dark:bg-red-900/20 rounded-xl p-6 text-center">
+                          <div className="text-red-500 text-4xl mb-4">⚠️</div>
+                          <p className="text-red-700 dark:text-red-300 mb-2 font-bold">Error al cargar el video</p>
+                          <p className="text-sm text-red-600 dark:text-red-400 mb-4">{videoError}</p>
+                          <div className="flex space-x-3">
+                            <button 
+                              onClick={() => {
+                                setVideoError(null);
+                                setVideoLoaded(false);
+                                if (videoRef.current) {
+                                  videoRef.current.load();
+                                  playVideo();
+                                }
+                              }}
+                              className="px-3 py-1.5 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors text-sm"
+                            >
+                              Reintentar
+                            </button>
+                            <button
+                              onClick={toggleVideoMode}
+                              className="px-3 py-1.5 bg-white text-gray-800 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-sm"
+                            >
+                              Usar imagen
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                      
+                      {/* El video */}
+                      <video 
+                        ref={videoRef}
+                        className="w-full h-full rounded-xl object-cover shadow-lg"
+                        playsInline
+                        muted
+                        loop
+                        preload="metadata"
+                        controlsList="nodownload nofullscreen noremoteplayback"
+                        onLoadedData={() => setVideoLoaded(true)}
+                        style={{ visibility: videoLoaded ? 'visible' : 'hidden' }}
+                        poster="/images/virginia-teaching.jpg"
+                      >
+                        <source src="/videos/Video_virginia.mp4" type="video/mp4" />
+                        <p>Tu navegador no soporta videos HTML5.</p>
+                      </video>
+                      
+                      {/* Overlay con botón para control de video */}
+                      {videoLoaded && !videoError && (
+                        <div className="absolute bottom-4 right-4 z-10 flex space-x-2">
+                          <button 
+                            onClick={togglePlayPause}
+                            className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50"
+                            aria-label={isPlaying ? "Pause video" : "Play video"}
+                          >
+                            {isPlaying ? (
+                              <FaPause className="text-accent w-3.5 h-3.5" />
+                            ) : (
+                              <FaPlay className="text-accent w-3.5 h-3.5 ml-0.5" />
+                            )}
+                          </button>
+                          <button
+                            onClick={toggleVideoMode}
+                            className="h-10 px-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50 text-xs"
+                          >
+                            <FaImage className="text-accent w-3.5 h-3.5 mr-1" />
+                            <span className="text-accent">Ver imagen</span>
+                          </button>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
                 
                 {/* Semi-transparent overlay con gradiente */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>

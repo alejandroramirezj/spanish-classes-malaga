@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  /* Paleta de colores con azul y naranja/amarillo */
-  --primary: #3B82F6; /* Azul */
-  --primary-light: #60A5FA;
-  --primary-dark: #2563EB;
+  /* Paleta de colores con azul mar y amarillo sol - Moderna y vibrante */
+  --primary: #1A73E8; /* Azul mar más vibrante */
+  --primary-light: #4285F4;
+  --primary-dark: #0D47A1;
   
-  --accent: #F59E0B; /* Naranja/Amarillo */
-  --accent-light: #FBBF24;
-  --accent-dark: #D97706;
+  --accent: #FFCA28; /* Amarillo sol más vivo y claro */
+  --accent-light: #FFD54F;
+  --accent-dark: #FFA000;
   
   --success: #10B981; /* Verde esmeralda */
   --danger: #EF4444; /* Rojo intenso */
@@ -100,7 +100,7 @@ body {
   border-radius: 9999px;
   font-weight: 500;
   padding: 0.75rem 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(26, 115, 232, 0.5);
   transition: all 0.15s ease;
   border: none;
 }
@@ -108,24 +108,25 @@ body {
 .btn-primary:hover {
   background-color: var(--primary-light);
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(59, 130, 246, 0.6);
+  box-shadow: 0 15px 30px -5px rgba(66, 133, 244, 0.6);
 }
 
 .btn-accent {
   background-color: var(--accent);
-  color: white;
+  color: #333333; /* Texto más oscuro para mejor contraste con el amarillo */
   border-radius: 9999px;
-  font-weight: 500;
+  font-weight: 600; /* Texto más grueso para mejor visibilidad */
   padding: 0.75rem 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(245, 158, 11, 0.5);
+  box-shadow: 0 10px 25px -5px rgba(255, 202, 40, 0.5);
   transition: all 0.15s ease;
   border: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3); /* Sutil sombra de texto para mejorar legibilidad */
 }
 
 .btn-accent:hover {
   background-color: var(--accent-light);
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(245, 158, 11, 0.6);
+  box-shadow: 0 15px 30px -5px rgba(255, 202, 40, 0.6);
 }
 
 .btn-secondary {
