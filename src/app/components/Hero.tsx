@@ -236,13 +236,6 @@ export default function Hero() {
               As we say in Spain, <SpanishExpression expression="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
             </p>
 
-            {/* Quote destacado */}
-            <blockquote className="border-l-4 border-accent pl-4 mb-8">
-              <p className="text-lg italic text-gray-700">
-                &ldquo;After 10 years teaching Spanish to more than 500 students, I&apos;ve created a method that really works. My approach is based on <span className="font-semibold">practical conversation and real-life situations</span> that you&apos;ll encounter in your daily life in Spain. You&apos;ll be <SpanishExpression expression="como pez en el agua" literal="like a fish in water" meaning="completely comfortable" /> in no time!&rdquo;
-              </p>
-            </blockquote>
-
             {/* Lista de beneficios */}
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
@@ -269,18 +262,18 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link 
                 href="/booking" 
-                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-accent text-gray-900 hover:bg-accent-light transition-all shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
               >
                 Book Your Free Trial Class
-                <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+                <FaArrowRight className="ml-2" />
               </Link>
               
               <Link 
                 href="/about" 
-                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all shadow-lg hover:shadow-xl"
               >
                 Meet Virginia
-                <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+                <FaArrowRight className="ml-2" />
               </Link>
             </div>
 
@@ -405,7 +398,7 @@ export default function Hero() {
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <Link 
           href="/booking" 
-          className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-accent text-gray-900 hover:bg-accent-light transition-all shadow-xl hover:shadow-2xl"
+          className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-xl hover:shadow-2xl"
         >
           Free Trial <FaArrowRight className="ml-2" />
         </Link>
