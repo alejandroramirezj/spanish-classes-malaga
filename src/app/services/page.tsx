@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { FaUserGraduate, FaUserFriends, FaLaptop, FaBookOpen, FaCheck } from 'react-icons/fa';
 
 export const metadata = {
-  title: 'Nuestras Clases | Spanish Classes Malaga',
-  description: 'Descubre nuestras clases de español personalizadas. Ofrecemos clases individuales, en pareja, online y para fines específicos.',
+  title: 'Our Classes | Spanish Classes Malaga',
+  description: 'Discover our personalized Spanish classes. We offer individual, paired, online, and specific purpose classes.',
 };
 
 export default function ServicesPage() {
@@ -18,67 +18,67 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Nuestras Clases de Español
+              Our Spanish Classes
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
-              Ofrecemos una variedad de opciones para adaptarnos a tus necesidades, objetivos y disponibilidad. Todas nuestras clases son personalizadas y flexibles.
+              We offer a variety of options to suit your needs, goals, and availability. All our classes are personalized and flexible.
             </p>
           </div>
         </div>
       </section>
       
-      {/* Clases Individuales */}
+      {/* Individual Classes */}
       <section className="py-12">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-10 items-center">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg bg-blue-100 h-64 flex items-center justify-center">
-                  <p className="text-blue-800 font-medium">Clases individuales de español</p>
+                <div className="rounded-lg overflow-hidden shadow-lg bg-primary/10 h-64 flex items-center justify-center">
+                  <p className="text-primary font-medium">Individual Spanish classes</p>
                 </div>
               </div>
               
               <div className="w-full md:w-1/2">
                 <div className="flex items-center mb-4">
-                  <FaUserGraduate className="text-amber-600 text-3xl mr-3" />
+                  <FaUserGraduate className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Clases Individuales
+                    Individual Classes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Las clases individuales ofrecen la máxima personalización y atención. Son perfectas para quienes buscan progresar rápidamente o tienen necesidades específicas.
+                  Individual classes offer maximum personalization and attention. They are perfect for those looking to progress quickly or who have specific needs.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Atención completamente personalizada</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Completely personalized attention</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Progreso más rápido y eficiente</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Faster and more efficient progress</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Horarios flexibles adaptados a ti</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Flexible schedules adapted to you</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Enfoque en tus áreas de dificultad</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Focus on your areas of difficulty</span>
                   </li>
                 </ul>
                 
-                <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Precio: Desde 25€/hora</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos disponibles para packs de 5, 10 o 20 clases</p>
+                <div className="bg-accent/10 dark:bg-accent/20 p-4 rounded-md mb-6">
+                  <p className="font-medium text-gray-900 dark:text-white">Price: From €25/hour</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Discounts available for packages of 5, 10, or 20 classes</p>
                 </div>
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-amber-600 text-white font-medium px-6 py-2 rounded-md hover:bg-amber-700 transition-colors"
+                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
                 >
-                  Reservar clase individual
+                  Book Individual Class
                 </Link>
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Clases en Pareja */}
+      {/* Paired Classes */}
       <section className="py-12 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
@@ -95,7 +95,7 @@ export default function ServicesPage() {
                 <div className="rounded-lg overflow-hidden shadow-lg">
                   <Image 
                     src="/pair-class.jpg" 
-                    alt="Clases de español en pareja" 
+                    alt="Spanish classes for pairs" 
                     width={600} 
                     height={400}
                     className="w-full h-auto object-cover"
@@ -105,45 +105,45 @@ export default function ServicesPage() {
               
               <div className="w-full md:w-1/2">
                 <div className="flex items-center mb-4">
-                  <FaUserFriends className="text-amber-600 text-3xl mr-3" />
+                  <FaUserFriends className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Clases en Pareja
+                    Paired Classes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Aprende con tu pareja, amigo o compañero de trabajo del mismo nivel. Las clases en pareja combinan la atención personalizada con la interacción entre estudiantes.
+                  Learn with your partner, friend, or colleague of the same level. Paired classes combine personalized attention with student interaction.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Práctica de conversación con otro estudiante</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Conversation practice with another student</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Aprendizaje colaborativo y motivador</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Collaborative and motivating learning</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Más económico que las clases individuales</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>More economical than individual classes</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Ideal para parejas o amigos que viajan juntos</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Ideal for couples or friends traveling together</span>
                   </li>
                 </ul>
                 
                 <div className="bg-white dark:bg-gray-900 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Precio: Desde 40€/hora (20€ por persona)</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos disponibles para packs de 5, 10 o 20 clases</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Price: From €40/hour (€20 per person)</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Discounts available for packages of 5, 10, or 20 classes</p>
                 </div>
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-amber-600 text-white font-medium px-6 py-2 rounded-md hover:bg-amber-700 transition-colors"
+                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
                 >
-                  Reservar clase en pareja
+                  Book Paired Class
                 </Link>
               </div>
             </div>
@@ -151,7 +151,7 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Clases Online */}
+      {/* Online Classes */}
       <section className="py-12">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
@@ -160,7 +160,7 @@ export default function ServicesPage() {
                 <div className="rounded-lg overflow-hidden shadow-lg">
                   <Image 
                     src="/online-class.jpg" 
-                    alt="Clases de español online" 
+                    alt="Online Spanish classes" 
                     width={600} 
                     height={400}
                     className="w-full h-auto object-cover"
@@ -170,45 +170,45 @@ export default function ServicesPage() {
               
               <div className="w-full md:w-1/2">
                 <div className="flex items-center mb-4">
-                  <FaLaptop className="text-amber-600 text-3xl mr-3" />
+                  <FaLaptop className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Clases Online
+                    Online Classes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Aprende español desde cualquier parte del mundo con nuestras clases online. La misma calidad y atención personalizada que en las clases presenciales.
+                  Learn Spanish from anywhere in the world with our online classes. The same quality and personalized attention as in-person classes.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Flexibilidad total de horarios y ubicación</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Total flexibility in schedules and location</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Materiales digitales de alta calidad</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>High-quality digital materials</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Plataforma interactiva y fácil de usar</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Interactive and easy-to-use platform</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Seguimiento continuo de tu progreso</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Continuous tracking of your progress</span>
                   </li>
                 </ul>
                 
-                <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Precio: Desde 20€/hora</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos disponibles para packs de 5, 10 o 20 clases</p>
+                <div className="bg-accent/10 dark:bg-accent/20 p-4 rounded-md mb-6">
+                  <p className="font-medium text-gray-900 dark:text-white">Price: From €20/hour</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Discounts available for packages of 5, 10, or 20 classes</p>
                 </div>
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-amber-600 text-white font-medium px-6 py-2 rounded-md hover:bg-amber-700 transition-colors"
+                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
                 >
-                  Reservar clase online
+                  Book Online Class
                 </Link>
               </div>
             </div>
@@ -216,7 +216,7 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Español para Fines Específicos */}
+      {/* Spanish for Specific Purposes */}
       <section className="py-12 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
@@ -225,7 +225,7 @@ export default function ServicesPage() {
                 <div className="rounded-lg overflow-hidden shadow-lg">
                   <Image 
                     src="/specialized-class.jpg" 
-                    alt="Español para fines específicos" 
+                    alt="Spanish for specific purposes" 
                     width={600} 
                     height={400}
                     className="w-full h-auto object-cover"
@@ -235,45 +235,45 @@ export default function ServicesPage() {
               
               <div className="w-full md:w-1/2">
                 <div className="flex items-center mb-4">
-                  <FaBookOpen className="text-amber-600 text-3xl mr-3" />
+                  <FaBookOpen className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Español para Fines Específicos
+                    Spanish for Specific Purposes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Cursos especializados para necesidades profesionales o académicas específicas. Aprende el vocabulario y las estructuras relevantes para tu campo.
+                  Specialized courses for specific professional or academic needs. Learn vocabulary and structures relevant to your field.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Español para negocios y entornos corporativos</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Business Spanish (meetings, negotiations, presentations)</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Español médico y para profesionales de la salud</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Spanish for tourism and hospitality</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Español para turismo y hostelería</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Medical Spanish for healthcare professionals</span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-amber-600 mt-1 mr-2 flex-shrink-0" />
-                    <span>Preparación para exámenes oficiales (DELE, SIELE)</span>
+                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
+                    <span>Spanish for academic and research purposes</span>
                   </li>
                 </ul>
                 
                 <div className="bg-white dark:bg-gray-900 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Precio: Desde 30€/hora</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos disponibles para packs de 5, 10 o 20 clases</p>
+                  <p className="font-medium text-gray-900 dark:text-white">Price: From €30/hour</p>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">Contact us for a personalized quote based on your specific needs</p>
                 </div>
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-amber-600 text-white font-medium px-6 py-2 rounded-md hover:bg-amber-700 transition-colors"
+                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
                 >
-                  Consultar disponibilidad
+                  Request Information
                 </Link>
               </div>
             </div>
@@ -281,26 +281,62 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Call to Action */}
-      <section className="py-16 bg-amber-600 text-white">
-        <div className="container mx-auto px-4 md:px-6 text-center">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6">¿No estás seguro de qué opción es la mejor para ti?</h2>
-            <p className="text-xl mb-8">
-              Contacta con nosotros para una consulta gratuita. Te ayudaremos a encontrar la opción perfecta para tus necesidades, nivel y objetivos.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
+      {/* Additional services */}
+      <section className="py-12">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">
+              Additional Services
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-bold mb-3 text-primary">DELE Exam Preparation</h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  Specialized preparation for official DELE exams at all levels. Includes practice with previous exams and specific techniques to pass each section.
+                </p>
+                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-md">
+                  <p className="font-medium">Price: From €28/hour</p>
+                </div>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-bold mb-3 text-primary">Spanish Conversation Club</h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  Group sessions focused on conversation practice. Different topics each week and guided discussions to improve fluency and confidence.
+                </p>
+                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-md">
+                  <p className="font-medium">Price: €15/session (90 minutes)</p>
+                </div>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-bold mb-3 text-primary">Cultural Immersion Activities</h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  Tours of Málaga, tapas nights, museum visits, and other cultural activities to practice Spanish in real contexts while enjoying the city.
+                </p>
+                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-md">
+                  <p className="font-medium">Price: Varies by activity</p>
+                </div>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+                <h3 className="text-xl font-bold mb-3 text-primary">Spanish for Children</h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  Fun and dynamic classes adapted for children and adolescents. Games, songs, and interactive activities that make learning Spanish enjoyable.
+                </p>
+                <div className="bg-primary/10 dark:bg-primary/20 p-3 rounded-md">
+                  <p className="font-medium">Price: From €22/hour</p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="text-center">
               <Link 
                 href="/contact" 
-                className="bg-white text-amber-600 font-medium px-8 py-3 rounded-md hover:bg-gray-100 transition-colors"
+                className="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-primary-dark transition-colors"
               >
-                Contactar ahora
-              </Link>
-              <Link 
-                href="/booking" 
-                className="border border-white text-white font-medium px-8 py-3 rounded-md hover:bg-white/10 transition-colors"
-              >
-                Ver disponibilidad
+                Contact Us for More Information
               </Link>
             </div>
           </div>

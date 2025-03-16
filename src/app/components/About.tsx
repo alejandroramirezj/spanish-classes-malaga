@@ -19,18 +19,18 @@ const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps)
   return (
     <div className="relative inline-block">
       <span 
-        className="font-bold text-amber-600 dark:text-amber-400 cursor-pointer border-b border-dashed border-amber-600 dark:border-amber-400 flex items-center gap-1"
+        className="font-bold text-accent dark:text-accent-light cursor-pointer border-b border-dashed border-accent dark:border-accent-light flex items-center gap-1"
         onClick={() => setShowTooltip(!showTooltip)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
         {phrase}
-        <FaInfoCircle className="text-xs text-amber-400" />
+        <FaInfoCircle className="text-xs text-accent" />
       </span>
       {showTooltip && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-white dark:bg-gray-800 rounded shadow-lg text-sm z-50 border border-amber-200 dark:border-amber-800">
+        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-accent/20">
           <div className="relative">
-            <p className="font-bold text-amber-600 dark:text-amber-400">{phrase}</p>
+            <p className="font-bold text-accent dark:text-accent-light">{phrase}</p>
             <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
             <p className="text-gray-700 dark:text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
             <button 
@@ -61,12 +61,12 @@ const About = () => {
             viewport={{ once: true }}
             className="lg:w-1/2"
           >
-            <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
+            <span className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-primary-light text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
               <span className="mr-1">👋</span> Hi! I&apos;m Virginia
             </span>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Your Spanish Teacher<br className="hidden md:block" /> in <span className="text-blue-600">Málaga</span>
+              Your Spanish Teacher<br className="hidden md:block" /> in <span className="text-primary">Málaga</span>
             </h2>
             
             <div className="prose prose-lg dark:prose-invert mb-8">
@@ -74,7 +74,7 @@ const About = () => {
                 <span className="font-semibold">Tired of studying Spanish without being able to actually speak it?</span> I&apos;ll teach you to communicate from day one, not just memorize grammar rules. As we say in Spain, <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it's never too late to start learning" />.
               </p>
               
-              <div className="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl mb-6 border-l-4 border-blue-500">
+              <div className="bg-primary/10 dark:bg-primary/20 p-5 rounded-xl mb-6 border-l-4 border-primary">
                 <p className="text-gray-700 dark:text-gray-300 italic">
                   &ldquo;After 10 years teaching Spanish to more than 500 students, I&apos;ve created a method that really works. My approach is based on <span className="font-semibold">practical conversation and real-life situations</span> that you&apos;ll encounter in your daily life in Spain. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely comfortable/in your element" /> in no time!&rdquo;
                 </p>
@@ -104,7 +104,7 @@ const About = () => {
             
             <Link 
               href="/booking" 
-              className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Book a Free Trial Class
               <FaArrowRight className="ml-2" />
@@ -119,42 +119,47 @@ const About = () => {
             className="lg:w-1/2"
           >
             <div className="relative">
-              <div className="absolute -top-6 -left-6 w-32 h-32 bg-blue-200 dark:bg-blue-800/30 rounded-full z-0"></div>
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-100 dark:bg-blue-900/30 rounded-full z-0"></div>
+              <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/30 rounded-full z-0"></div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full z-0"></div>
               
               <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-10">
                 <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-xl mb-6">
-                  <div className="w-full h-full bg-blue-100 flex items-center justify-center p-8">
-                    <p className="text-blue-800 font-medium text-center">Photo of Virginia - Spanish Teacher in Málaga</p>
+                  <div className="w-full h-full relative">
+                    <img 
+                      src="/images/virginia-teaching.jpg" 
+                      alt="Virginia - Spanish Teacher in Málaga"
+                      className="w-full h-full object-cover rounded-xl"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
                   </div>
                 </div>
                 
                 <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl flex flex-col items-center text-center">
-                    <FaGraduationCap className="text-blue-600 dark:text-blue-400 text-2xl mb-2" />
+                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl flex flex-col items-center text-center">
+                    <FaGraduationCap className="text-primary dark:text-primary-light text-2xl mb-2" />
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Certified</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">Master in ELE & DELE</p>
                   </div>
-                  <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl flex flex-col items-center text-center">
-                    <FaUserFriends className="text-blue-600 dark:text-blue-400 text-2xl mb-2" />
+                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl flex flex-col items-center text-center">
+                    <FaUserFriends className="text-primary dark:text-primary-light text-2xl mb-2" />
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Experience</h4>
                     <p className="text-sm text-gray-600 dark:text-gray-400">+500 students</p>
                   </div>
                 </div>
                 
-                <div className="bg-gradient-to-br from-blue-600 to-blue-700 p-5 rounded-xl text-white">
+                <div className="bg-gradient-to-br from-primary to-primary-dark p-5 rounded-xl text-white">
                   <div className="flex items-start mb-4">
                     <FaComment className="text-white opacity-80 text-2xl mr-4 mt-1" />
                     <div>
                       <h4 className="font-bold mb-2">Let&apos;s talk about your goals</h4>
-                      <p className="text-blue-100">
+                      <p className="text-primary-100">
                         Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started <SpanishExpression phrase="a todo gas" literal="at full gas" meaning="full speed ahead/with great energy" />!
                       </p>
                     </div>
                   </div>
                   <Link 
                     href="/contact" 
-                    className="inline-flex items-center bg-white text-blue-600 font-semibold px-4 py-2 rounded-lg transition-all hover:bg-blue-50 text-sm float-right"
+                    className="inline-flex items-center bg-white text-primary font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary/10 text-sm float-right"
                   >
                     Contact me now
                     <FaArrowRight className="ml-2 text-xs" />
@@ -183,7 +188,7 @@ const About = () => {
               viewport={{ once: true }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700"
             >
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-primary/10 dark:bg-primary/30 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl">🗣️</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
@@ -201,7 +206,7 @@ const About = () => {
               viewport={{ once: true }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700"
             >
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-primary/10 dark:bg-primary/30 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl">🎯</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
@@ -219,7 +224,7 @@ const About = () => {
               viewport={{ once: true }}
               className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700"
             >
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
+              <div className="w-12 h-12 bg-primary/10 dark:bg-primary/30 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl">🌍</span>
               </div>
               <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">

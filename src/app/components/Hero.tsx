@@ -1,10 +1,9 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaStar, FaInfoCircle, FaPlay, FaPause, FaImage } from 'react-icons/fa';
+import { FaStar, FaInfoCircle, FaGraduationCap, FaUsers, FaGlobe, FaArrowRight, FaPlay } from 'react-icons/fa';
 import Link from 'next/link';
-import { useState, useRef, useEffect } from 'react';
-import Image from 'next/image';
+import { useState, useEffect, useRef } from 'react';
 
 interface SpanishExpressionProps {
   expression: string;
@@ -12,18 +11,15 @@ interface SpanishExpressionProps {
   meaning: string;
 }
 
+// Componente para mostrar expresiones españolas con tooltip
 const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
-  
-  const toggleTooltip = () => {
-    setShowTooltip(!showTooltip);
-  };
   
   return (
     <div className="relative inline-block group">
       <span 
         className="underline decoration-wavy decoration-accent decoration-2 cursor-pointer font-bold text-accent dark:text-accent-light flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-accent/5 hover:bg-accent/10"
-        onClick={toggleTooltip}
+        onClick={() => setShowTooltip(!showTooltip)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
@@ -58,434 +54,375 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
   );
 };
 
-const Hero = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [videoLoaded, setVideoLoaded] = useState(false);
-  const [videoError, setVideoError] = useState<string | null>(null);
-  const [useStaticImage, setUseStaticImage] = useState(true); // Para móviles y conexiones lentas
-  const [loadingProgress, setLoadingProgress] = useState(0);
-  const [loadingStartTime, setLoadingStartTime] = useState(0);
-  
-  // Verificar si el dispositivo es probablemente móvil
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+// Datos de expresiones españolas para el juego
+const spanishExpressions = [
+  { expression: "hacer de tripas corazón", literal: "to make heart from guts", meaning: "to pluck up courage" },
+  { expression: "estar como una cabra", literal: "to be like a goat", meaning: "to be crazy" },
+  { expression: "ser pan comido", literal: "to be eaten bread", meaning: "to be a piece of cake" },
+  { expression: "dar en el clavo", literal: "to hit the nail", meaning: "to hit the nail on the head" },
+  { expression: "ponerse las pilas", literal: "to put in the batteries", meaning: "to get one's act together" },
+  { expression: "tomar el pelo", literal: "to take the hair", meaning: "to pull someone's leg" }
+];
 
-  // Función para iniciar reproducción del video
-  const playVideo = () => {
-    if (videoRef.current) {
-      console.log("Intentando reproducir video...");
-      
-      // Asegurar que el video esté configurado correctamente
-      videoRef.current.loop = true;
-      videoRef.current.muted = true;
-      videoRef.current.playsInline = true;
-      
-      // Intentar reproducirlo
-      const playPromise = videoRef.current.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log("✅ Video reproducido con éxito");
-            setIsPlaying(true);
-            setVideoError(null);
-          })
-          .catch(error => {
-            console.error("❌ Error al reproducir video:", error);
-            setIsPlaying(false);
-            setVideoError(`Error: ${error.message}`);
-          });
-      }
-    } else {
-      console.error("❌ Referencia de video no disponible");
-    }
+// Interface for YouTube API
+interface YouTubePlayerEvent {
+  target: YouTubePlayer;
+  data?: number;
+}
+
+interface YouTubePlayer {
+  playVideo: () => void;
+  pauseVideo: () => void;
+  seekTo: (seconds: number) => void;
+  destroy: () => void;
+  getPlayerState: () => number;
+}
+
+interface YouTubePlayerOptions {
+  videoId: string;
+  playerVars: Record<string, string | number | boolean>;
+  events: {
+    onReady?: (event: YouTubePlayerEvent) => void;
+    onStateChange?: (event: YouTubePlayerEvent) => void;
+    onError?: (event: YouTubePlayerEvent) => void;
   };
+}
+
+// Global type declaration for YouTube API
+declare global {
+  interface Window {
+    YT?: {
+      Player: new (
+        elementId: string,
+        options: YouTubePlayerOptions
+      ) => YouTubePlayer;
+      PlayerState: {
+        PLAYING: number;
+        PAUSED: number;
+        ENDED: number;
+        BUFFERING: number;
+      };
+    };
+    onYouTubeIframeAPIReady?: () => void;
+  }
+}
+
+export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [currentExpressionIndex, setCurrentExpressionIndex] = useState(0);
+  const [isChanging, setIsChanging] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(true);
+  
+  const youtubePlayerRef = useRef<YouTubePlayer | null>(null);
+  
+  // Load YouTube API and initialize player
+  useEffect(() => {
+    // Function to initialize YouTube player
+    const initYouTubePlayer = () => {
+      if (typeof window !== 'undefined' && window.YT && window.YT.Player) {
+        youtubePlayerRef.current = new window.YT.Player('youtube-player', {
+          videoId: 'FnaMiX7lOwM', // Reemplaza con tu ID de video real
+          playerVars: {
+            autoplay: 1, // Reproducción automática activada
+            controls: 1,
+            rel: 0,
+            showinfo: 0,
+            mute: 1, // Silenciado para permitir autoplay en navegadores
+            modestbranding: 1,
+            start: 39, // Comienza en el segundo 39
+            end: 120, // Termina en el segundo 120 (2:00)
+            loop: 1, // Reproducción en bucle
+            playlist: 'FnaMiX7lOwM' // Necesario para el loop, mismo ID que el video
+          },
+          events: {
+            onReady: (event) => {
+              // Reproducir automáticamente cuando esté listo
+              event.target.playVideo();
+            },
+            onStateChange: (event) => {
+              // Si el video termina, reiniciarlo desde el segundo 39
+              if (window.YT && event.data === window.YT.PlayerState.ENDED) {
+                event.target.seekTo(39);
+                event.target.playVideo();
+              }
+            }
+          }
+        });
+      }
+    };
+
+    // Load YouTube API
+    if (!window.YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      
+      window.onYouTubeIframeAPIReady = initYouTubePlayer;
+      
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    } else {
+      initYouTubePlayer();
+    }
+
+    return () => {
+      if (youtubePlayerRef.current) {
+        youtubePlayerRef.current.destroy();
+      }
+    };
+  }, []);
 
   useEffect(() => {
-    console.log("🎬 Componente Hero montado");
+    setIsVisible(true);
     
-    // Iniciar temporizador para la carga
-    setLoadingStartTime(Date.now());
+    // Cambiar expresión cada 5 segundos
+    const intervalId = setInterval(() => {
+      setIsChanging(true);
+      setTimeout(() => {
+        setCurrentExpressionIndex((prev) => (prev + 1) % spanishExpressions.length);
+        setIsChanging(false);
+      }, 300);
+    }, 5000);
     
-    // Si estamos en móvil, usar imagen estática por defecto
-    if (isMobile) {
-      setUseStaticImage(true);
-      return;
-    }
-    
-    // Si la conexión es lenta (basado en el tipo de conexión si está disponible)
-    interface NetworkInformation {
-      effectiveType: string;
-      downlink: number;
-      rtt: number;
-      saveData: boolean;
-      onchange?: () => void;
-    }
+    return () => clearInterval(intervalId);
+  }, []);
 
-    // Verificar si la conexión es lenta
-    const connection = (navigator as Navigator & { connection?: NetworkInformation }).connection;
-    if (connection && (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g')) {
-      setUseStaticImage(true);
-      return;
-    }
-    
-    // Primer intento de reproducción al montar el componente
-    if (videoRef.current) {
-      // Configurar eventos para detectar problemas
-      const handleError = (e: Event) => {
-        console.error("❌ Error de video:", e);
-        setVideoError(`Error al cargar el video. Por favor recarga la página.`);
-        setVideoLoaded(false);
-        setUseStaticImage(true); // Fallback a imagen estática
-      };
-      
-      const handleLoadedMetadata = () => {
-        console.log("📊 Metadata del video cargada");
-        // No establecer videoLoaded aquí, esperar a loadeddata
-      };
-      
-      const handleLoadedData = () => {
-        console.log("📼 Datos del video cargados");
-        const loadTime = ((Date.now() - loadingStartTime) / 1000).toFixed(2);
-        console.log(`Video cargado en ${loadTime}s`);
-        setVideoLoaded(true);
-        playVideo();
-      };
-      
-      const handleWaiting = () => {
-        console.log("⏳ Video en espera (buffering)");
-      };
-      
-      const handleProgress = () => {
-        if (videoRef.current && videoRef.current.buffered.length > 0) {
-          const bufferedEnd = videoRef.current.buffered.end(0);
-          const duration = videoRef.current.duration;
-          const progress = (bufferedEnd / duration) * 100;
-          setLoadingProgress(Math.round(progress));
-        }
-      };
-      
-      const handleEnded = () => {
-        console.log("🔄 Video terminado, debería repetirse automáticamente");
-        // Comprobar si el loop está funcionando
-        if (videoRef.current && !videoRef.current.loop) {
-          console.log("🔁 Forzando reinicio del video");
-          videoRef.current.currentTime = 0;
-          playVideo();
-        }
-      };
-      
-      // Configurar un tiempo máximo de carga (10 segundos)
-      const loadTimeout = setTimeout(() => {
-        if (!videoLoaded) {
-          console.log("⏱️ Tiempo de carga excedido, usando imagen estática");
-          setUseStaticImage(true);
-          setVideoError("La carga está tardando demasiado. Usando imagen estática.");
-        }
-      }, 10000);
-      
-      // Registrar eventos
-      videoRef.current.addEventListener('error', handleError);
-      videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata);
-      videoRef.current.addEventListener('loadeddata', handleLoadedData);
-      videoRef.current.addEventListener('waiting', handleWaiting);
-      videoRef.current.addEventListener('progress', handleProgress);
-      videoRef.current.addEventListener('ended', handleEnded);
-      
-      // Limpiar eventos al desmontar
-      return () => {
-        clearTimeout(loadTimeout);
-        if (videoRef.current) {
-          videoRef.current.removeEventListener('error', handleError);
-          videoRef.current.removeEventListener('loadedmetadata', handleLoadedMetadata);
-          videoRef.current.removeEventListener('loadeddata', handleLoadedData);
-          videoRef.current.removeEventListener('waiting', handleWaiting);
-          videoRef.current.removeEventListener('progress', handleProgress);
-          videoRef.current.removeEventListener('ended', handleEnded);
-        }
-      };
-    }
-  }, [isMobile, loadingStartTime]);
-
-  const togglePlayPause = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        playVideo();
-      } else {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-  
-  const toggleVideoMode = () => {
-    setUseStaticImage(!useStaticImage);
-    if (!useStaticImage) {
-      // Si cambiamos a modo de imagen estática, pausar el video
-      if (videoRef.current) {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-    } else {
-      // Si cambiamos a modo de video, intentar reproducirlo
-      if (videoRef.current) {
-        setVideoLoaded(false);
-        videoRef.current.load();
-        // Intentar reproducirlo después de un breve retraso
-        setTimeout(() => {
-          playVideo();
-        }, 500);
-      }
+  const playVideo = () => {
+    if (youtubePlayerRef.current) {
+      setShowVideoModal(true);
+      youtubePlayerRef.current.seekTo(39);
+      youtubePlayerRef.current.playVideo();
     }
   };
 
   return (
-    <section className="pt-32 pb-16 md:pt-40 md:pb-24 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/20 dark:bg-primary/10 rounded-full filter blur-3xl opacity-30 dark:opacity-20 animate-pulse"></div>
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-accent/20 dark:bg-accent/10 rounded-full filter blur-3xl opacity-30 dark:opacity-20 animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
+      {/* Fondo sutil con patrón */}
+      <div className="absolute inset-0 bg-gray-50 pattern-dots opacity-5 z-0"></div>
       
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-          {/* Left content - Text */}
-          <div className="w-full md:w-1/2 space-y-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="inline-block bg-primary/10 dark:bg-primary/20 text-primary dark:text-primary-light text-sm font-semibold px-4 py-1.5 rounded-full mb-4">
-                <span className="mr-2">🇪🇸</span> Unleash Your Spanish Potential
+      {/* Efectos de iluminación sutiles */}
+      <div className="absolute top-20 right-20 w-64 h-64 rounded-full bg-primary/10 blur-[80px] z-0"></div>
+      <div className="absolute bottom-20 left-20 w-80 h-80 rounded-full bg-accent/10 blur-[100px] z-0"></div>
+      
+      <div className="container mx-auto px-4 relative z-10 py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Columna izquierda - Texto principal con mejor contraste */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.7 }}
+            className="text-left"
+          >
+            {/* Badge premium */}
+            <div className="inline-flex items-center mb-6 bg-primary/10 px-4 py-2 rounded-full text-primary text-sm font-bold">
+              <span className="mr-2 text-accent">✓</span>
+              Trusted by over 1,000 students worldwide
+            </div>
+            
+            {/* Título principal con mejor legibilidad */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-tight mb-6">
+              Learn Spanish <span className="relative inline-block">
+                <span className="relative z-10 text-primary">Like a Native</span>
+                <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 9C118.957 4.47226 242.456 -1.86658 355 9" stroke="#FFB930" strokeWidth="6" strokeLinecap="round"/>
+                </svg>
+              </span>{' '}
+              <br />
+              <span className="text-accent">From Week One</span>
+            </h1>
+            
+            {/* Subtítulo con propuesta de valor */}
+            <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-xl">
+              No boring textbooks. No endless grammar drills. Just <SpanishExpression expression="aprender haciendo" literal="learning by doing" meaning="practical learning that sticks" /> with Virginia&apos;s proven method developed over 25 years of teaching excellence.
+            </p>
+            
+            {/* Elementos de credibilidad */}
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+              {/* Foto de Virginia con credenciales */}
+              <div className="flex items-center">
+                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent bg-primary/10">
+                  <div className="absolute inset-0 bg-gradient-to-b from-accent/20 to-primary/20"></div>
+                  {/* Placeholder para la foto de Virginia */}
+                  <div className="w-full h-full flex items-center justify-center text-primary font-bold">V</div>
+                </div>
+                <div className="ml-3">
+                  <p className="text-gray-900 font-semibold">Virginia</p>
+                  <p className="text-gray-600 text-sm">Spanish Teacher, 25+ years</p>
+                </div>
               </div>
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                Learn Spanish <span className="text-accent">Like a Native</span> in Sunny Málaga
-              </h1>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-xl text-gray-600 dark:text-gray-300"
-            >
-              From complete beginner to <SpanishExpression expression="hablar por los codos" literal="talking through your elbows" meaning="talking non-stop" /> fluency with personalized classes that will have you <SpanishExpression expression="hablando como un libro abierto" literal="speaking like an open book" meaning="speaking very eloquently" /> in no time!
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="flex flex-wrap gap-6 items-center"
-            >
-              <Link 
-                href="/booking" 
-                className="btn-accent inline-flex items-center group"
-              >
-                Book Your Free Trial Class
-                <FaArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <div className="flex items-center space-x-1">
+              
+              {/* Valoración en estrellas */}
+              <div className="flex items-center bg-gray-100 rounded-full px-3 py-1 border border-gray-200">
                 <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <FaStar key={i} className="text-yellow-400 w-5 h-5" />
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <FaStar key={star} className="text-accent h-4 w-4" />
                   ))}
                 </div>
-                <span className="text-gray-600 dark:text-gray-300 font-medium ml-1">
-                  5.0 on Google (8 reviews)
-                </span>
+                <span className="text-gray-700 ml-2 text-sm font-medium">5.0 (120+ reviews)</span>
               </div>
-            </motion.div>
+            </div>
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="grid grid-cols-2 md:grid-cols-3 gap-4 text-center py-4"
-            >
-              <div className="p-4 glassmorphism dark:glassmorphism-dark rounded-lg transform transition-transform hover:scale-105">
-                <p className="text-3xl font-bold text-primary">10+</p>
-                <p className="text-gray-600 dark:text-gray-300">Years Teaching</p>
+            {/* CTA principal con botones */}
+            <div className="flex flex-col sm:flex-row gap-4 mb-12">
+              <Link href="/booking" className="btn-marc btn-marc-accent group flex items-center justify-center gap-2 text-center font-bold shadow-lg">
+                Start with a Free Class
+                <FaArrowRight className="inline-block transition-transform group-hover:translate-x-1" />
+              </Link>
+              
+              {/* Botón para ver el video */}
+              <button 
+                onClick={playVideo}
+                className="btn-marc btn-marc-primary group flex items-center justify-center gap-2 shadow-lg"
+              >
+                <FaPlay className="text-white inline-block" />
+                Watch Virginia&apos;s Method
+              </button>
+            </div>
+            
+            {/* Estadísticas minimalistas */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl">
+              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <FaGraduationCap className="text-primary text-xl mb-2 mx-auto" />
+                <p className="text-xl font-bold text-gray-900">+25</p>
+                <p className="text-gray-600 text-xs">Years Experience</p>
               </div>
-              <div className="p-4 glassmorphism dark:glassmorphism-dark rounded-lg transform transition-transform hover:scale-105">
-                <p className="text-3xl font-bold text-primary">500+</p>
-                <p className="text-gray-600 dark:text-gray-300">Happy Students</p>
+              
+              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <FaUsers className="text-primary text-xl mb-2 mx-auto" />
+                <p className="text-xl font-bold text-gray-900">+1000</p>
+                <p className="text-gray-600 text-xs">Students</p>
               </div>
-              <div className="p-4 glassmorphism dark:glassmorphism-dark rounded-lg transform transition-transform hover:scale-105">
-                <p className="text-3xl font-bold text-primary">30+</p>
-                <p className="text-gray-600 dark:text-gray-300">Countries</p>
+              
+              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <FaGlobe className="text-primary text-xl mb-2 mx-auto" />
+                <p className="text-xl font-bold text-gray-900">+30</p>
+                <p className="text-gray-600 text-xs">Countries</p>
               </div>
-            </motion.div>
-          </div>
-          
-          {/* Right content - Video or Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="w-full md:w-1/2"
-          >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 rounded-2xl transform rotate-3"></div>
-              <div className="glassmorphism dark:glassmorphism-dark rounded-2xl h-96 flex items-center justify-center relative overflow-hidden">
-                <div className="absolute inset-0 bg-grid-white dark:bg-grid-dark"></div>
-                
-                {/* Contenido principal (video o imagen) */}
-                <div className="absolute inset-0 flex items-center justify-center p-4">
-                  {/* Imagen estática (visible por defecto o como fallback) */}
-                  {useStaticImage && (
-                    <div className="relative w-full h-full overflow-hidden rounded-xl">
-                      <div className="w-full h-full relative bg-gray-200 dark:bg-gray-800 rounded-xl overflow-hidden">
-                        <Image 
-                          src="/images/virginia-teaching.jpg" 
-                          alt="Virginia teaching Spanish in Málaga" 
-                          className="object-cover rounded-xl"
-                          fill
-                          priority
-                          sizes="(max-width: 768px) 100vw, 50vw"
-                        />
-                      </div>
-                      
-                      {/* Botón para cambiar a video */}
-                      <button
-                        onClick={toggleVideoMode}
-                        className="absolute bottom-4 right-4 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-2 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50 text-xs font-medium"
-                      >
-                        <FaPlay className="text-accent w-3 h-3 mr-1" />
-                        <span className="text-accent">Ver video</span>
-                      </button>
-                    </div>
-                  )}
-                  
-                  {/* Video (solo visible cuando useStaticImage es false) */}
-                  {!useStaticImage && (
-                    <>
-                      {/* Mostrar spinner/progreso de carga si el video no está cargado */}
-                      {!videoLoaded && !videoError && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-xl">
-                          <div className="relative w-16 h-16 mb-4">
-                            <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin"></div>
-                            <div className="absolute inset-0 flex items-center justify-center text-xs font-semibold text-primary">
-                              {loadingProgress}%
-                            </div>
-                          </div>
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">Cargando video...</p>
-                          <button
-                            onClick={toggleVideoMode}
-                            className="text-xs text-primary hover:text-primary-dark underline"
-                          >
-                            Usar imagen en lugar de video
-                          </button>
-                        </div>
-                      )}
-                      
-                      {/* Mostrar mensaje de error si hay algún problema */}
-                      {videoError && (
-                        <div className="absolute inset-0 flex flex-col items-center justify-center bg-red-50 dark:bg-red-900/20 rounded-xl p-6 text-center">
-                          <div className="text-red-500 text-4xl mb-4">⚠️</div>
-                          <p className="text-red-700 dark:text-red-300 mb-2 font-bold">Error al cargar el video</p>
-                          <p className="text-sm text-red-600 dark:text-red-400 mb-4">{videoError}</p>
-                          <div className="flex space-x-3">
-                            <button 
-                              onClick={() => {
-                                setVideoError(null);
-                                setVideoLoaded(false);
-                                if (videoRef.current) {
-                                  videoRef.current.load();
-                                  playVideo();
-                                }
-                              }}
-                              className="px-3 py-1.5 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors text-sm"
-                            >
-                              Reintentar
-                            </button>
-                            <button
-                              onClick={toggleVideoMode}
-                              className="px-3 py-1.5 bg-white text-gray-800 border border-gray-300 rounded-full hover:bg-gray-100 transition-colors text-sm"
-                            >
-                              Usar imagen
-                            </button>
-                          </div>
-                        </div>
-                      )}
-                      
-                      {/* El video */}
-                      <video 
-                        ref={videoRef}
-                        className="w-full h-full rounded-xl object-cover shadow-lg"
-                        playsInline
-                        muted
-                        loop
-                        preload="metadata"
-                        controlsList="nodownload nofullscreen noremoteplayback"
-                        onLoadedData={() => setVideoLoaded(true)}
-                        style={{ visibility: videoLoaded ? 'visible' : 'hidden' }}
-                        poster="/images/virginia-teaching.jpg"
-                      >
-                        <source src="/videos/Video_virginia.mp4" type="video/mp4" />
-                        <p>Tu navegador no soporta videos HTML5.</p>
-                      </video>
-                      
-                      {/* Overlay con botón para control de video */}
-                      {videoLoaded && !videoError && (
-                        <div className="absolute bottom-4 right-4 z-10 flex space-x-2">
-                          <button 
-                            onClick={togglePlayPause}
-                            className="w-10 h-10 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50"
-                            aria-label={isPlaying ? "Pause video" : "Play video"}
-                          >
-                            {isPlaying ? (
-                              <FaPause className="text-accent w-3.5 h-3.5" />
-                            ) : (
-                              <FaPlay className="text-accent w-3.5 h-3.5 ml-0.5" />
-                            )}
-                          </button>
-                          <button
-                            onClick={toggleVideoMode}
-                            className="h-10 px-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform border-2 border-accent/50 text-xs"
-                          >
-                            <FaImage className="text-accent w-3.5 h-3.5 mr-1" />
-                            <span className="text-accent">Ver imagen</span>
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  )}
-                </div>
-                
-                {/* Semi-transparent overlay con gradiente */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
+              
+              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                <FaStar className="text-accent text-xl mb-2 mx-auto" />
+                <p className="text-xl font-bold text-gray-900">100%</p>
+                <p className="text-gray-600 text-xs">Satisfaction</p>
               </div>
             </div>
           </motion.div>
-        </div>
-        
-        <div className="mt-16 md:mt-24 glassmorphism dark:glassmorphism-dark p-6 rounded-xl">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-900 dark:text-white">
-            Why Students <SpanishExpression expression="flipan en colores" literal="flip in colors" meaning="are absolutely amazed" /> With Our Spanish Classes
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white/50 dark:bg-gray-800/50 p-5 rounded-lg neomorphism dark:neomorphism-dark transition-all hover:-translate-y-1 hover:shadow-lg">
-              <div className="text-2xl mb-3">🗣️</div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Conversation-Focused</h3>
-              <p className="text-gray-600 dark:text-gray-300">You&apos;ll be speaking Spanish from day one, not just studying grammar rules. Say goodbye to <SpanishExpression expression="quedarse en blanco" literal="staying blank" meaning="drawing a blank/freezing up" />!</p>
+          
+          {/* Columna derecha - Video y juego de expresiones */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="flex flex-col gap-8"
+          >
+            {/* Video reproductor automático */}
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 aspect-video bg-gray-100">
+              {/* Reproductor de YouTube siempre visible */}
+              <div className="w-full h-full flex items-center justify-center relative">
+                <div id="youtube-player" className="absolute inset-0 w-full h-full"></div>
+                
+                {/* Overlay informativo */}
+                {!showVideoModal && (
+                  <div className="absolute inset-0 bg-gray-800/70 flex items-center justify-center z-10">
+                    <button 
+                      onClick={playVideo}
+                      className="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-xl transform transition hover:scale-110 hover:bg-accent-light"
+                    >
+                      <FaPlay className="text-white ml-1 text-xl" />
+                    </button>
+                    <div className="absolute bottom-4 left-4 right-4 text-white text-sm font-semibold bg-black/60 backdrop-blur-sm p-3 rounded-lg">
+                      &ldquo;Discover how my students start speaking Spanish from their very first week&rdquo; - Virginia
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
             
-            <div className="bg-white/50 dark:bg-gray-800/50 p-5 rounded-lg neomorphism dark:neomorphism-dark transition-all hover:-translate-y-1 hover:shadow-lg">
-              <div className="text-2xl mb-3">👩‍🏫</div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Personalized Learning</h3>
-              <p className="text-gray-600 dark:text-gray-300">Classes tailored to your needs, so you&apos;ll progress <SpanishExpression expression="a toda mecha" literal="at full wick" meaning="at full speed/very quickly" />.</p>
-            </div>
-            
-            <div className="bg-white/50 dark:bg-gray-800/50 p-5 rounded-lg neomorphism dark:neomorphism-dark transition-all hover:-translate-y-1 hover:shadow-lg">
-              <div className="text-2xl mb-3">🌞</div>
-              <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">Cultural Immersion</h3>
-              <p className="text-gray-600 dark:text-gray-300">Experience Spanish culture firsthand in the beautiful city of Málaga and soon you&apos;ll be <SpanishExpression expression="como pez en el agua" literal="like a fish in water" meaning="completely comfortable/in your element" />.</p>
-            </div>
-          </div>
+            {/* Juego de expresiones destacado */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="relative p-6 shadow-lg rounded-2xl bg-white border border-gray-200"
+            >
+              <div className="absolute top-4 right-4 bg-accent/10 text-accent rounded-full px-3 py-1 text-sm font-bold border border-accent/20">
+                Expression #{ currentExpressionIndex + 1 }
+              </div>
+              <h3 className="text-xl font-bold mb-6 text-gray-900">Fun Spanish Expressions</h3>
+              <div className={`transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
+                <SpanishExpression 
+                  expression={spanishExpressions[currentExpressionIndex].expression}
+                  literal={spanishExpressions[currentExpressionIndex].literal}
+                  meaning={spanishExpressions[currentExpressionIndex].meaning}
+                />
+              </div>
+              <div className="mt-6 flex justify-between items-center">
+                <button 
+                  onClick={() => {
+                    setIsChanging(true);
+                    setTimeout(() => {
+                      setCurrentExpressionIndex((prev) => 
+                        prev === 0 ? spanishExpressions.length - 1 : prev - 1
+                      );
+                      setIsChanging(false);
+                    }, 300);
+                  }}
+                  className="text-primary hover:text-primary-dark transition-colors font-semibold"
+                >
+                  Previous
+                </button>
+                <div className="flex space-x-1">
+                  {spanishExpressions.map((_, index) => (
+                    <button 
+                      key={index}
+                      onClick={() => {
+                        if (index !== currentExpressionIndex) {
+                          setIsChanging(true);
+                          setTimeout(() => {
+                            setCurrentExpressionIndex(index);
+                            setIsChanging(false);
+                          }, 300);
+                        }
+                      }}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentExpressionIndex ? 'bg-accent w-6' : 'bg-gray-300 hover:bg-gray-400'
+                      }`}
+                      aria-label={`Expression ${index + 1}`}
+                    />
+                  ))}
+                </div>
+                <button 
+                  onClick={() => {
+                    setIsChanging(true);
+                    setTimeout(() => {
+                      setCurrentExpressionIndex((prev) => (prev + 1) % spanishExpressions.length);
+                      setIsChanging(false);
+                    }, 300);
+                  }}
+                  className="text-primary hover:text-primary-dark transition-colors font-semibold"
+                >
+                  Next
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
+      </div>
+      
+      {/* Botón flotante para móviles */}
+      <div className="md:hidden fixed bottom-6 right-6 z-50">
+        <Link 
+          href="/booking" 
+          className="btn-marc btn-marc-accent shadow-xl flex items-center gap-2 animate-pulse-slow font-bold"
+        >
+          Free Trial <FaArrowRight />
+        </Link>
+      </div>
+      
+      {/* Ondas decorativas en la parte inferior */}
+      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-10">
+        <svg className="relative block w-full h-12" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-gray-100"></path>
+        </svg>
       </div>
     </section>
   );
-};
-
-export default Hero; 
+} 

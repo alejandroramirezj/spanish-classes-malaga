@@ -1,50 +1,89 @@
 @import "tailwindcss";
 
 :root {
-  /* Paleta de colores con azul mar y amarillo sol - Moderna y vibrante */
-  --primary: #1A73E8; /* Azul mar más vibrante */
-  --primary-light: #4285F4;
-  --primary-dark: #0D47A1;
+  /* Paleta de colores actualizada - Azul y Amarillo Sol */
+  --primary: #0070F3; /* Azul principal */
+  --primary-dark: #0050D0;
+  --primary-light: #3694FF;
   
-  --accent: #FFCA28; /* Amarillo sol más vivo y claro */
-  --accent-light: #FFD54F;
-  --accent-dark: #FFA000;
+  --accent: #FFB930; /* Amarillo sol */
+  --accent-dark: #F59E0B;
+  --accent-light: #FFCF6B;
+
+  --light-bg: #F5F9FF;
+  --dark-bg: #0F172A;
   
-  --success: #10B981; /* Verde esmeralda */
-  --danger: #EF4444; /* Rojo intenso */
-  --warning: #FBBF24; /* Ámbar brillante */
+  --success: #22C55E;
+  --info: #38BDF8;
+  --warning: #FBBF24;
+  --error: #F43F5E;
   
-  /* Colores neutros con un toque más moderno */
+  --text-dark: #0F172A;
+  --text-light: #FFFFFF;
+  --text-muted: #64748B;
+  
+  --border-radius: 0.5rem;
+  --border-radius-lg: 1rem;
+  
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  
+  /* Colores neutros y de fondo modernos */
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #0F172A;
   --surface: #F8FAFC;
   --surface-dark: #F1F5F9;
   --gray-light: #E2E8F0;
   --gray-medium: #94A3B8;
   --gray-dark: #475569;
+  
+  /* Colores para elementos específicos */
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --card-bg-dark: rgba(15, 23, 42, 0.9);
+  --card-border: rgba(226, 232, 240, 0.5);
+  --card-border-dark: rgba(71, 85, 105, 0.2);
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+  --card-shadow-hover: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para efectos de grid al estilo Marc Lou */
-.bg-grid-white {
+/* Estilos para efectos de grid al estilo Marc Lou - Mejorados */
+.bg-grid-light {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(226, 232, 240, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.1) 1px, transparent 1px);
 }
 
 .bg-grid-dark {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+    linear-gradient(to right, rgba(71, 85, 105, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(71, 85, 105, 0.1) 1px, transparent 1px);
 }
 
-/* Estilos para gradientes modernos */
-.gradient-primary {
+/* Patrones modernos estilo Marc Lou */
+.pattern-dots {
+  background-image: radial-gradient(var(--accent)/10% 10%, transparent 0);
+  background-size: 30px 30px;
+}
+
+.pattern-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    var(--primary)/5%,
+    var(--primary)/5% 10px,
+    transparent 10px,
+    transparent 20px
+  );
+}
+
+/* Estilos para gradientes modernos - más sutiles y elegantes */
+.gradient-blue {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
 }
 
-.gradient-accent {
+.gradient-yellow {
   background: linear-gradient(135deg, var(--accent), var(--accent-dark));
 }
 
@@ -52,19 +91,223 @@
   background: linear-gradient(135deg, var(--primary), var(--accent));
 }
 
-/* Estilos adicionales para neomorfismo */
-.neomorphism {
-  box-shadow: 
-    8px 8px 16px rgba(0, 0, 0, 0.05),
-    -8px -8px 16px rgba(255, 255, 255, 0.8);
-  border-radius: 16px;
+.gradient-hero {
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
 }
 
-.neomorphism-dark {
-  box-shadow: 
-    8px 8px 16px rgba(0, 0, 0, 0.2),
-    -8px -8px 16px rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+/* Efectos de brillo Marc Lou */
+.shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 6s infinite linear;
+  pointer-events: none;
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(30deg) translate(-200%, -100%);
+  }
+  100% {
+    transform: rotate(30deg) translate(200%, 100%);
+  }
+}
+
+/* Efectos de blur Marc Lou */
+.blur-behind {
+  position: relative;
+}
+
+.blur-behind::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: inherit;
+  filter: blur(40px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+/* Botones estilo Marc Lou */
+.btn-marc {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  font-size: 1rem;
+  letter-spacing: -0.025em;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+  border: none;
+  overflow: hidden;
+}
+
+.btn-marc::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+.btn-marc:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.15);
+}
+
+.btn-marc:hover::before {
+  opacity: 1;
+}
+
+.btn-marc:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-marc-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-marc-accent {
+  background-color: var(--accent);
+  color: var(--text-dark);
+}
+
+.btn-marc-outline {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--primary);
+  color: var(--primary);
+}
+
+.btn-marc-outline:hover {
+  box-shadow: inset 0 0 0 2px var(--primary-dark);
+  color: var(--primary-dark);
+}
+
+/* Tipografía mejorada */
+.title-marc {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  text-align: center;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+.subtitle-marc {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.025em;
+  text-align: center;
+  color: var(--text-muted);
+  max-width: 36rem;
+  margin: 0 auto 3rem;
+}
+
+/* Estilos para tarjetas estilo Marc Lou */
+.card-marc {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  transition: all 300ms;
+  border: 1px solid var(--gray-light);
+  overflow: hidden;
+  position: relative;
+}
+
+.card-marc:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+.card-marc::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 300ms ease;
+}
+
+.card-marc:hover::after {
+  transform: scaleX(1);
+}
+
+/* Animaciones suaves al estilo Marc Lou */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.animate-fade-up-1 {
+  animation: fadeUp 0.7s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-2 {
+  animation: fadeUp 0.7s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-fade-up-3 {
+  animation: fadeUp 0.7s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* Spinner Marc Lou */
+.spinner-marc {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: conic-gradient(rgba(0, 0, 0, 0) 0%, var(--primary));
+  -webkit-mask: radial-gradient(circle at center, transparent 55%, black 55%);
+  mask: radial-gradient(circle at center, transparent 55%, black 55%);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @theme inline {
@@ -76,13 +319,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0F172A; /* Azul oscuro más rico */
+    --background: #1F1642; /* Púrpura oscuro para modo oscuro */
     --foreground: #F8FAFC;
-    --surface: #1E293B;
-    --surface-dark: #172033;
-    --gray-light: #334155;
-    --gray-medium: #64748B;
-    --gray-dark: #94A3B8;
+    --surface: #2E2157;
+    --surface-dark: #251B47;
+    --gray-light: #3D3266;
+    --gray-medium: #6B5E99;
+    --gray-dark: #9E9CB7;
   }
 }
 
@@ -93,95 +336,205 @@ body {
   letter-spacing: -0.025em;
 }
 
-/* Estilos modernos para botones */
+/* Estilos modernos para botones - más atractivos y con mejor feedback */
+.btn {
+  display: inline-block;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  transition-property: all;
+  transition-duration: 300ms;
+  outline: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: scale(1);
+}
+
+.btn:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white, 0 0 0 4px rgba(59, 130, 246, 0.5);
+}
+
 .btn-primary {
   background-color: var(--primary);
   color: white;
-  border-radius: 9999px;
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(26, 115, 232, 0.5);
-  transition: all 0.15s ease;
-  border: none;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .btn-primary:hover {
-  background-color: var(--primary-light);
+  background-color: var(--primary-dark);
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(66, 133, 244, 0.6);
 }
 
 .btn-accent {
   background-color: var(--accent);
-  color: #333333; /* Texto más oscuro para mejor contraste con el amarillo */
-  border-radius: 9999px;
-  font-weight: 600; /* Texto más grueso para mejor visibilidad */
-  padding: 0.75rem 1.5rem;
-  box-shadow: 0 10px 25px -5px rgba(255, 202, 40, 0.5);
-  transition: all 0.15s ease;
-  border: none;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3); /* Sutil sombra de texto para mejorar legibilidad */
+  color: var(--text-dark);
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .btn-accent:hover {
-  background-color: var(--accent-light);
+  background-color: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 15px 30px -5px rgba(255, 202, 40, 0.6);
 }
 
-.btn-secondary {
-  background-color: white;
+.btn-outline-primary {
+  border: 2px solid var(--primary);
   color: var(--primary);
-  border-radius: 9999px;
-  font-weight: 500;
-  padding: 0.75rem 1.5rem;
-  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.05);
-  transition: all 0.15s ease;
-  border: 1px solid var(--gray-light);
 }
 
-.btn-secondary:hover {
-  background-color: var(--surface);
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+.btn-outline-primary:hover {
+  background-color: var(--primary);
+  color: white;
 }
 
-/* Estilos para tarjetas modernas */
-.card-modern {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  border: 1px solid var(--gray-light);
+.btn-outline-accent {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+}
+
+.btn-outline-accent:hover {
+  background-color: var(--accent);
+  color: white;
+}
+
+/* Estilos para tarjetas modernas - más elegantes y con mejor feedback */
+.card {
+  background-color: white;
+  border-radius: 0.75rem;
   overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  transition: all 300ms;
 }
 
-.card-modern:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+.dark .card {
+  background-color: #1f2937;
+  border-color: #374151;
 }
 
-/* Estilos para tarjetas con efecto de vidrio */
+.card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card-accent {
+  border-left: 4px solid var(--accent);
+}
+
+.card-primary {
+  border-left: 4px solid var(--primary);
+}
+
+/* Efectos glassmorphism */
 .glassmorphism {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px -5px rgba(108, 76, 224, 0.15);
 }
 
 .glassmorphism-dark {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  background-color: rgba(31, 22, 66, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+.animate-pulse-slow {
+  animation: pulse 3s infinite;
+}
+
+/* Highlight box */
+.highlight-box {
+  position: relative;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 4px solid var(--accent);
+  background-color: rgba(251, 192, 45, 0.05);
+}
+
+/* Image frame effects */
+.image-frame {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.image-frame:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.3);
+}
+
+/* Typography helpers */
+.heading-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.heading-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  right: 0;
+  height: 0.25rem;
+  background: linear-gradient(to right, var(--primary), var(--accent));
+  border-radius: 999px;
+}
+
+/* Estilos para separadores elegantes */
+.elegant-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gray-medium) 50%, transparent);
+  margin: 3rem 0;
+  position: relative;
+}
+
+.elegant-divider::before {
+  content: '•';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--background);
+  padding: 0 1rem;
+  color: var(--gray-medium);
 }
 
 @media (prefers-color-scheme: dark) {
-  .card-modern {
-    background: var(--surface);
-    border: 1px solid var(--gray-light);
+  .card {
+    background: var(--card-bg-dark);
+    border: 1px solid var(--card-border-dark);
   }
   
   .btn-secondary {
@@ -193,4 +546,61 @@ body {
   .btn-secondary:hover {
     background-color: rgba(255, 255, 255, 0.15);
   }
+  
+  .highlight-box {
+    background: linear-gradient(to right, var(--primary)/0.2, transparent);
+    border-left: 4px solid var(--primary);
+  }
+  
+  .elegant-divider::before {
+    background: var(--background);
+  }
+  
+  .image-frame {
+    border-color: var(--surface-dark);
+  }
+}
+
+/* Mejora para botones flotantes que deben permanecer visibles */
+.floating-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 50;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+  border: none;
+  transform: scale(1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.floating-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.25);
+}
+
+/* Mejora para secciones de video */
+.video-frame {
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+  border: 8px solid white;
+  border-radius: 1rem;
+  overflow: hidden;
+  transform: rotate(0deg) scale(1);
+  transition: transform 0.5s ease;
+}
+
+.video-frame:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Fondo alternativo para secciones que necesitan destacar */
+.purple-bg {
+  background-color: var(--primary);
+  color: white;
+}
+
+/* Garantizar visibilidad de texto sobre fondos oscuros */
+.text-on-dark {
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }

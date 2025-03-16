@@ -82,7 +82,7 @@ const Navbar = () => {
       style={{
         background: isScrolled 
           ? `rgba(255, 255, 255, ${bgOpacity})` 
-          : 'linear-gradient(135deg, var(--primary), var(--accent))',
+          : 'linear-gradient(135deg, #6C4CE0, #5736CE)',
         boxShadow: isScrolled ? `0 4px 20px rgba(0, 0, 0, ${shadowOpacity})` : 'none',
         height: `${navHeight}px`,
       }}
@@ -163,12 +163,12 @@ const Navbar = () => {
             <Link href="/services" className={`px-3 py-2 rounded-full text-sm font-medium ${isScrolled ? 'text-gray-dark hover:text-primary hover:bg-primary/5' : 'text-white hover:text-white hover:bg-white/10'} transition-all hover:shadow-inner transform hover:scale-105`}>
               Classes
             </Link>
-            <Link href="/booking" className={`ml-2 px-4 py-2 rounded-full text-sm font-medium ${
+            <Link href="/booking" className={`ml-2 px-5 py-2.5 rounded-full text-sm font-bold ${
               isScrolled 
-                ? 'bg-accent text-white hover:bg-accent-light' 
-                : 'bg-white text-accent hover:bg-white/90'
-            } transition-all shadow-sm hover:shadow-md transform hover:scale-105 hover:-translate-y-0.5`}>
-              Book Now
+                ? 'bg-accent text-text-dark hover:bg-accent-light' 
+                : 'bg-accent text-text-dark hover:bg-accent-light'
+            } transition-all shadow-lg hover:shadow-xl transform hover:scale-105 hover:-translate-y-0.5`}>
+              Book Free Trial
             </Link>
             <Link href="/contact" className={`px-3 py-2 rounded-full text-sm font-medium ${isScrolled ? 'text-gray-dark hover:text-primary hover:bg-primary/5' : 'text-white hover:text-white hover:bg-white/10'} transition-all hover:shadow-inner transform hover:scale-105`}>
               Contact
@@ -230,14 +230,18 @@ const Navbar = () => {
                 <motion.span className="mr-2 text-primary" initial={{ scale: 1 }} animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2, delay: 0.2 }}>•</motion.span>
                 Classes
               </Link>
-              <Link 
-                href="/booking" 
-                className="px-4 py-3 rounded-lg hover:bg-primary/5 dark:hover:bg-primary/10 text-gray-900 dark:text-white font-medium hover:translate-x-1 transition-transform flex items-center"
-                onClick={() => setIsOpen(false)}
-              >
-                <motion.span className="mr-2 text-primary" initial={{ scale: 1 }} animate={{ scale: [1, 1.2, 1] }} transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2, delay: 0.3 }}>•</motion.span>
-                Book Now
-              </Link>
+              
+              {/* Destacando el botón de reserva */}
+              <div className="py-2">
+                <Link 
+                  href="/booking" 
+                  className="block w-full text-center px-4 py-3 rounded-xl bg-accent text-text-dark font-bold shadow-lg hover:shadow-xl transform hover:translate-y-0.5 transition-all"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Book Free Trial Class
+                </Link>
+              </div>
+              
               <Link 
                 href="/contact" 
                 className="px-4 py-3 rounded-lg hover:bg-primary/5 dark:hover:bg-primary/10 text-gray-900 dark:text-white font-medium hover:translate-x-1 transition-transform flex items-center"
