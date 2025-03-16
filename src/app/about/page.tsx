@@ -48,164 +48,128 @@ export default function AboutPage() {
                   </p>
                 </div>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">
-                  I was born and raised in Málaga, a beautiful coastal city in southern Spain. I studied Hispanic Philology at the University of Málaga and hold a Master&apos;s Degree in Teaching Spanish as a Foreign Language.
+                  I believe the best way to learn a language is through meaningful communication. My teaching approach focuses on practical conversation from day one, using real-life situations that matter to you.
                 </p>
-                <p className="text-lg text-gray-700 dark:text-gray-300">
-                  Throughout my career, I&apos;ve had the privilege of teaching students from more than 30 different countries, adapting my method to each student&apos;s specific needs.
-                </p>
+                <div className="flex space-x-4 mb-6">
+                  <div className="flex items-center text-primary">
+                    <FaGraduationCap className="mr-2" />
+                    <span className="font-medium">Master&apos;s in Teaching Spanish</span>
+                  </div>
+                </div>
+                <Link href="/booking" className="btn-plan btn-plan-primary">
+                  Book a Free Trial Class
+                </Link>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-accent/10 dark:bg-accent/20 rounded-full mr-4">
-                    <FaGraduationCap className="text-accent text-2xl" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Academic Background</h3>
-                </div>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Degree in Hispanic Philology - University of Málaga</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Master&apos;s in Teaching Spanish as a Foreign Language - University of Salamanca</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Certificate of Pedagogical Aptitude (CAP)</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>DELE Certification (Official Examiner)</span>
-                  </li>
-                </ul>
-              </div>
-              
-              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-shadow">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-accent/10 dark:bg-accent/20 rounded-full mr-4">
-                    <FaBook className="text-accent text-2xl" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Methodology</h3>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  My teaching approach is communicative and student-centered. I believe that learning a language should be:
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Practical and based on real-life situations</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Fun and motivational</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Adapted to your interests and needs</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-accent mr-2">•</span>
-                    <span>Integrated with cultural elements</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="mb-16">
-              <h2 className="text-2xl font-bold mb-8 text-center text-gray-900 dark:text-white relative inline-block">
-                Professional Experience
-                <div className="absolute -bottom-4 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-accent/50 to-primary/50 rounded-full"></div>
+            {/* Teaching Philosophy */}
+            <div className="mb-20">
+              <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white relative inline-block">
+                My Teaching Philosophy
+                <div className="absolute -bottom-3 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-accent/50 to-primary/50 rounded-full"></div>
               </h2>
               
-              <div className="space-y-6">
-                <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white flex items-center">
-                    <span className="text-accent mr-2">•</span>
-                    Málaga Language Academy | 2015 - Present
-                  </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-full inline-block mb-4">
+                    <FaBook className="text-2xl text-primary dark:text-primary-light" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Practical Learning</h3>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Spanish teacher for all levels. Individual and group classes. Preparation for DELE exams.
+                    We focus on communication from day one. You&apos;ll learn vocabulary and phrases you can immediately use in real-life situations. No boring exercises or useless phrases.
                   </p>
                 </div>
                 
-                <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white flex items-center">
-                    <span className="text-accent mr-2">•</span>
-                    International University of Andalusia | 2013 - 2015
-                  </h3>
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-full inline-block mb-4">
+                    <FaUserFriends className="text-2xl text-primary dark:text-primary-light" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Personalized Approach</h3>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Assistant professor in the Spanish for foreigners program. Development of teaching materials.
+                    Each student has unique needs, interests, and learning styles. I adapt my teaching methods to your specific goals, whether for work, travel, or personal enrichment.
                   </p>
                 </div>
                 
-                <div className="border-l-4 border-accent pl-6 py-4 hover:bg-accent/5 transition-colors rounded-r-lg">
-                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white flex items-center">
-                    <span className="text-accent mr-2">•</span>
-                    Spanish Classes Malaga | 2010 - Present
-                  </h3>
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-full inline-block mb-4">
+                    <FaGlobe className="text-2xl text-primary dark:text-primary-light" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Cultural Immersion</h3>
                   <p className="text-gray-700 dark:text-gray-300">
-                    Founder and main teacher. Personalized classes for students from around the world. Cultural visits and complementary activities.
+                    Language and culture are inseparable. You&apos;ll learn Spanish in its cultural context, understanding nuances, idioms, and cultural references that make your Spanish sound natural.
+                  </p>
+                </div>
+                
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-full inline-block mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-primary dark:text-primary-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Enjoyable Experience</h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    Learning should be fun! I create a relaxed, supportive environment where you feel comfortable practicing and making mistakes. We&apos;ll laugh, chat, and learn together.
                   </p>
                 </div>
               </div>
             </div>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-              <div className="bg-accent/10 dark:bg-accent/20 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 transform">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-white dark:bg-gray-800 rounded-full">
-                    <FaUserFriends className="text-accent text-3xl" />
-                  </div>
-                </div>
-                <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">+500</h3>
-                <p className="text-gray-700 dark:text-gray-300 font-medium">Students</p>
-              </div>
+            {/* Testimonials */}
+            <div className="mb-20">
+              <h2 className="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white relative inline-block">
+                Student Testimonials
+                <div className="absolute -bottom-3 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 via-accent/50 to-primary/50 rounded-full"></div>
+              </h2>
               
-              <div className="bg-accent/10 dark:bg-accent/20 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 transform">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-white dark:bg-gray-800 rounded-full">
-                    <FaGlobe className="text-accent text-3xl" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
+                      <span className="text-xl">🇺🇸</span>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900 dark:text-white">Sarah Johnson</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">New York, USA</p>
+                    </div>
                   </div>
+                  <p className="text-gray-700 dark:text-gray-300 italic">
+                    &quot;Virginia is an exceptional teacher. Her method made me feel confident speaking Spanish from our very first class. After just a few months, I could have real conversations while traveling in Spain.&quot;
+                  </p>
                 </div>
-                <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">+30</h3>
-                <p className="text-gray-700 dark:text-gray-300 font-medium">Countries</p>
-              </div>
-              
-              <div className="bg-accent/10 dark:bg-accent/20 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 transform">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-white dark:bg-gray-800 rounded-full">
-                    <FaBook className="text-accent text-3xl" />
+                
+                <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-100 dark:border-gray-700">
+                  <div className="flex items-center mb-4">
+                    <div className="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mr-4">
+                      <span className="text-xl">🇩🇪</span>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-gray-900 dark:text-white">Thomas Müller</h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">Berlin, Germany</p>
+                    </div>
                   </div>
+                  <p className="text-gray-700 dark:text-gray-300 italic">
+                    &quot;I needed Spanish for my new job, and Virginia tailored the classes perfectly for my professional needs. She made complex grammar concepts seem easy and fun to learn.&quot;
+                  </p>
                 </div>
-                <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">+10</h3>
-                <p className="text-gray-700 dark:text-gray-300 font-medium">Years of experience</p>
-              </div>
-              
-              <div className="bg-accent/10 dark:bg-accent/20 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all hover:-translate-y-1 transform">
-                <div className="flex justify-center mb-4">
-                  <div className="p-3 bg-white dark:bg-gray-800 rounded-full">
-                    <FaGraduationCap className="text-accent text-3xl" />
-                  </div>
-                </div>
-                <h3 className="text-3xl font-bold mb-2 text-gray-900 dark:text-white">100%</h3>
-                <p className="text-gray-700 dark:text-gray-300 font-medium">Satisfaction</p>
               </div>
             </div>
             
-            <div className="text-center py-8 px-6 glassmorphism dark:glassmorphism-dark rounded-2xl shadow-xl">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+            {/* CTA */}
+            <div className="bg-gradient-to-r from-primary/10 to-accent/10 dark:from-primary/20 dark:to-accent/20 rounded-2xl p-8 md:p-12 text-center">
+              <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900 dark:text-white">
                 Ready to start your Spanish journey?
               </h2>
-              <Link 
-                href="/booking" 
-                className="btn-plan btn-plan-primary"
-              >
-                Book your first class
-              </Link>
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
+                Book a free 30-minute trial class to discuss your goals and experience my teaching approach firsthand.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link href="/booking" className="btn-plan btn-plan-primary">
+                  Book Your Free Trial
+                </Link>
+                <Link href="/contact" className="btn-plan btn-plan-secondary">
+                  Contact Me
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -1,12 +1,11 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import Image from 'next/image';
 import Link from 'next/link';
 import { FaUserGraduate, FaUserFriends, FaLaptop, FaBookOpen, FaCheck } from 'react-icons/fa';
 
 export const metadata = {
-  title: 'Clases | Spanish Classes Malaga',
-  description: 'Descubre nuestras clases de español personalizadas: individuales, en pareja, online y para fines específicos.',
+  title: 'Classes | Spanish Classes Malaga',
+  description: 'Discover our personalized Spanish classes: individual, couples, online, and for specific purposes.',
 };
 
 export default function ServicesPage() {
@@ -18,10 +17,10 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Nuestras Clases
+              Our Classes
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
-              Opciones adaptadas a tus necesidades y objetivos. Todas nuestras clases son personalizadas.
+              Options tailored to your needs and goals. All our classes are personalized.
             </p>
           </div>
         </div>
@@ -34,7 +33,7 @@ export default function ServicesPage() {
             <div className="flex flex-col md:flex-row gap-10 items-center">
               <div className="w-full md:w-1/2">
                 <div className="rounded-lg overflow-hidden shadow-lg bg-primary/10 h-64 flex items-center justify-center">
-                  <p className="text-primary font-medium">Clases individuales</p>
+                  <p className="text-primary font-medium">Individual classes</p>
                 </div>
               </div>
               
@@ -42,43 +41,37 @@ export default function ServicesPage() {
                 <div className="flex items-center mb-4">
                   <FaUserGraduate className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Clases Individuales
+                    Individual Classes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Máxima personalización y atención para un progreso rápido y eficaz.
+                  Maximum personalization and attention for fast and effective progress.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Atención personalizada</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Classes adapted to your pace and learning style
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Progreso eficiente</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Focus on your specific needs: conversation, grammar, work vocabulary...
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Horarios flexibles</span>
-                  </li>
-                  <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Materiales incluidos</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Maximum flexibility in scheduling
+                    </span>
                   </li>
                 </ul>
                 
-                <div className="bg-accent/10 dark:bg-accent/20 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Desde €25/hora</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos en bonos de 5, 10 o 20 clases</p>
-                </div>
-                
-                <Link 
-                  href="/booking" 
-                  className="btn-plan btn-plan-primary"
-                >
-                  Reservar Clase
+                <Link href="/booking?type=individual" className="btn-plan btn-plan-primary">
+                  Book a Class
                 </Link>
               </div>
             </div>
@@ -86,20 +79,14 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Paired Classes */}
+      {/* Couples/Friends Classes */}
       <section className="py-12 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row-reverse gap-10 items-center">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <Image 
-                    src="/pair-class.jpg" 
-                    alt="Spanish classes for pairs" 
-                    width={600} 
-                    height={400}
-                    className="w-full h-auto object-cover"
-                  />
+                <div className="rounded-lg overflow-hidden shadow-lg bg-primary/10 h-64 flex items-center justify-center">
+                  <p className="text-primary font-medium">Classes for couples or friends</p>
                 </div>
               </div>
               
@@ -107,43 +94,37 @@ export default function ServicesPage() {
                 <div className="flex items-center mb-4">
                   <FaUserFriends className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Clases en Pareja
+                    Couples or Friends
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Aprende con tu pareja o amigo del mismo nivel. Combina atención personalizada con interacción.
+                  Learn together in a motivating and dynamic environment.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Práctica de conversación</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Ideal for friends or couples with similar levels
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Aprendizaje colaborativo</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Interactive conversation practice
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Más económico</span>
-                  </li>
-                  <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Ideal para viajeros</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      More affordable than individual classes
+                    </span>
                   </li>
                 </ul>
                 
-                <div className="bg-white dark:bg-gray-900 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">€40/hora (€20 por persona)</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos disponibles en bonos</p>
-                </div>
-                
-                <Link 
-                  href="/booking" 
-                  className="btn-plan btn-plan-primary"
-                >
-                  Reservar Clase
+                <Link href="/booking?type=couple" className="btn-plan btn-plan-primary">
+                  Book a Class
                 </Link>
               </div>
             </div>
@@ -157,14 +138,8 @@ export default function ServicesPage() {
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row gap-10 items-center">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <Image 
-                    src="/online-class.jpg" 
-                    alt="Online Spanish classes" 
-                    width={600} 
-                    height={400}
-                    className="w-full h-auto object-cover"
-                  />
+                <div className="rounded-lg overflow-hidden shadow-lg bg-primary/10 h-64 flex items-center justify-center">
+                  <p className="text-primary font-medium">Online classes</p>
                 </div>
               </div>
               
@@ -172,43 +147,37 @@ export default function ServicesPage() {
                 <div className="flex items-center mb-4">
                   <FaLaptop className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Clases Online
+                    Online Classes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Aprende español desde cualquier lugar con la misma calidad y atención personalizada.
+                  Quality Spanish classes from anywhere in the world.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Flexibilidad total</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Same personalized attention as face-to-face classes
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Materiales digitales</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Interactive digital materials
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Plataforma interactiva</span>
-                  </li>
-                  <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Seguimiento continuo</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Maximum geographical flexibility
+                    </span>
                   </li>
                 </ul>
                 
-                <div className="bg-accent/10 dark:bg-accent/20 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Desde €20/hora</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Descuentos en bonos</p>
-                </div>
-                
-                <Link 
-                  href="/booking" 
-                  className="btn-plan btn-plan-primary"
-                >
-                  Reservar Clase
+                <Link href="/booking?type=online" className="btn-plan btn-plan-primary">
+                  Book a Class
                 </Link>
               </div>
             </div>
@@ -216,20 +185,14 @@ export default function ServicesPage() {
         </div>
       </section>
       
-      {/* Spanish for Specific Purposes */}
+      {/* Specific purposes classes */}
       <section className="py-12 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex flex-col md:flex-row-reverse gap-10 items-center">
               <div className="w-full md:w-1/2">
-                <div className="rounded-lg overflow-hidden shadow-lg">
-                  <Image 
-                    src="/specialized-class.jpg" 
-                    alt="Spanish for specific purposes" 
-                    width={600} 
-                    height={400}
-                    className="w-full h-auto object-cover"
-                  />
+                <div className="rounded-lg overflow-hidden shadow-lg bg-primary/10 h-64 flex items-center justify-center">
+                  <p className="text-primary font-medium">Spanish for specific purposes</p>
                 </div>
               </div>
               
@@ -237,45 +200,129 @@ export default function ServicesPage() {
                 <div className="flex items-center mb-4">
                   <FaBookOpen className="text-accent text-3xl mr-3" />
                   <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-                    Español para Fines Específicos
+                    Specific Purposes
                   </h2>
                 </div>
                 
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                  Cursos especializados para necesidades profesionales o académicas específicas.
+                  Spanish focused on your professional or academic needs.
                 </p>
                 
                 <ul className="space-y-3 mb-6">
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Español de negocios</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Business, medical, legal, tourism Spanish...
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Español para turismo</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Preparation for DELE and SIELE exams
+                    </span>
                   </li>
                   <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Español médico</span>
-                  </li>
-                  <li className="flex items-start">
-                    <FaCheck className="text-accent mt-1 mr-2 flex-shrink-0" />
-                    <span>Español académico</span>
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Customized industry-specific vocabulary
+                    </span>
                   </li>
                 </ul>
                 
-                <div className="bg-white dark:bg-gray-900 p-4 rounded-md mb-6">
-                  <p className="font-medium text-gray-900 dark:text-white">Desde €30/hora</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Consulta por presupuesto personalizado</p>
-                </div>
-                
-                <Link 
-                  href="/booking" 
-                  className="btn-plan btn-plan-primary"
-                >
-                  Solicitar Info
+                <Link href="/booking?type=specific" className="btn-plan btn-plan-primary">
+                  Book a Class
                 </Link>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Pricing */}
+      <section className="py-16">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-12 text-gray-900 dark:text-white">
+              Pricing
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 border border-gray-100 dark:border-gray-700">
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Individual Classes</h3>
+                
+                <div className="mb-6">
+                  <p className="text-3xl font-bold text-primary mb-2">€25<span className="text-sm text-gray-600 dark:text-gray-400"> / hour</span></p>
+                  <p className="text-gray-700 dark:text-gray-300">Single class rate</p>
+                </div>
+                
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      5 classes package: €115 (€23/hour)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      10 classes package: €220 (€22/hour)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      20 classes package: €400 (€20/hour)
+                    </span>
+                  </li>
+                </ul>
+                
+                <Link href="/booking?type=individual" className="btn-plan btn-plan-primary w-full">
+                  Book Now
+                </Link>
+              </div>
+              
+              <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8 border border-gray-100 dark:border-gray-700">
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Couples / Online</h3>
+                
+                <div className="mb-6">
+                  <p className="text-3xl font-bold text-primary mb-2">From €20<span className="text-sm text-gray-600 dark:text-gray-400"> / hour</span></p>
+                  <p className="text-gray-700 dark:text-gray-300">See details below</p>
+                </div>
+                
+                <ul className="space-y-3 mb-8">
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Couples: €40/hour (€20 per person)
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Online: Same rates as face-to-face
+                    </span>
+                  </li>
+                  <li className="flex items-start">
+                    <FaCheck className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <span className="text-gray-700 dark:text-gray-300">
+                      Package discounts available for all formats
+                    </span>
+                  </li>
+                </ul>
+                
+                <Link href="/booking" className="btn-plan btn-plan-primary w-full">
+                  Book Now
+                </Link>
+              </div>
+            </div>
+            
+            <div className="mt-12 text-center">
+              <p className="text-gray-700 dark:text-gray-300 mb-6">
+                Need a customized plan? Contact us for special packages or group rates.
+              </p>
+              <Link href="/contact" className="btn-plan btn-plan-secondary">
+                Contact Us
+              </Link>
             </div>
           </div>
         </div>

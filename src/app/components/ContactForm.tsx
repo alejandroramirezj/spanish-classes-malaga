@@ -26,14 +26,14 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Simular envío de formulario
+      // Simulate form submission
       console.log('Form data:', formData);
       
-      // Simular una respuesta exitosa después de 1,5 segundos
+      // Simulate a successful response after 1.5 seconds
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       setFormStatus('success');
-      // Reiniciar el formulario
+      // Reset the form
       setFormData({
         name: '',
         email: '',
@@ -46,7 +46,7 @@ const ContactForm = () => {
       setFormStatus('error');
     } finally {
       setIsSubmitting(false);
-      // Reiniciar el estado después de 5 segundos
+      // Reset status after 5 seconds
       setTimeout(() => setFormStatus('idle'), 5000);
     }
   };
@@ -67,10 +67,10 @@ const ContactForm = () => {
           className="max-w-4xl mx-auto"
         >
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Contacto</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">Contact Us</h2>
             <div className="w-24 h-1 bg-blue-600 mx-auto mb-6 rounded-full"></div>
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
-              ¿Tienes preguntas sobre mis clases? ¡Escríbeme y te responderé a la mayor brevedad posible!
+              Questions about our classes? Write to us and we&apos;ll respond as soon as possible!
             </p>
           </div>
           
@@ -78,7 +78,7 @@ const ContactForm = () => {
             <div className="absolute top-0 right-0 p-4">
               <div className="flex items-center text-green-600 dark:text-green-400">
                 <FaShieldAlt className="w-5 h-5 mr-2" />
-                <span className="text-sm font-medium">Conexión Segura</span>
+                <span className="text-sm font-medium">Secure Connection</span>
               </div>
             </div>
             
@@ -89,15 +89,15 @@ const ContactForm = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">¡Mensaje Enviado!</h3>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Message Sent!</h3>
                 <p className="text-gray-600 dark:text-gray-400 max-w-md mx-auto">
-                  He recibido tu mensaje correctamente. Te responderé a la mayor brevedad posible, normalmente en menos de 24 horas.
+                  We&apos;ve received your message. We&apos;ll respond as soon as possible, usually within 24 hours.
                 </p>
                 <button
                   onClick={() => setFormStatus('idle')}
                   className="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-colors"
                 >
-                  Enviar otro mensaje
+                  Send another message
                 </button>
               </div>
             ) : (
@@ -105,7 +105,7 @@ const ContactForm = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Nombre completo
+                      Full Name
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -119,14 +119,14 @@ const ContactForm = () => {
                         onChange={handleChange}
                         required
                         className="pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="Tu nombre"
+                        placeholder="Your name"
                       />
                     </div>
                   </div>
                   
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Correo electrónico
+                      Email Address
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -140,14 +140,14 @@ const ContactForm = () => {
                         onChange={handleChange}
                         required
                         className="pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                        placeholder="tu@email.com"
+                        placeholder="you@example.com"
                       />
                     </div>
                   </div>
                   
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Teléfono (opcional)
+                      Phone (optional)
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -167,7 +167,7 @@ const ContactForm = () => {
                   
                   <div>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Asunto
+                      Subject
                     </label>
                     <div className="relative">
                       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -181,13 +181,13 @@ const ContactForm = () => {
                         required
                         className="pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
                       >
-                        <option value="">Selecciona un asunto</option>
-                        <option value="Información general">Información general</option>
-                        <option value="Precios y horarios">Precios y horarios</option>
-                        <option value="Clases particulares">Clases particulares</option>
-                        <option value="Clases en grupo">Clases en grupo</option>
-                        <option value="Clases online">Clases online</option>
-                        <option value="Otro">Otro</option>
+                        <option value="">Select a subject</option>
+                        <option value="General Information">General Information</option>
+                        <option value="Prices and Schedule">Prices and Schedule</option>
+                        <option value="Private Lessons">Private Lessons</option>
+                        <option value="Group Classes">Group Classes</option>
+                        <option value="Online Classes">Online Classes</option>
+                        <option value="Other">Other</option>
                       </select>
                     </div>
                   </div>
@@ -195,7 +195,7 @@ const ContactForm = () => {
                 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                    Mensaje
+                    Message
                   </label>
                   <textarea
                     id="message"
@@ -205,7 +205,7 @@ const ContactForm = () => {
                     onChange={handleChange}
                     required
                     className="w-full rounded-md border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
-                    placeholder="Escribe tu mensaje aquí..."
+                    placeholder="Write your message here..."
                   ></textarea>
                 </div>
                 
@@ -219,7 +219,7 @@ const ContactForm = () => {
                         : 'btn-plan-primary'
                     }`}
                   >
-                    {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                     {!isSubmitting && <FaPaperPlane />}
                   </button>
                 </div>
@@ -227,13 +227,13 @@ const ContactForm = () => {
                 {formStatus === 'error' && (
                   <div className="text-center p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
                     <p className="text-red-600 dark:text-red-400">
-                      Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo o contáctame directamente por teléfono.
+                      There was an error sending your message. Please try again or contact us directly by phone.
                     </p>
                   </div>
                 )}
                 
                 <div className="text-center text-xs text-gray-500 dark:text-gray-400 mt-4">
-                  <p>Tus datos están protegidos y solo se utilizarán para responder a tu consulta.</p>
+                  <p>Your data is protected and will only be used to respond to your inquiry.</p>
                 </div>
               </form>
             )}
