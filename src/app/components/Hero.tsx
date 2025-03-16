@@ -262,18 +262,18 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Link 
                 href="/booking" 
-                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+                className="btn-plan btn-plan-primary"
               >
                 Book Your Free Trial Class
-                <FaArrowRight className="ml-2" />
+                <FaArrowRight />
               </Link>
               
               <Link 
                 href="/about" 
-                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all shadow-lg hover:shadow-xl"
+                className="btn-plan btn-plan-secondary"
               >
                 Meet Virginia
-                <FaArrowRight className="ml-2" />
+                <FaArrowRight />
               </Link>
             </div>
 
@@ -398,9 +398,9 @@ export default function Hero() {
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <Link 
           href="/booking" 
-          className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-xl hover:shadow-2xl"
+          className="btn-plan btn-plan-primary"
         >
-          Free Trial <FaArrowRight className="ml-2" />
+          Free Trial <FaArrowRight />
         </Link>
       </div>
       

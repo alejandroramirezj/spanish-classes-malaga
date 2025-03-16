@@ -172,20 +172,86 @@ export default function MalagaActivitiesPage() {
               >
                 <Link 
                   href="/booking" 
-                  className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+                  className="btn-plan btn-plan-primary"
                 >
-                  Book your immersive experience
-                  <FaArrowRight className="ml-2" />
+                  Reserva tu experiencia inmersiva
+                  <FaArrowRight />
                 </Link>
                 
                 <Link 
                   href="#activities" 
-                  className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all shadow-lg hover:shadow-xl"
+                  className="btn-plan btn-plan-secondary"
                 >
-                  Explore all activities
-                  <FaMapMarkedAlt className="ml-2" />
+                  Explora todas las actividades
+                  <FaMapMarkedAlt />
                 </Link>
               </motion.div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Social Proof Section al estilo Marc Lou */}
+        <section className="py-16 bg-white dark:bg-gray-900">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center mb-12">
+              <span className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4">
+                Estudiantes satisfechos
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                Más de 500 estudiantes confían en mi método
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+                Únete a cientos de estudiantes que ya han transformado su experiencia aprendiendo español
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
+                <div className="text-4xl font-bold text-primary mb-2">500+</div>
+                <div className="text-gray-600 dark:text-gray-400">Estudiantes felices</div>
+              </div>
+              
+              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
+                <div className="text-4xl font-bold text-primary mb-2">30+</div>
+                <div className="text-gray-600 dark:text-gray-400">Países de origen</div>
+              </div>
+              
+              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
+                <div className="text-4xl font-bold text-primary mb-2">10+</div>
+                <div className="text-gray-600 dark:text-gray-400">Años enseñando</div>
+              </div>
+              
+              <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
+                <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
+                <div className="text-gray-600 dark:text-gray-400">Valoración media</div>
+              </div>
+            </div>
+            
+            <div className="flex flex-wrap justify-center items-center gap-8">
+              <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+                <span className="mr-2">🇺🇸</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium">Estados Unidos</span>
+              </div>
+              <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+                <span className="mr-2">🇬🇧</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium">Reino Unido</span>
+              </div>
+              <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+                <span className="mr-2">🇩🇪</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium">Alemania</span>
+              </div>
+              <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+                <span className="mr-2">🇫🇷</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium">Francia</span>
+              </div>
+              <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+                <span className="mr-2">🇮🇹</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium">Italia</span>
+              </div>
+              <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
+                <span className="mr-2">🌎</span>
+                <span className="text-gray-600 dark:text-gray-300 font-medium">+25 países más</span>
+              </div>
             </div>
           </div>
         </section>
@@ -326,7 +392,7 @@ export default function MalagaActivitiesPage() {
                   <div className="p-6 pt-0 border-t border-gray-100 dark:border-gray-700">
                     <Link 
                       href="/booking?activity={activity.title}" 
-                      className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all"
+                      className="btn-plan btn-plan-primary"
                     >
                       Reserve this activity
                     </Link>
@@ -341,10 +407,10 @@ export default function MalagaActivitiesPage() {
               </p>
               <Link 
                 href="/contact" 
-                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+                className="btn-plan btn-plan-primary"
               >
                 Request a custom activity
-                <FaArrowRight className="ml-2" />
+                <FaArrowRight />
               </Link>
             </div>
           </div>
@@ -440,10 +506,10 @@ export default function MalagaActivitiesPage() {
               >
                 <Link 
                   href="/booking" 
-                  className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
+                  className="btn-plan btn-plan-primary"
                 >
                   Book your immersive experience
-                  <FaArrowRight className="ml-2" />
+                  <FaArrowRight />
                 </Link>
               </motion.div>
             </div>

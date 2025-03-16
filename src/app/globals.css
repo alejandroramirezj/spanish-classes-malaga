@@ -2,13 +2,13 @@
 
 :root {
   /* Paleta de colores actualizada - Azul y Amarillo Sol */
-  --primary: #0070F3; /* Azul principal */
-  --primary-dark: #0050D0;
+  --primary: #0066CC; /* Azul principal */
+  --primary-dark: #0050A0;
   --primary-light: #3694FF;
   
-  --accent: #FFB930; /* Amarillo sol */
-  --accent-dark: #F59E0B;
-  --accent-light: #FFCF6B;
+  --accent: #FFD700; /* Amarillo sol */
+  --accent-dark: #FFC000;
+  --accent-light: #FFDF4D;
 
   --light-bg: #F5F9FF;
   --dark-bg: #0F172A;
@@ -603,4 +603,52 @@ body {
 .text-on-dark {
   color: white;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Botones estilo tabla de precios */
+.btn-plan {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+  gap: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.btn-plan:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-plan-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-plan-primary:hover {
+  background-color: var(--primary-dark);
+}
+
+.btn-plan-secondary {
+  background-color: #f3f4f6;
+  color: var(--text-dark);
+}
+
+.btn-plan-secondary:hover {
+  background-color: #e5e7eb;
+}
+
+.btn-plan-outline {
+  background-color: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+}
+
+.btn-plan-outline:hover {
+  background-color: var(--primary);
+  color: white;
 }

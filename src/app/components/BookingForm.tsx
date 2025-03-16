@@ -355,10 +355,10 @@ const BookingForm = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`px-8 py-3 rounded-md font-medium text-white transition-all ${
+                    className={`btn-plan ${
                       isSubmitting 
-                        ? 'bg-blue-400 cursor-not-allowed' 
-                        : 'bg-blue-600 hover:bg-blue-700 shadow-md hover:shadow-lg'
+                        ? 'opacity-70 cursor-not-allowed' 
+                        : 'btn-plan-primary'
                     }`}
                   >
                     {isSubmitting ? 'Procesando...' : 'Confirmar Reserva'}

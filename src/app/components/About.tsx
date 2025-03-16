@@ -104,10 +104,10 @@ const About = () => {
             
             <Link 
               href="/booking" 
-              className="inline-flex items-center bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3 rounded-xl transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="btn-plan btn-plan-primary"
             >
               Book a Free Trial Class
-              <FaArrowRight className="ml-2" />
+              <FaArrowRight />
             </Link>
           </motion.div>
           
@@ -159,10 +159,10 @@ const About = () => {
                   </div>
                   <Link 
                     href="/contact" 
-                    className="inline-flex items-center bg-white text-primary font-semibold px-4 py-2 rounded-lg transition-all hover:bg-primary/10 text-sm float-right"
+                    className="btn-plan btn-plan-secondary"
                   >
                     Contact me now
-                    <FaArrowRight className="ml-2 text-xs" />
+                    <FaArrowRight />
                   </Link>
                 </div>
               </div>

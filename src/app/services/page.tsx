@@ -76,7 +76,7 @@ export default function ServicesPage() {
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
+                  className="btn-plan btn-plan-primary"
                 >
                   Book Individual Class
                 </Link>
@@ -141,7 +141,7 @@ export default function ServicesPage() {
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
+                  className="btn-plan btn-plan-primary"
                 >
                   Book Paired Class
                 </Link>
@@ -206,7 +206,7 @@ export default function ServicesPage() {
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
+                  className="btn-plan btn-plan-primary"
                 >
                   Book Online Class
                 </Link>
@@ -271,7 +271,7 @@ export default function ServicesPage() {
                 
                 <Link 
                   href="/booking" 
-                  className="inline-block bg-accent text-gray-900 font-medium px-6 py-2 rounded-full hover:bg-accent-light transition-colors shadow-md"
+                  className="btn-plan btn-plan-primary"
                 >
                   Request Information
                 </Link>
@@ -334,7 +334,7 @@ export default function ServicesPage() {
             <div className="text-center">
               <Link 
                 href="/contact" 
-                className="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:bg-primary-dark transition-colors"
+                className="btn-plan btn-plan-primary"
               >
                 Contact Us for More Information
               </Link>

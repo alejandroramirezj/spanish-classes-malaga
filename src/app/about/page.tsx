@@ -202,7 +202,7 @@ export default function AboutPage() {
               </h2>
               <Link 
                 href="/booking" 
-                className="inline-block bg-primary text-white font-semibold px-8 py-3 rounded-full hover:bg-primary-dark transition-colors shadow-lg transform hover:scale-105 hover:-translate-y-1"
+                className="btn-plan btn-plan-primary"
               >
                 Book your first class
               </Link>
