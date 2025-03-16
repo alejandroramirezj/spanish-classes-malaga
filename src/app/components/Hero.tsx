@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaStar, FaInfoCircle, FaGraduationCap, FaUsers, FaGlobe, FaArrowRight, FaPlay } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 
 interface SpanishExpressionProps {
   expression: string;
@@ -239,10 +240,14 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
               {/* Foto de Virginia con credenciales */}
               <div className="flex items-center">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent bg-primary/10">
-                  <div className="absolute inset-0 bg-gradient-to-b from-accent/20 to-primary/20"></div>
-                  {/* Placeholder para la foto de Virginia */}
-                  <div className="w-full h-full flex items-center justify-center text-primary font-bold">V</div>
+                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
+                  <Image 
+                    src="/virginia.jpg"
+                    alt="Virginia - Spanish Teacher in Málaga"
+                    width={56}
+                    height={56}
+                    className="object-cover"
+                  />
                 </div>
                 <div className="ml-3">
                   <p className="text-gray-900 font-semibold">Virginia</p>
