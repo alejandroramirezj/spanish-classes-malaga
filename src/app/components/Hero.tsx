@@ -242,7 +242,7 @@ export default function Hero() {
               <div className="flex items-center">
                 <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
                   <Image 
-                    src="/virginia.jpg"
+                    src="/spanish-classes-malaga/images/virginia.jpg"
                     alt="Virginia - Spanish Teacher in Málaga"
                     width={56}
                     height={56}

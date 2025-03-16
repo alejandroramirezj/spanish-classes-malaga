@@ -126,7 +126,7 @@ const About = () => {
                 <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-xl mb-6">
                   <div className="w-full h-full relative">
                     <img 
-                      src="/virginia.jpg" 
+                      src="/spanish-classes-malaga/images/virginia.jpg" 
                       alt="Virginia - Spanish Teacher in Málaga"
                       className="w-full h-full object-cover rounded-xl"
                     />

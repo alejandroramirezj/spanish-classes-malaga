@@ -27,7 +27,7 @@ export default function AboutPage() {
                 <div className="rounded-xl overflow-hidden shadow-2xl h-80 flex items-center justify-center relative image-frame">
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 z-0"></div>
                   <Image 
-                    src="/virginia.jpg" 
+                    src="/spanish-classes-malaga/images/virginia.jpg" 
                     alt="Virginia - Spanish Teacher"
                     fill
                     className="object-cover z-10"
