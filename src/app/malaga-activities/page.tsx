@@ -440,7 +440,7 @@ export default function MalagaActivitiesPage() {
               >
                 <Link 
                   href="/booking" 
-                  className="btn-marc btn-marc-primary inline-flex items-center"
+                  className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
                 >
                   Book your immersive experience
                   <FaArrowRight className="ml-2" />

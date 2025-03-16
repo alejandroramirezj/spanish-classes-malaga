@@ -192,16 +192,14 @@ const Pricing = () => {
                 
                 <Link 
                   href="/booking" 
-                  className={`w-full inline-block text-center py-3 px-6 rounded-xl transition-all font-medium ${
+                  className={`inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full transition-all shadow-lg hover:shadow-xl ${
                     plan.featured
-                      ? 'btn-marc btn-marc-accent hover:shadow-lg'
-                      : 'btn-marc btn-marc-outline'
+                      ? 'bg-primary text-white hover:bg-primary-dark'
+                      : 'border-2 border-primary text-primary hover:bg-primary hover:text-white'
                   }`}
                 >
-                  <span className="flex items-center justify-center">
-                    {plan.ctaText}
-                    <FaArrowRight className="ml-2" />
-                  </span>
+                  {plan.ctaText}
+                  <FaArrowRight className="ml-2" />
                 </Link>
               </div>
             </motion.div>
