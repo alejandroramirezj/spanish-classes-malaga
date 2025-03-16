@@ -1,8 +1,70 @@
 @import "tailwindcss";
 
 :root {
+  /* Paleta de colores moderna y vibrante */
+  --primary: #6366F1; /* Violeta intenso */
+  --primary-light: #818CF8;
+  --primary-dark: #4F46E5;
+  
+  --accent: #EC4899; /* Rosa vibrante */
+  --accent-light: #F472B6;
+  --accent-dark: #DB2777;
+  
+  --success: #10B981; /* Verde esmeralda */
+  --danger: #EF4444; /* Rojo intenso */
+  --warning: #FBBF24; /* Ámbar brillante */
+  
+  /* Colores neutros con un toque más moderno */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
+  --surface: #F8FAFC;
+  --surface-dark: #F1F5F9;
+  --gray-light: #E2E8F0;
+  --gray-medium: #94A3B8;
+  --gray-dark: #475569;
+}
+
+/* Estilos para efectos de grid al estilo Marc Lou */
+.bg-grid-white {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+
+.bg-grid-dark {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
+}
+
+/* Estilos para gradientes modernos */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+}
+
+.gradient-mixed {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+}
+
+/* Estilos adicionales para neomorfismo */
+.neomorphism {
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.05),
+    -8px -8px 16px rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+}
+
+.neomorphism-dark {
+  box-shadow: 
+    8px 8px 16px rgba(0, 0, 0, 0.2),
+    -8px -8px 16px rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
 }
 
 @theme inline {
@@ -14,13 +76,120 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0F172A; /* Azul oscuro más rico */
+    --foreground: #F8FAFC;
+    --surface: #1E293B;
+    --surface-dark: #172033;
+    --gray-light: #334155;
+    --gray-medium: #64748B;
+    --gray-dark: #94A3B8;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+/* Estilos modernos para botones */
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border-radius: 9999px;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.5);
+  transition: all 0.15s ease;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-light);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: white;
+  border-radius: 9999px;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 10px 25px -5px rgba(236, 72, 153, 0.5);
+  transition: all 0.15s ease;
+  border: none;
+}
+
+.btn-accent:hover {
+  background-color: var(--accent-light);
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(236, 72, 153, 0.6);
+}
+
+.btn-secondary {
+  background-color: white;
+  color: var(--primary);
+  border-radius: 9999px;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease;
+  border: 1px solid var(--gray-light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--surface);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para tarjetas modernas */
+.card-modern {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid var(--gray-light);
+  overflow: hidden;
+}
+
+.card-modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para tarjetas con efecto de vidrio */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 16px;
+}
+
+.glassmorphism-dark {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-modern {
+    background: var(--surface);
+    border: 1px solid var(--gray-light);
+  }
+  
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+  }
+  
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
 }

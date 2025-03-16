@@ -1,173 +1,207 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaTwitter, FaWhatsapp, FaEnvelope, FaMapMarkerAlt, FaArrowUp, FaInfoCircle } from 'react-icons/fa';
-
-// Interface for Spanish expressions
-interface SpanishExpressionProps {
-  phrase: string;
-  literal: string;
-  meaning: string;
-}
-
-// Component for Spanish expressions with tooltips
-const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps) => {
-  const [showTooltip, setShowTooltip] = useState(false);
-  
-  return (
-    <div className="relative inline-block">
-      <span 
-        className="cursor-pointer text-amber-300 dark:text-amber-300 font-bold border-b border-dashed border-amber-300 flex items-center gap-1"
-        onClick={() => setShowTooltip(!showTooltip)}
-        onMouseEnter={() => setShowTooltip(true)}
-        onMouseLeave={() => setShowTooltip(false)}
-      >
-        {phrase}
-        <FaInfoCircle className="text-xs text-amber-300" />
-      </span>
-      {showTooltip && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 bg-blue-950 rounded shadow-lg text-sm z-50 border border-blue-700">
-          <div className="relative">
-            <p className="font-bold text-amber-300">{phrase}</p>
-            <p className="text-gray-300 italic">Literal: &ldquo;{literal}&rdquo;</p>
-            <p className="text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
-            <button 
-              onClick={(e) => {
-                e.stopPropagation();
-                setShowTooltip(false);
-              }}
-              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-300 text-xs"
-            >
-              ✕
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaFacebook, FaInstagram, FaTwitter, FaArrowRight, FaGlobe } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+  const [showTooltip, setShowTooltip] = useState(false);
   
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-blue-900 text-white pt-16 pb-8 relative">
-      {/* Scroll to top button */}
-      <button 
-        onClick={scrollToTop}
-        className="absolute -top-5 left-1/2 transform -translate-x-1/2 bg-blue-600 hover:bg-blue-700 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:scale-110"
-        aria-label="Back to top"
-      >
-        <FaArrowUp />
-      </button>
+    <footer className="relative bg-gray-50 dark:bg-gray-900 pt-16 pb-8 overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 dark:bg-primary/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 dark:bg-accent/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
       
-      {/* Decorative wave */}
-      <div className="absolute top-0 left-0 right-0">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" className="w-full h-auto -mt-1 fill-current text-white">
-          <path d="M0,0L48,16C96,32,192,64,288,69.3C384,75,480,53,576,48C672,43,768,53,864,53.3C960,53,1056,43,1152,37.3C1248,32,1344,32,1392,32L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-        </svg>
-      </div>
-      
-      <div className="container mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* About */}
+      <div className="container relative mx-auto px-4 md:px-6">
+        {/* Main footer content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+          {/* Brand section */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-300">Spanish Classes Málaga</h3>
-            <p className="text-gray-300 mb-6">
-              Personalized Spanish lessons in Málaga with Virginia, a native teacher with over 10 years of experience. 
-              Learn Spanish effectively and have fun. <SpanishExpression phrase="¡Olé!" literal="Olé!" meaning="An expression of excitement and appreciation" />
+            <div className="flex items-center mb-5">
+              <div className="w-12 h-12 rounded-full gradient-primary flex items-center justify-center mr-3 shadow-lg">
+                <FaGlobe className="h-6 w-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white">Spanish in Málaga</h3>
+            </div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-6">
+              Learn Spanish with a native teacher in the vibrant city of Málaga. 
+              Experience immersive private lessons, engaging small groups, and 
+              customized learning journeys.
             </p>
-            <div className="flex space-x-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 hover:bg-blue-700 p-3 rounded-full transition-all hover:scale-110">
-                <FaFacebook size={20} />
+            <div className="flex space-x-3">
+              <a 
+                href="https://facebook.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 neomorphism dark:neomorphism-dark flex items-center justify-center text-primary hover:text-accent transition-all transform hover:scale-110 hover:-translate-y-1"
+                aria-label="Facebook"
+              >
+                <FaFacebook className="w-5 h-5" />
               </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 hover:bg-blue-700 p-3 rounded-full transition-all hover:scale-110">
-                <FaInstagram size={20} />
+              <a 
+                href="https://instagram.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 neomorphism dark:neomorphism-dark flex items-center justify-center text-primary hover:text-accent transition-all transform hover:scale-110 hover:-translate-y-1"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="w-5 h-5" />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="bg-blue-800 hover:bg-blue-700 p-3 rounded-full transition-all hover:scale-110">
-                <FaTwitter size={20} />
+              <a 
+                href="https://twitter.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white dark:bg-gray-800 neomorphism dark:neomorphism-dark flex items-center justify-center text-primary hover:text-accent transition-all transform hover:scale-110 hover:-translate-y-1"
+                aria-label="Twitter"
+              >
+                <FaTwitter className="w-5 h-5" />
               </a>
             </div>
           </div>
-
+          
           {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-300">Quick Links</h3>
-            <ul className="space-y-3">
+          <div className="lg:ml-8">
+            <h3 className="text-md font-bold uppercase text-primary dark:text-primary-light mb-5">Quick Links</h3>
+            <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <span className="bg-blue-800 h-1 w-3 mr-2 rounded-full"></span>
+                <Link 
+                  href="/" 
+                  className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light inline-flex items-center transition-all transform hover:translate-x-1"
+                >
+                  <span className="w-2 h-2 rounded-full bg-primary/50 inline-block mr-2.5"></span>
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <span className="bg-blue-800 h-1 w-3 mr-2 rounded-full"></span>
+                <Link 
+                  href="/about" 
+                  className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light inline-flex items-center transition-all transform hover:translate-x-1"
+                >
+                  <span className="w-2 h-2 rounded-full bg-primary/50 inline-block mr-2.5"></span>
                   About Virginia
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <span className="bg-blue-800 h-1 w-3 mr-2 rounded-full"></span>
+                <Link 
+                  href="/services" 
+                  className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light inline-flex items-center transition-all transform hover:translate-x-1"
+                >
+                  <span className="w-2 h-2 rounded-full bg-primary/50 inline-block mr-2.5"></span>
                   Classes
                 </Link>
               </li>
               <li>
-                <Link href="/booking" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <span className="bg-blue-800 h-1 w-3 mr-2 rounded-full"></span>
+                <Link 
+                  href="/booking" 
+                  className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light inline-flex items-center transition-all transform hover:translate-x-1"
+                >
+                  <span className="w-2 h-2 rounded-full bg-primary/50 inline-block mr-2.5"></span>
                   Book Now
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-white transition-colors flex items-center">
-                  <span className="bg-blue-800 h-1 w-3 mr-2 rounded-full"></span>
+                <Link 
+                  href="/contact" 
+                  className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light inline-flex items-center transition-all transform hover:translate-x-1"
+                >
+                  <span className="w-2 h-2 rounded-full bg-primary/50 inline-block mr-2.5"></span>
                   Contact
                 </Link>
               </li>
             </ul>
           </div>
-
+          
           {/* Contact Info */}
           <div>
-            <h3 className="text-xl font-bold mb-4 text-blue-300">Contact</h3>
-            <ul className="space-y-4">
+            <h3 className="text-md font-bold uppercase text-primary dark:text-primary-light mb-5">Contact Info</h3>
+            <ul className="space-y-4 text-sm">
               <li className="flex items-start">
-                <FaMapMarkerAlt className="text-blue-400 mt-1 mr-3 flex-shrink-0" />
-                <span className="text-gray-300">Málaga, Spain <SpanishExpression phrase="La tierra del sol" literal="The land of the sun" meaning="Nickname for the sunny southern region of Spain" /></span>
+                <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center mr-3 mt-0.5 flex-shrink-0 shadow-md">
+                  <FaMapMarkerAlt className="w-3.5 h-3.5 text-white" />
+                </div>
+                <span className="text-gray-600 dark:text-gray-300">
+                  Málaga, Andalusia, Spain
+                </span>
               </li>
-              <li className="flex items-start">
-                <FaEnvelope className="text-blue-400 mt-1 mr-3 flex-shrink-0" />
-                <a href="mailto:info@spanishclassesmalaga.com" className="text-gray-300 hover:text-white transition-colors">
-                  info@spanishclassesmalaga.com
+              <li className="flex items-center">
+                <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center mr-3 flex-shrink-0 shadow-md">
+                  <FaPhone className="w-3.5 h-3.5 text-white" />
+                </div>
+                <a href="tel:+34123456789" className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light transition-colors">
+                  +34 123 456 789
                 </a>
               </li>
-              <li className="flex items-start">
-                <FaWhatsapp className="text-blue-400 mt-1 mr-3 flex-shrink-0" />
-                <a href="tel:+34600000000" className="text-gray-300 hover:text-white transition-colors">
-                  +34 600 000 000
+              <li className="flex items-center">
+                <div className="w-8 h-8 rounded-full gradient-primary flex items-center justify-center mr-3 flex-shrink-0 shadow-md">
+                  <FaEnvelope className="w-3.5 h-3.5 text-white" />
+                </div>
+                <a href="mailto:info@spanishinmalaga.com" className="text-gray-600 dark:text-gray-300 hover:text-accent dark:hover:text-accent-light transition-colors">
+                  info@spanishinmalaga.com
                 </a>
               </li>
             </ul>
-            
-            <div className="mt-6 bg-blue-800 p-4 rounded-lg">
-              <h4 className="font-semibold mb-2 text-blue-300">Hours <SpanishExpression phrase="Horario español" literal="Spanish schedule" meaning="The unique Spanish timetable with late lunches and dinners" /></h4>
-              <p className="text-sm text-gray-300">Monday - Friday: 9:00 - 20:00</p>
-              <p className="text-sm text-gray-300">Saturday: 9:00 - 14:00</p>
+          </div>
+          
+          {/* Call to Action */}
+          <div>
+            <h3 className="text-md font-bold uppercase text-primary dark:text-primary-light mb-5">Start Learning</h3>
+            <div className="glassmorphism dark:glassmorphism-dark p-5 rounded-xl relative overflow-hidden">
+              <div className="absolute -top-12 -right-12 w-24 h-24 bg-gradient-to-br from-primary-light to-accent rounded-full opacity-20 blur-lg"></div>
+              
+              <h4 className="text-lg font-bold text-accent dark:text-accent-light mb-3">Ready to speak Spanish?</h4>
+              <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">
+                Book your first class today and start your Spanish language journey in beautiful Málaga!
+              </p>
+              <Link 
+                href="/booking" 
+                className="inline-flex items-center text-sm text-white bg-accent hover:bg-accent-light px-4 py-2 rounded-full shadow-lg transition-all transform hover:scale-105 hover:-translate-y-1"
+              >
+                Book a Free Trial
+                <FaArrowRight className="ml-1.5 w-3 h-3" />
+              </Link>
+              
+              <div 
+                className="relative mt-4 pt-4 border-t border-primary/10 dark:border-primary/20"
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+              >
+                <p className="text-xs text-accent font-bold cursor-pointer">
+                  ¡Es pan comido! 🍞
+                </p>
+                {showTooltip && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    className="absolute bottom-full left-0 mb-2 p-3 glassmorphism dark:glassmorphism-dark rounded-lg shadow-lg text-xs max-w-[220px] z-10"
+                  >
+                    <p className="text-gray-500 dark:text-gray-400 italic">Literal: It&apos;s eaten bread!</p>
+                    <p className="text-gray-700 dark:text-gray-300">Means: It&apos;s a piece of cake/super easy!</p>
+                  </motion.div>
+                )}
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="border-t border-blue-800 mt-12 pt-8 text-center text-gray-400">
-          <p className="mb-4">&copy; {currentYear} Spanish Classes Málaga. All rights reserved.</p>
-          <p className="text-xs">Website designed with 💙 for Virginia</p>
+        
+        {/* Footer bottom */}
+        <div className="pt-6 mt-12 border-t border-gray-light dark:border-gray-light/10 text-center">
+          <p className="text-sm text-gray-medium dark:text-gray-medium">
+            &copy; {currentYear} Spanish in Málaga. All rights reserved.
+          </p>
+          <p className="text-xs text-gray-medium dark:text-gray-medium mt-2">
+            Designed with
+            <span className="inline-block mx-1">
+              <svg className="w-3 h-3 text-accent" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
+              </svg>
+            </span>
+            in Málaga, Spain
+          </p>
         </div>
       </div>
     </footer>
