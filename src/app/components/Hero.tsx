@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { FaStar, FaInfoCircle, FaGraduationCap, FaUsers, FaGlobe, FaArrowRight, FaPlay } from 'react-icons/fa';
+import { FaInfoCircle, FaGraduationCap, FaUsers, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 
@@ -225,85 +225,77 @@ export default function Hero() {
                 <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 358 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M3 9C118.957 4.47226 242.456 -1.86658 355 9" stroke="#FFB930" strokeWidth="6" strokeLinecap="round"/>
                 </svg>
-              </span>{' '}
+              </span>
               <br />
               <span className="text-accent">From Week One</span>
             </h1>
             
             {/* Subtítulo con propuesta de valor */}
-            <p className="text-lg md:text-xl text-gray-700 mb-8 max-w-xl">
-              No boring textbooks. No endless grammar drills. Just <SpanishExpression expression="aprender haciendo" literal="learning by doing" meaning="practical learning that sticks" /> with Virginia&apos;s proven method developed over 25 years of teaching excellence.
+            <p className="text-lg md:text-xl text-gray-700 mb-6 max-w-xl">
+              Tired of studying Spanish without being able to actually speak it? I&apos;ll teach you to communicate from day one, not just memorize grammar rules.
+              As we say in Spain, <SpanishExpression expression="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
             </p>
-            
-            {/* Elementos de credibilidad */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
-              {/* Foto de Virginia con credenciales */}
-              <div className="flex items-center">
-                <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-accent">
-                  <img 
-                    alt="Virginia - Spanish Teacher in Málaga" 
-                    className="w-full h-full object-cover"
-                    src="/spanish-classes-malaga/virginia.jpg"
-                  />
+
+            {/* Quote destacado */}
+            <blockquote className="border-l-4 border-accent pl-4 mb-8">
+              <p className="text-lg italic text-gray-700">
+                &ldquo;After 10 years teaching Spanish to more than 500 students, I&apos;ve created a method that really works. My approach is based on <span className="font-semibold">practical conversation and real-life situations</span> that you&apos;ll encounter in your daily life in Spain. You&apos;ll be <SpanishExpression expression="como pez en el agua" literal="like a fish in water" meaning="completely comfortable" /> in no time!&rdquo;
+              </p>
+            </blockquote>
+
+            {/* Lista de beneficios */}
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-start">
+                <span className="text-accent mr-2">✓</span>
+                <div>
+                  <strong>Real-world practice:</strong> Order your first &ldquo;tinto de verano&rdquo; like a local, ask for the menu, and chat with waiters confidently.
                 </div>
-                <div className="ml-3">
-                  <p className="text-gray-900 font-semibold">Virginia</p>
-                  <p className="text-gray-600 text-sm">Spanish Teacher, 25+ years</p>
+              </li>
+              <li className="flex items-start">
+                <span className="text-accent mr-2">✓</span>
+                <div>
+                  <strong>Relaxed environment:</strong> Make mistakes without fear - that&apos;s how we learn! Don&apos;t worry about <SpanishExpression expression="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
                 </div>
-              </div>
-              
-              {/* Valoración en estrellas */}
-              <div className="flex items-center bg-gray-100 rounded-full px-3 py-1 border border-gray-200">
-                <div className="flex">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <FaStar key={star} className="text-accent h-4 w-4" />
-                  ))}
+              </li>
+              <li className="flex items-start">
+                <span className="text-accent mr-2">✓</span>
+                <div>
+                  <strong>Cultural immersion:</strong> Experience Málaga&apos;s culture while learning. You&apos;ll be <SpanishExpression expression="de cine" literal="like in the movies" meaning="amazing" /> at Spanish in no time!
                 </div>
-                <span className="text-gray-700 ml-2 text-sm font-medium">5.0 (120+ reviews)</span>
-              </div>
-            </div>
-            
+              </li>
+            </ul>
+
             {/* CTA principal con botones */}
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link href="/booking" className="btn-marc btn-marc-accent group flex items-center justify-center gap-2 text-center font-bold shadow-lg">
-                Start with a Free Class
-                <FaArrowRight className="inline-block transition-transform group-hover:translate-x-1" />
+              <Link 
+                href="/booking" 
+                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-accent text-gray-900 hover:bg-accent-light transition-all shadow-lg hover:shadow-xl"
+              >
+                Book Your Free Trial Class
+                <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
               </Link>
               
-              {/* Botón para ver el video */}
-              <button 
-                onClick={playVideo}
-                className="btn-marc btn-marc-primary group flex items-center justify-center gap-2 shadow-lg"
+              <Link 
+                href="/about" 
+                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
               >
-                <FaPlay className="text-white inline-block" />
-                Watch Virginia&apos;s Method
-              </button>
+                Meet Virginia
+                <FaArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
+              </Link>
             </div>
-            
-            {/* Estadísticas minimalistas */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl">
-              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
-                <FaGraduationCap className="text-primary text-xl mb-2 mx-auto" />
-                <p className="text-xl font-bold text-gray-900">+25</p>
-                <p className="text-gray-600 text-xs">Years Experience</p>
+
+            {/* Credenciales simplificadas */}
+            <div className="grid grid-cols-2 gap-4 max-w-lg">
+              <div className="stat-item text-center bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <FaGraduationCap className="text-primary text-2xl mb-2 mx-auto" />
+                <p className="text-lg font-bold text-gray-900">Master in ELE & DELE</p>
+                <p className="text-gray-600">Certified Teacher</p>
               </div>
               
-              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
-                <FaUsers className="text-primary text-xl mb-2 mx-auto" />
-                <p className="text-xl font-bold text-gray-900">+1000</p>
-                <p className="text-gray-600 text-xs">Students</p>
-              </div>
-              
-              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
-                <FaGlobe className="text-primary text-xl mb-2 mx-auto" />
-                <p className="text-xl font-bold text-gray-900">+30</p>
-                <p className="text-gray-600 text-xs">Countries</p>
-              </div>
-              
-              <div className="stat-item text-center bg-gray-50 p-3 rounded-xl border border-gray-100">
-                <FaStar className="text-accent text-xl mb-2 mx-auto" />
-                <p className="text-xl font-bold text-gray-900">100%</p>
-                <p className="text-gray-600 text-xs">Satisfaction</p>
+              <div className="stat-item text-center bg-gray-50 p-4 rounded-xl border border-gray-100">
+                <FaUsers className="text-primary text-2xl mb-2 mx-auto" />
+                <p className="text-lg font-bold text-gray-900">+500 Students</p>
+                <p className="text-gray-600">Happy Learners</p>
               </div>
             </div>
           </motion.div>
@@ -328,7 +320,7 @@ export default function Hero() {
                       onClick={playVideo}
                       className="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-xl transform transition hover:scale-110 hover:bg-accent-light"
                     >
-                      <FaPlay className="text-white ml-1 text-xl" />
+                      <FaArrowRight className="text-white ml-1 text-xl" />
                     </button>
                     <div className="absolute bottom-4 left-4 right-4 text-white text-sm font-semibold bg-black/60 backdrop-blur-sm p-3 rounded-lg">
                       &ldquo;Discover how my students start speaking Spanish from their very first week&rdquo; - Virginia
@@ -413,9 +405,9 @@ export default function Hero() {
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <Link 
           href="/booking" 
-          className="btn-marc btn-marc-accent shadow-xl flex items-center gap-2 animate-pulse-slow font-bold"
+          className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-accent text-gray-900 hover:bg-accent-light transition-all shadow-xl hover:shadow-2xl"
         >
-          Free Trial <FaArrowRight />
+          Free Trial <FaArrowRight className="ml-2" />
         </Link>
       </div>
       

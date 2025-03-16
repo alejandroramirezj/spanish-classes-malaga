@@ -172,7 +172,7 @@ export default function MalagaActivitiesPage() {
               >
                 <Link 
                   href="/booking" 
-                  className="btn-marc btn-marc-accent inline-flex items-center"
+                  className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-accent text-gray-900 hover:bg-accent-light transition-all shadow-lg hover:shadow-xl"
                 >
                   Book your immersive experience
                   <FaArrowRight className="ml-2" />
@@ -180,7 +180,7 @@ export default function MalagaActivitiesPage() {
                 
                 <Link 
                   href="#activities" 
-                  className="btn-marc btn-marc-outline inline-flex items-center"
+                  className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all shadow-lg hover:shadow-xl"
                 >
                   Explore all activities
                   <FaMapMarkedAlt className="ml-2" />
@@ -326,7 +326,7 @@ export default function MalagaActivitiesPage() {
                   <div className="p-6 pt-0 border-t border-gray-100 dark:border-gray-700">
                     <Link 
                       href="/booking?activity={activity.title}" 
-                      className="w-full btn-marc btn-marc-outline inline-block text-center"
+                      className="inline-flex items-center justify-center w-full px-6 py-3 text-base font-semibold rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all"
                     >
                       Reserve this activity
                     </Link>
@@ -341,7 +341,7 @@ export default function MalagaActivitiesPage() {
               </p>
               <Link 
                 href="/contact" 
-                className="btn-marc btn-marc-primary inline-flex items-center"
+                className="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold rounded-full bg-primary text-white hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
               >
                 Request a custom activity
                 <FaArrowRight className="ml-2" />
