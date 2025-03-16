@@ -7,27 +7,27 @@ import Link from 'next/link';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-// Interface para expresiones españolas
+// Interface for Spanish expressions
 interface SpanishExpressionProps {
   expression: string;
   literal: string;
   meaning: string;
 }
 
-// Componente para mostrar expresiones españolas con tooltip
+// Component for Spanish expressions with tooltips
 const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionProps) => {
   const [showTooltip, setShowTooltip] = useState(false);
   
   return (
     <div className="relative inline-block group">
       <span 
-        className="underline decoration-wavy decoration-accent decoration-2 cursor-pointer font-bold text-accent dark:text-accent-light flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-accent/5 hover:bg-accent/10"
+        className="underline decoration-wavy decoration-yellow-400 decoration-2 cursor-pointer font-bold text-yellow-500 dark:text-yellow-400 flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-yellow-500/10 hover:bg-yellow-500/20"
         onClick={() => setShowTooltip(!showTooltip)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
         {expression}
-        <FaInfoCircle className="text-xs text-accent animate-pulse group-hover:animate-none" />
+        <FaInfoCircle className="text-xs text-yellow-500 dark:text-yellow-400 animate-pulse group-hover:animate-none" />
       </span>
       {showTooltip && (
         <motion.div
@@ -35,10 +35,10 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-accent/20"
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-yellow-400/20"
         >
           <div className="relative">
-            <p className="font-bold text-accent dark:text-accent-light">{expression}</p>
+            <p className="font-bold text-yellow-500 dark:text-yellow-400">{expression}</p>
             <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
             <p className="text-gray-700 dark:text-gray-300">Really means: &ldquo;{meaning}&rdquo;</p>
             <button 
@@ -57,36 +57,36 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
   );
 };
 
-// Todas las actividades inmersivas de Málaga
+// All immersive activities in Malaga
 const allMalagaActivities = [
   {
     icon: <FaWineGlassAlt className="text-primary text-xl" />,
-    title: "Wine Tasting Tours",
-    description: "Visit local vineyards and learn Spanish while enjoying the best wines from Málaga. We&apos;ll practice vocabulary related to flavors, aromas, and winemaking traditions.",
+    title: "Wine Tasting",
+    description: "Visit local vineyards while learning vocabulary about flavors, aromas, and wine traditions.",
     expression: { expression: "Estar en la gloria", literal: "to be in heaven", meaning: "to be in absolute bliss" },
     image: "/images/activities/wine-tasting.jpg",
-    difficulty: "Beginner-Friendly"
+    difficulty: "Beginner"
   },
   {
     icon: <FaUtensils className="text-primary text-xl" />,
     title: "Cooking Classes",
-    description: "Learn to make authentic Spanish tortilla, gazpacho, and tapas while practicing conversation. We&apos;ll cover cooking vocabulary and traditional Spanish recipes.",
+    description: "Learn to prepare Spanish tortilla, gazpacho, and tapas while practicing Spanish culinary vocabulary.",
     expression: { expression: "Chuparse los dedos", literal: "to lick your fingers", meaning: "something delicious" },
     image: "/images/activities/cooking.jpg",
-    difficulty: "All Levels"
+    difficulty: "All levels"
   },
   {
     icon: <FaWalking className="text-primary text-xl" />,
-    title: "Cultural Walking Tours",
-    description: "Explore the historic streets of Málaga while learning practical Spanish vocabulary. Visit Picasso Museum, the Alcazaba, and the Cathedral with Spanish explanations.",
+    title: "Cultural Tours",
+    description: "Explore Malaga's historic center and monuments while learning practical vocabulary.",
     expression: { expression: "De pe a pa", literal: "from P to P", meaning: "thoroughly/completely" },
     image: "/images/activities/walking-tour.jpg",
-    difficulty: "All Levels"
+    difficulty: "All levels"
   },
   {
     icon: <FaUsers className="text-primary text-xl" />,
     title: "Language Exchange",
-    description: "Connect with locals and practice Spanish in authentic conversation settings. Weekly meetings at local cafés to practice with native Spanish speakers.",
+    description: "Practice Spanish in authentic conversations with native speakers at local cafés.",
     expression: { expression: "Hablar por los codos", literal: "to talk through the elbows", meaning: "to talk a lot" },
     image: "/images/activities/language-exchange.jpg",
     difficulty: "Intermediate"
@@ -94,15 +94,15 @@ const allMalagaActivities = [
   {
     icon: <FaGuitar className="text-primary text-xl" />,
     title: "Flamenco Experience",
-    description: "Learn about flamenco traditions, basic dance steps, and the vocabulary of this passionate art form. Includes a visit to an authentic tablao in Málaga.",
+    description: "Discover flamenco, its basic steps and specific vocabulary. Includes a visit to a tablao.",
     expression: { expression: "Tener duende", literal: "to have a goblin", meaning: "to have a special charm or magic" },
     image: "/images/activities/flamenco.jpg",
-    difficulty: "Beginner-Friendly"
+    difficulty: "Beginner"
   },
   {
     icon: <FaTheaterMasks className="text-primary text-xl" />,
-    title: "Spanish Theater Workshop",
-    description: "Improve your pronunciation and expression through role-playing and short theater exercises in Spanish. Culminates in a mini-performance.",
+    title: "Theater Workshop",
+    description: "Improve your pronunciation through role-playing and theatrical exercises in Spanish.",
     expression: { expression: "Meterse en el papel", literal: "to get into the paper", meaning: "to get into character/role" },
     image: "/images/activities/theater.jpg",
     difficulty: "Intermediate-Advanced"
@@ -110,15 +110,15 @@ const allMalagaActivities = [
   {
     icon: <FaUmbrellaBeach className="text-primary text-xl" />,
     title: "Beach Conversation Club",
-    description: "Practice Spanish in a relaxed beach setting. Learn vocabulary related to the beach, swimming, and coastal life while enjoying Málaga&apos;s beautiful beaches.",
+    description: "Practice Spanish at the beach while learning vocabulary about the sea and coastal activities.",
     expression: { expression: "Pasarlo bomba", literal: "to pass it bomb", meaning: "to have a great time" },
     image: "/images/activities/beach.jpg",
-    difficulty: "All Levels"
+    difficulty: "All levels"
   },
   {
     icon: <FaShoppingBasket className="text-primary text-xl" />,
-    title: "Market Visit & Negotiation",
-    description: "Visit the Atarazanas Market to practice ordering food, asking for prices, and negotiating in Spanish. Learn about local products and gastronomy.",
+    title: "Market Visit",
+    description: "Visit the Atarazanas Market and practice how to order, ask for prices, and negotiate in Spanish.",
     expression: { expression: "A ojo de buen cubero", literal: "in the eye of a good barrel maker", meaning: "to estimate by eye/approximately" },
     image: "/images/activities/market.jpg",
     difficulty: "Beginner-Intermediate"
@@ -143,7 +143,7 @@ export default function MalagaActivitiesPage() {
                 transition={{ duration: 0.5 }}
                 className="inline-block bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-4"
               >
-                Learning through experience
+                Learn by experiencing
               </motion.span>
               
               <motion.h1 
@@ -152,7 +152,7 @@ export default function MalagaActivitiesPage() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 dark:text-white"
               >
-                Immersive Activities in <span className="text-primary">Málaga</span>
+                Activities in <span className="text-primary">Malaga</span>
               </motion.h1>
               
               <motion.p 
@@ -161,7 +161,7 @@ export default function MalagaActivitiesPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-xl text-gray-700 dark:text-gray-300 mb-8"
               >
-                Experience the Spanish language in its natural habitat. Learning while doing is the fastest way to fluency. As we say in Spain, <SpanishExpression expression="la práctica hace al maestro" literal="practice makes the master" meaning="practice makes perfect" />.
+                Experience Spanish in its natural environment. As we say in Spain, <SpanishExpression expression="la práctica hace al maestro" literal="practice makes the master" meaning="practice makes perfect" />.
               </motion.p>
               
               <motion.div
@@ -174,7 +174,7 @@ export default function MalagaActivitiesPage() {
                   href="/booking" 
                   className="btn-plan btn-plan-primary"
                 >
-                  Reserva tu experiencia inmersiva
+                  Book activity
                   <FaArrowRight />
                 </Link>
                 
@@ -182,7 +182,7 @@ export default function MalagaActivitiesPage() {
                   href="#activities" 
                   className="btn-plan btn-plan-secondary"
                 >
-                  Explora todas las actividades
+                  View activities
                   <FaMapMarkedAlt />
                 </Link>
               </motion.div>
@@ -190,67 +190,61 @@ export default function MalagaActivitiesPage() {
           </div>
         </section>
         
-        {/* Social Proof Section al estilo Marc Lou */}
+        {/* Social Proof Section */}
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto text-center mb-12">
               <span className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4">
-                Estudiantes satisfechos
+                Satisfied students
               </span>
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-                Más de 500 estudiantes confían en mi método
+                +500 students trust us
               </h2>
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-                Únete a cientos de estudiantes que ya han transformado su experiencia aprendiendo español
+                Join those who have already transformed their Spanish learning experience
               </p>
             </div>
             
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
                 <div className="text-4xl font-bold text-primary mb-2">500+</div>
-                <div className="text-gray-600 dark:text-gray-400">Estudiantes felices</div>
+                <div className="text-gray-600 dark:text-gray-400">Students</div>
               </div>
               
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
                 <div className="text-4xl font-bold text-primary mb-2">30+</div>
-                <div className="text-gray-600 dark:text-gray-400">Países de origen</div>
+                <div className="text-gray-600 dark:text-gray-400">Countries</div>
               </div>
               
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
                 <div className="text-4xl font-bold text-primary mb-2">10+</div>
-                <div className="text-gray-600 dark:text-gray-400">Años enseñando</div>
+                <div className="text-gray-600 dark:text-gray-400">Years</div>
               </div>
               
               <div className="bg-gray-50 dark:bg-gray-800 p-6 rounded-xl text-center shadow-md hover:shadow-lg transition-all">
                 <div className="text-4xl font-bold text-primary mb-2">4.9/5</div>
-                <div className="text-gray-600 dark:text-gray-400">Valoración media</div>
+                <div className="text-gray-600 dark:text-gray-400">Rating</div>
               </div>
             </div>
             
             <div className="flex flex-wrap justify-center items-center gap-8">
               <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
-                <span className="mr-2">🇺🇸</span>
-                <span className="text-gray-600 dark:text-gray-300 font-medium">Estados Unidos</span>
+                <span>🇺🇸</span>
               </div>
               <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
-                <span className="mr-2">🇬🇧</span>
-                <span className="text-gray-600 dark:text-gray-300 font-medium">Reino Unido</span>
+                <span>🇬🇧</span>
               </div>
               <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
-                <span className="mr-2">🇩🇪</span>
-                <span className="text-gray-600 dark:text-gray-300 font-medium">Alemania</span>
+                <span>🇩🇪</span>
               </div>
               <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
-                <span className="mr-2">🇫🇷</span>
-                <span className="text-gray-600 dark:text-gray-300 font-medium">Francia</span>
+                <span>🇫🇷</span>
               </div>
               <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
-                <span className="mr-2">🇮🇹</span>
-                <span className="text-gray-600 dark:text-gray-300 font-medium">Italia</span>
+                <span>🇮🇹</span>
               </div>
               <div className="inline-flex items-center bg-gray-50 dark:bg-gray-800 px-4 py-2 rounded-full">
-                <span className="mr-2">🌎</span>
-                <span className="text-gray-600 dark:text-gray-300 font-medium">+25 países más</span>
+                <span>🌎</span>
               </div>
             </div>
           </div>
@@ -260,9 +254,9 @@ export default function MalagaActivitiesPage() {
         <section className="py-16 bg-white dark:bg-gray-900">
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Why Immersive Learning Works</h2>
+              <h2 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">Immersive Learning</h2>
               <p className="text-lg text-gray-700 dark:text-gray-300">
-                Research shows that immersion is the most effective way to learn a language. When you combine focused learning with real-world experiences, your brain creates stronger neural connections and retains information better. That&apos;s why my students who participate in these activities progress <span className="font-bold text-primary">3x faster</span> than with traditional methods alone.
+                Immersion is the most effective way to learn a language. Combining learning with real experiences creates stronger brain connections. Our students progress <span className="font-bold text-primary">3 times faster</span> than with traditional methods.
               </p>
             </div>
             
@@ -277,9 +271,9 @@ export default function MalagaActivitiesPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl">🧠</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Deeper Memory</h3>
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Better Memory</h3>
                 <p className="text-gray-700 dark:text-gray-300">
-                  When language is tied to experiences, your brain creates multiple pathways to access that knowledge.
+                  By associating language with experiences, your brain creates multiple connections.
                 </p>
               </motion.div>
               
@@ -295,7 +289,7 @@ export default function MalagaActivitiesPage() {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Natural Context</h3>
                 <p className="text-gray-700 dark:text-gray-300">
-                  Learn how language is actually used by natives in real situations, not artificial examples.
+                  Learn how the language is actually used, not with artificial examples.
                 </p>
               </motion.div>
               
@@ -309,9 +303,9 @@ export default function MalagaActivitiesPage() {
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl">😊</span>
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Enjoyable Practice</h3>
+                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Fun Learning</h3>
                 <p className="text-gray-700 dark:text-gray-300">
-                  You&apos;ll be having so much fun that you won&apos;t even realize how much you&apos;re learning.
+                  You&apos;ll have so much fun that you won&apos;t even notice how much you&apos;re learning.
                 </p>
               </motion.div>
             </div>
@@ -339,7 +333,7 @@ export default function MalagaActivitiesPage() {
                 viewport={{ once: true }}
                 className="text-3xl md:text-4xl font-bold mb-5 text-gray-900 dark:text-white"
               >
-                Spanish Learning Activities
+                Spanish Activities
               </motion.h2>
               
               <motion.p 
@@ -349,7 +343,7 @@ export default function MalagaActivitiesPage() {
                 viewport={{ once: true }}
                 className="text-xl text-gray-700 dark:text-gray-300"
               >
-                All activities include focused language preparation, the experience itself, and a follow-up session to reinforce what you&apos;ve learned.
+                All include preparation, the experience, and a reinforcement session.
               </motion.p>
             </div>
             
@@ -394,7 +388,7 @@ export default function MalagaActivitiesPage() {
                       href="/booking?activity={activity.title}" 
                       className="btn-plan btn-plan-primary"
                     >
-                      Reserve this activity
+                      Book
                     </Link>
                   </div>
                 </motion.div>
@@ -403,13 +397,13 @@ export default function MalagaActivitiesPage() {
             
             <div className="text-center mt-16">
               <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-                Can&apos;t find what you&apos;re looking for? I can customize activities based on your interests and Spanish level.
+                Can&apos;t find what you&apos;re looking for? We can customize activities based on your interests and level.
               </p>
               <Link 
                 href="/contact" 
                 className="btn-plan btn-plan-primary"
               >
-                Request a custom activity
+                Request custom activity
                 <FaArrowRight />
               </Link>
             </div>
@@ -421,10 +415,10 @@ export default function MalagaActivitiesPage() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
-                What Students Say About Our Activities
+                Student Testimonials
               </h2>
               <p className="text-xl text-gray-700 dark:text-gray-300">
-                Don&apos;t just take my word for it. Here&apos;s what previous students have experienced.
+                Experiences from previous participants
               </p>
             </div>
             
@@ -442,11 +436,11 @@ export default function MalagaActivitiesPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white">Sarah T.</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Wine Tasting Tour</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Wine Tasting</p>
                   </div>
                 </div>
                 <blockquote className="text-gray-700 dark:text-gray-300">
-                  &ldquo;The wine tasting tour was incredible! I learned so much Spanish vocabulary related to wine, and Virginia made sure we practiced in a relaxed environment. I&apos;ve retained those words much better than anything I&apos;ve learned in traditional classes.&rdquo;
+                  &ldquo;The wine tasting was amazing! I learned wine vocabulary in a relaxed environment. I&apos;ve retained those words better than with traditional classes.&rdquo;
                 </blockquote>
               </motion.div>
               
@@ -463,11 +457,11 @@ export default function MalagaActivitiesPage() {
                   </div>
                   <div>
                     <h4 className="font-bold text-gray-900 dark:text-white">James B.</h4>
-                    <p className="text-sm text-gray-500 dark:text-gray-400">Cultural Walking Tour</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Cultural Tour</p>
                   </div>
                 </div>
                 <blockquote className="text-gray-700 dark:text-gray-300">
-                  &ldquo;Walking through Málaga while learning Spanish was a game-changer for me. Virginia customized the tour to include architecture vocabulary since I&apos;m an architect. I was surprised how quickly I picked up technical terms when seeing the actual buildings!&rdquo;
+                  &ldquo;Walking around Malaga while learning Spanish changed my perspective. Virginia tailored the tour to include architecture vocabulary. I learned technical terms much faster!&rdquo;
                 </blockquote>
               </motion.div>
             </div>
@@ -485,7 +479,7 @@ export default function MalagaActivitiesPage() {
                 viewport={{ once: true }}
                 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white"
               >
-                Ready to experience Spanish like a local?
+                Ready to speak like a local?
               </motion.h2>
               
               <motion.p
@@ -495,7 +489,7 @@ export default function MalagaActivitiesPage() {
                 viewport={{ once: true }}
                 className="text-xl text-gray-700 dark:text-gray-300 mb-8"
               >
-                Book your immersive Spanish experience today and start speaking with confidence. As they say in Spain, <SpanishExpression expression="el que no arriesga, no gana" literal="who doesn't risk, doesn't win" meaning="nothing ventured, nothing gained" />.
+                Book your immersive experience and start speaking with confidence. As they say in Spain, <SpanishExpression expression="el que no arriesga, no gana" literal="who doesn't risk, doesn't win" meaning="nothing ventured, nothing gained" />.
               </motion.p>
               
               <motion.div
@@ -508,7 +502,7 @@ export default function MalagaActivitiesPage() {
                   href="/booking" 
                   className="btn-plan btn-plan-primary"
                 >
-                  Book your immersive experience
+                  Book now
                   <FaArrowRight />
                 </Link>
               </motion.div>

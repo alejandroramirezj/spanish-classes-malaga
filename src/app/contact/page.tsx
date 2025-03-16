@@ -4,8 +4,8 @@ import ContactForm from '../components/ContactForm';
 import { FaMapMarkerAlt, FaEnvelope, FaWhatsapp, FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 export const metadata = {
-  title: 'Contacto | Spanish Classes Malaga',
-  description: 'Ponte en contacto con Virginia para obtener más información sobre las clases de español en Málaga. Estamos aquí para responder a todas tus preguntas.',
+  title: 'Contact | Spanish Classes Malaga',
+  description: 'Contact Virginia for information about Spanish classes in Malaga.',
 };
 
 export default function ContactPage() {
@@ -17,10 +17,10 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Contacta con Nosotros
+              Contact
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto">
-              ¿Tienes preguntas sobre nuestras clases? Estamos aquí para ayudarte. Completa el formulario a continuación o utiliza cualquiera de nuestros canales de contacto.
+              Questions about our classes? Complete the form or use our contact channels.
             </p>
           </div>
         </div>
@@ -30,22 +30,21 @@ export default function ContactPage() {
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* Info de contacto */}
+            {/* Contact info */}
             <div className="lg:col-span-1">
               <div className="bg-gray-50 dark:bg-gray-800 rounded-lg shadow-md p-8">
                 <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-                  Información de Contacto
+                  Contact
                 </h2>
                 
                 <div className="space-y-6">
                   <div className="flex items-start">
                     <FaMapMarkerAlt className="text-amber-600 text-xl mt-1 mr-4 flex-shrink-0" />
                     <div>
-                      <h3 className="font-bold mb-1">Dirección</h3>
+                      <h3 className="font-bold mb-1">Address</h3>
                       <p className="text-gray-700 dark:text-gray-300">
-                        Centro de Málaga<br />
-                        Málaga, 29001<br />
-                        España
+                        Malaga City Center<br />
+                        29001, Spain
                       </p>
                     </div>
                   </div>
@@ -80,7 +79,7 @@ export default function ContactPage() {
                 <hr className="my-6 border-gray-200 dark:border-gray-700" />
                 
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-                  Redes Sociales
+                  Social
                 </h3>
                 
                 <div className="flex space-x-4">
@@ -98,27 +97,27 @@ export default function ContactPage() {
                 <hr className="my-6 border-gray-200 dark:border-gray-700" />
                 
                 <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-                  Horario de Atención
+                  Hours
                 </h3>
                 
                 <div className="space-y-2">
                   <p className="flex justify-between">
-                    <span className="font-medium">Lunes - Viernes:</span>
+                    <span className="font-medium">Mon - Fri:</span>
                     <span>9:00 - 20:00</span>
                   </p>
                   <p className="flex justify-between">
-                    <span className="font-medium">Sábado:</span>
+                    <span className="font-medium">Sat:</span>
                     <span>9:00 - 14:00</span>
                   </p>
                   <p className="flex justify-between">
-                    <span className="font-medium">Domingo:</span>
-                    <span>Cerrado</span>
+                    <span className="font-medium">Sun:</span>
+                    <span>Closed</span>
                   </p>
                 </div>
               </div>
             </div>
             
-            {/* Formulario de contacto */}
+            {/* Contact form */}
             <div className="lg:col-span-2">
               <ContactForm />
             </div>
@@ -126,12 +125,12 @@ export default function ContactPage() {
         </div>
       </section>
       
-      {/* Mapa de ubicación */}
+      {/* Location map */}
       <section className="pb-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-bold mb-6 text-center text-gray-900 dark:text-white">
-              Nuestra Ubicación
+              Location
             </h2>
             <div className="rounded-lg overflow-hidden shadow-lg h-[400px]">
               <iframe 
@@ -141,7 +140,7 @@ export default function ContactPage() {
                 style={{ border: 0 }} 
                 allowFullScreen={true} 
                 loading="lazy"
-                title="Mapa de ubicación"
+                title="Location map"
               ></iframe>
             </div>
           </div>

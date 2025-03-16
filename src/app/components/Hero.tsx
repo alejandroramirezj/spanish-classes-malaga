@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { FaInfoCircle, FaGraduationCap, FaUsers, FaArrowRight } from 'react-icons/fa';
 import Link from 'next/link';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 interface SpanishExpressionProps {
   expression: string;
@@ -16,15 +16,15 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
   const [showTooltip, setShowTooltip] = useState(false);
   
   return (
-    <div className="relative inline-block group">
+    <span className="relative inline-block group">
       <span 
-        className="underline decoration-wavy decoration-accent decoration-2 cursor-pointer font-bold text-accent dark:text-accent-light flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-accent/5 hover:bg-accent/10"
+        className="underline decoration-wavy decoration-yellow-400 decoration-2 cursor-pointer font-bold text-yellow-500 dark:text-yellow-400 flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-yellow-500/10 hover:bg-yellow-500/20"
         onClick={() => setShowTooltip(!showTooltip)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
         {expression}
-        <FaInfoCircle className="text-xs text-accent animate-pulse group-hover:animate-none" />
+        <FaInfoCircle className="text-xs text-yellow-500 dark:text-yellow-400 animate-pulse group-hover:animate-none" />
       </span>
       {showTooltip && (
         <motion.div
@@ -32,10 +32,10 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-accent/20"
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-yellow-400/20"
         >
           <div className="relative">
-            <p className="font-bold text-accent dark:text-accent-light">{expression}</p>
+            <p className="font-bold text-yellow-500 dark:text-yellow-400">{expression}</p>
             <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
             <p className="text-gray-700 dark:text-gray-300">Really means: &ldquo;{meaning}&rdquo;</p>
             <button 
@@ -50,7 +50,7 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
           </div>
         </motion.div>
       )}
-    </div>
+    </span>
   );
 };
 
@@ -64,113 +64,11 @@ const spanishExpressions = [
   { expression: "tomar el pelo", literal: "to take the hair", meaning: "to pull someone's leg" }
 ];
 
-// Interface for YouTube API
-interface YouTubePlayerEvent {
-  target: YouTubePlayer;
-  data?: number;
-}
-
-interface YouTubePlayer {
-  playVideo: () => void;
-  pauseVideo: () => void;
-  seekTo: (seconds: number) => void;
-  destroy: () => void;
-  getPlayerState: () => number;
-}
-
-interface YouTubePlayerOptions {
-  videoId: string;
-  playerVars: Record<string, string | number | boolean>;
-  events: {
-    onReady?: (event: YouTubePlayerEvent) => void;
-    onStateChange?: (event: YouTubePlayerEvent) => void;
-    onError?: (event: YouTubePlayerEvent) => void;
-  };
-}
-
-// Global type declaration for YouTube API
-declare global {
-  interface Window {
-    YT?: {
-      Player: new (
-        elementId: string,
-        options: YouTubePlayerOptions
-      ) => YouTubePlayer;
-      PlayerState: {
-        PLAYING: number;
-        PAUSED: number;
-        ENDED: number;
-        BUFFERING: number;
-      };
-    };
-    onYouTubeIframeAPIReady?: () => void;
-  }
-}
-
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [currentExpressionIndex, setCurrentExpressionIndex] = useState(0);
   const [isChanging, setIsChanging] = useState(false);
-  const [showVideoModal, setShowVideoModal] = useState(true);
   
-  const youtubePlayerRef = useRef<YouTubePlayer | null>(null);
-  
-  // Load YouTube API and initialize player
-  useEffect(() => {
-    // Function to initialize YouTube player
-    const initYouTubePlayer = () => {
-      if (typeof window !== 'undefined' && window.YT && window.YT.Player) {
-        youtubePlayerRef.current = new window.YT.Player('youtube-player', {
-          videoId: 'FnaMiX7lOwM', // Reemplaza con tu ID de video real
-          playerVars: {
-            autoplay: 1, // Reproducción automática activada
-            controls: 1,
-            rel: 0,
-            showinfo: 0,
-            mute: 1, // Silenciado para permitir autoplay en navegadores
-            modestbranding: 1,
-            start: 39, // Comienza en el segundo 39
-            end: 120, // Termina en el segundo 120 (2:00)
-            loop: 1, // Reproducción en bucle
-            playlist: 'FnaMiX7lOwM' // Necesario para el loop, mismo ID que el video
-          },
-          events: {
-            onReady: (event) => {
-              // Reproducir automáticamente cuando esté listo
-              event.target.playVideo();
-            },
-            onStateChange: (event) => {
-              // Si el video termina, reiniciarlo desde el segundo 39
-              if (window.YT && event.data === window.YT.PlayerState.ENDED) {
-                event.target.seekTo(39);
-                event.target.playVideo();
-              }
-            }
-          }
-        });
-      }
-    };
-
-    // Load YouTube API
-    if (!window.YT) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      
-      window.onYouTubeIframeAPIReady = initYouTubePlayer;
-      
-      const firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
-    } else {
-      initYouTubePlayer();
-    }
-
-    return () => {
-      if (youtubePlayerRef.current) {
-        youtubePlayerRef.current.destroy();
-      }
-    };
-  }, []);
-
   useEffect(() => {
     setIsVisible(true);
     
@@ -185,14 +83,6 @@ export default function Hero() {
     
     return () => clearInterval(intervalId);
   }, []);
-
-  const playVideo = () => {
-    if (youtubePlayerRef.current) {
-      setShowVideoModal(true);
-      youtubePlayerRef.current.seekTo(39);
-      youtubePlayerRef.current.playVideo();
-    }
-  };
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
@@ -212,13 +102,13 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
             className="text-left"
           >
-            {/* Badge premium */}
+            {/* Badge premium - más conciso */}
             <div className="inline-flex items-center mb-6 bg-primary/10 px-4 py-2 rounded-full text-primary text-sm font-bold">
               <span className="mr-2 text-accent">✓</span>
-              Trusted by over 1,000 students worldwide
+              +1,000 alumnos nos avalan
             </div>
             
-            {/* Título principal con mejor legibilidad */}
+            {/* Título principal - mantenido por ser importante */}
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 leading-tight mb-6">
               Learn Spanish <span className="relative inline-block">
                 <span className="relative z-10 text-primary">Like a Native</span>
@@ -230,30 +120,30 @@ export default function Hero() {
               <span className="text-accent">From Week One</span>
             </h1>
             
-            {/* Subtítulo con propuesta de valor */}
-            <p className="text-lg md:text-xl text-gray-700 mb-6 max-w-xl">
-              Tired of studying Spanish without being able to actually speak it? I&apos;ll teach you to communicate from day one, not just memorize grammar rules.
-              As we say in Spain, <SpanishExpression expression="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
-            </p>
+            {/* Subtítulo - reducido y más directo */}
+            <div className="text-lg md:text-xl text-gray-700 mb-6 max-w-xl">
+              Aprende a comunicarte en español desde el primer día, no solo a memorizar reglas.
+              <SpanishExpression expression="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
+            </div>
 
-            {/* Lista de beneficios */}
+            {/* Lista de beneficios - simplificada */}
             <ul className="space-y-4 mb-8">
               <li className="flex items-start">
                 <span className="text-accent mr-2">✓</span>
                 <div>
-                  <strong>Real-world practice:</strong> Order your first &ldquo;tinto de verano&rdquo; like a local, ask for the menu, and chat with waiters confidently.
+                  <strong>Práctica real:</strong> Pide tu primer &ldquo;tinto de verano&rdquo; como un local.
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-accent mr-2">✓</span>
                 <div>
-                  <strong>Relaxed environment:</strong> Make mistakes without fear - that&apos;s how we learn! Don&apos;t worry about <SpanishExpression expression="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
+                  <strong>Ambiente relajado:</strong> Aprende sin miedo a <SpanishExpression expression="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-accent mr-2">✓</span>
                 <div>
-                  <strong>Cultural immersion:</strong> Experience Málaga&apos;s culture while learning. You&apos;ll be <SpanishExpression expression="de cine" literal="like in the movies" meaning="amazing" /> at Spanish in no time!
+                  <strong>Inmersión cultural:</strong> Experimenta Málaga mientras aprendes español.
                 </div>
               </li>
             </ul>
@@ -293,37 +183,57 @@ export default function Hero() {
             </div>
           </motion.div>
           
-          {/* Columna derecha - Video y juego de expresiones */}
+          {/* Columna derecha - Social proof y juego de expresiones */}
           <motion.div 
             initial={{ opacity: 0, x: 30 }}
             animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="flex flex-col gap-8"
           >
-            {/* Video reproductor automático */}
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-gray-200 aspect-video bg-gray-100">
-              {/* Reproductor de YouTube siempre visible */}
-              <div className="w-full h-full flex items-center justify-center relative">
-                <div id="youtube-player" className="absolute inset-0 w-full h-full"></div>
+            {/* Social Proof al estilo Marc Lou */}
+            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+              <div className="p-6">
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Lo que dicen nuestros alumnos</h3>
                 
-                {/* Overlay informativo */}
-                {!showVideoModal && (
-                  <div className="absolute inset-0 bg-gray-800/70 flex items-center justify-center z-10">
-                    <button 
-                      onClick={playVideo}
-                      className="w-20 h-20 bg-accent rounded-full flex items-center justify-center shadow-xl transform transition hover:scale-110 hover:bg-accent-light"
-                    >
-                      <FaArrowRight className="text-white ml-1 text-xl" />
-                    </button>
-                    <div className="absolute bottom-4 left-4 right-4 text-white text-sm font-semibold bg-black/60 backdrop-blur-sm p-3 rounded-lg">
-                      &ldquo;Discover how my students start speaking Spanish from their very first week&rdquo; - Virginia
+                {/* Métricas principales - valores mantenidos pero textos reducidos */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="bg-primary/5 rounded-xl p-4 text-center">
+                    <div className="text-3xl font-bold text-primary">500+</div>
+                    <div className="text-gray-600 text-sm">Alumnos</div>
+                  </div>
+                  <div className="bg-accent/5 rounded-xl p-4 text-center">
+                    <div className="text-3xl font-bold text-accent">4.9/5</div>
+                    <div className="text-gray-600 text-sm">Valoración</div>
+                  </div>
+                </div>
+                
+                {/* Mini testimonio - simplificado */}
+                <div className="bg-gray-50 p-4 rounded-xl mb-4 relative">
+                  <div className="absolute top-2 right-2 text-accent">★★★★★</div>
+                  <p className="text-gray-700 italic text-sm mb-2">
+                    &ldquo;Hablé español desde la primera clase. ¡Método increíble!&rdquo;
+                  </p>
+                  <div className="flex items-center">
+                    <div className="w-8 h-8 bg-gray-200 rounded-full mr-2 flex items-center justify-center text-gray-500">JM</div>
+                    <div>
+                      <div className="text-sm font-medium">John Miller</div>
+                      <div className="text-xs text-gray-500">EEUU 🇺🇸</div>
                     </div>
                   </div>
-                )}
+                </div>
+
+                {/* Países de origen - simplificado */}
+                <div className="flex flex-wrap gap-2">
+                  <span className="inline-flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs">🇺🇸</span>
+                  <span className="inline-flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs">🇬🇧</span>
+                  <span className="inline-flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs">🇩🇪</span>
+                  <span className="inline-flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs">🇫🇷</span>
+                  <span className="inline-flex items-center bg-gray-100 px-2 py-1 rounded-full text-xs">+20</span>
+                </div>
               </div>
             </div>
             
-            {/* Juego de expresiones destacado */}
+            {/* Juego de expresiones - título simplificado */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -331,9 +241,9 @@ export default function Hero() {
               className="relative p-6 shadow-lg rounded-2xl bg-white border border-gray-200"
             >
               <div className="absolute top-4 right-4 bg-accent/10 text-accent rounded-full px-3 py-1 text-sm font-bold border border-accent/20">
-                Expression #{ currentExpressionIndex + 1 }
+                #{currentExpressionIndex + 1}
               </div>
-              <h3 className="text-xl font-bold mb-6 text-gray-900">Fun Spanish Expressions</h3>
+              <h3 className="text-xl font-bold mb-6 text-gray-900">Expresiones Españolas</h3>
               <div className={`transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
                 <SpanishExpression 
                   expression={spanishExpressions[currentExpressionIndex].expression}

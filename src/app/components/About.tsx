@@ -17,20 +17,26 @@ const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps)
   const [showTooltip, setShowTooltip] = useState(false);
   
   return (
-    <div className="relative inline-block">
+    <span className="relative inline-block group">
       <span 
-        className="font-bold text-accent dark:text-accent-light cursor-pointer border-b border-dashed border-accent dark:border-accent-light flex items-center gap-1"
+        className="underline decoration-wavy decoration-yellow-400 decoration-2 cursor-pointer font-bold text-yellow-500 dark:text-yellow-400 flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-yellow-500/10 hover:bg-yellow-500/20"
         onClick={() => setShowTooltip(!showTooltip)}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => setShowTooltip(false)}
       >
         {phrase}
-        <FaInfoCircle className="text-xs text-accent" />
+        <FaInfoCircle className="text-xs text-yellow-500 dark:text-yellow-400 animate-pulse group-hover:animate-none" />
       </span>
       {showTooltip && (
-        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-accent/20">
+        <motion.div
+          initial={{ opacity: 0, y: 10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: 10, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 glassmorphism dark:glassmorphism-dark rounded-xl shadow-lg text-sm z-50 border border-yellow-400/20"
+        >
           <div className="relative">
-            <p className="font-bold text-accent dark:text-accent-light">{phrase}</p>
+            <p className="font-bold text-yellow-500 dark:text-yellow-400">{phrase}</p>
             <p className="text-gray-500 italic">Literal: &ldquo;{literal}&rdquo;</p>
             <p className="text-gray-700 dark:text-gray-300">Means: &ldquo;{meaning}&rdquo;</p>
             <button 
@@ -38,14 +44,14 @@ const SpanishExpression = ({ phrase, literal, meaning }: SpanishExpressionProps)
                 e.stopPropagation();
                 setShowTooltip(false);
               }}
-              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xs"
+              className="absolute -top-1 -right-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 text-xs w-5 h-5 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
             >
               ✕
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
-    </div>
+    </span>
   );
 };
 
@@ -62,21 +68,21 @@ const About = () => {
             className="lg:w-1/2"
           >
             <span className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-primary-light text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-              <span className="mr-1">👋</span> Hi! I&apos;m Virginia
+              <span className="mr-1">👋</span> Hola, soy Virginia
             </span>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Your Spanish Teacher<br className="hidden md:block" /> in <span className="text-primary">Málaga</span>
+              Tu Profesora<br className="hidden md:block" /> en <span className="text-primary">Málaga</span>
             </h2>
             
             <div className="prose prose-lg dark:prose-invert mb-8">
               <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-                <span className="font-semibold">Tired of studying Spanish without being able to actually speak it?</span> I&apos;ll teach you to communicate from day one, not just memorize grammar rules. As we say in Spain, <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it's never too late to start learning" />.
+                Enseño español para comunicarte desde el primer día, no solo memorizar reglas. <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it's never too late to start learning" />.
               </p>
               
               <div className="bg-primary/10 dark:bg-primary/20 p-5 rounded-xl mb-6 border-l-4 border-primary">
                 <p className="text-gray-700 dark:text-gray-300 italic">
-                  &ldquo;After 10 years teaching Spanish to more than 500 students, I&apos;ve created a method that really works. My approach is based on <span className="font-semibold">practical conversation and real-life situations</span> that you&apos;ll encounter in your daily life in Spain. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely comfortable/in your element" /> in no time!&rdquo;
+                  &ldquo;Con 10 años de experiencia y +500 alumnos, he creado un método efectivo basado en <span className="font-semibold">conversación práctica</span>. Estarás <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely comfortable/in your element" /> muy pronto.&rdquo;
                 </p>
               </div>
               
@@ -84,19 +90,19 @@ const About = () => {
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">I personalize each class</span> according to your goals, whether for work, tourism, or permanent residency. No <SpanishExpression phrase="paños calientes" literal="hot cloths" meaning="half-measures or useless solutions" /> here!
+                    <span className="font-semibold">Clases personalizadas</span> según tus objetivos: trabajo, turismo o residencia.
                   </p>
                 </div>
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">I create a relaxed environment</span> where you can make mistakes without fear, the only way to truly learn a language. Don&apos;t worry about <SpanishExpression phrase="meter la pata" literal="sticking in the leg" meaning="making a mistake/putting your foot in your mouth" />!
+                    <span className="font-semibold">Ambiente relajado</span> donde equivocarse sin miedo. No te preocupes por <SpanishExpression phrase="meter la pata" literal="sticking in the leg" meaning="making a mistake" />.
                   </p>
                 </div>
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">I show you Málaga&apos;s culture</span> and help you integrate into local life for complete immersion. You&apos;ll be <SpanishExpression phrase="de cine" literal="from the movies" meaning="fantastic/awesome" /> at Spanish in no time!
+                    <span className="font-semibold">Inmersión cultural</span> en la vida local de Málaga. Serás <SpanishExpression phrase="de cine" literal="from the movies" meaning="fantastic/awesome" /> hablando español.
                   </p>
                 </div>
               </div>

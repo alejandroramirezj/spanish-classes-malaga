@@ -23,45 +23,45 @@ const pricingPlans: PricingPlan[] = [
     name: 'Individual',
     price: '25',
     unit: 'hora',
-    description: 'Clases personalizadas para un progreso rápido',
+    description: 'Progreso personalizado',
     featured: false,
     features: [
-      'Atención 100% personalizada',
-      'Progreso 3 veces más rápido',
+      'Atención personalizada',
+      'Progreso rápido',
       'Horarios flexibles',
-      'Materiales personalizados incluidos'
+      'Materiales incluidos'
     ],
-    ctaText: 'Reservar clase'
+    ctaText: 'Reservar'
   },
   {
     id: 'intensive',
     name: 'Intensivo',
     price: '299',
     unit: 'mes',
-    description: 'Aprende español en tiempo récord',
+    description: 'Resultados en tiempo récord',
     featured: true,
     features: [
-      '3 clases de 90 min. por semana',
-      'Acceso a plataforma online',
+      '3 clases de 90 min/semana',
+      'Plataforma online',
       'Práctica con nativos',
-      'Progreso garantizado o devolución'
+      'Garantía de progreso'
     ],
-    ctaText: 'Empezar ahora'
+    ctaText: 'Empezar'
   },
   {
     id: 'parejas',
     name: 'Parejas',
     price: '40',
     unit: 'hora',
-    description: 'Ahorra compartiendo la experiencia',
+    description: 'Aprendizaje compartido',
     featured: false,
     features: [
-      'Dinámica real de conversación',
+      'Conversación real',
       '€20 por persona',
       'Aprendizaje colaborativo',
-      'Competencia sana'
+      'Motivación mutua'
     ],
-    ctaText: 'Reservar para dos'
+    ctaText: 'Reservar'
   }
 ];
 
@@ -86,7 +86,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-4"
           >
-            Planes que se adaptan a ti
+            Planes adaptados a ti
           </motion.span>
           
           <motion.h2 
@@ -96,7 +96,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="title-marc"
           >
-            Choose Your Perfect Plan
+            Elige tu Plan Ideal
           </motion.h2>
           
           <motion.p 
@@ -106,7 +106,7 @@ const Pricing = () => {
             viewport={{ once: true }}
             className="subtitle-marc"
           >
-            Select the ideal program and start speaking Spanish from your very first class
+            Empieza a hablar español desde tu primera clase
           </motion.p>
           
           <motion.div

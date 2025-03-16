@@ -17,7 +17,7 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
   const [showTooltip, setShowTooltip] = useState(false);
   
   return (
-    <div className="relative inline-block group">
+    <span className="relative inline-block group">
       <span 
         className="underline decoration-wavy decoration-accent decoration-2 cursor-pointer font-bold text-accent dark:text-accent-light flex items-center gap-1 hover:scale-105 transition-transform px-1 py-0.5 rounded bg-accent/5 hover:bg-accent/10"
         onClick={() => setShowTooltip(!showTooltip)}
@@ -51,7 +51,7 @@ const SpanishExpression = ({ expression, literal, meaning }: SpanishExpressionPr
           </div>
         </motion.div>
       )}
-    </div>
+    </span>
   );
 };
 
