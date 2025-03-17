@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCheckCircle, FaGraduationCap, FaUserFriends, FaComment, FaArrowRight, FaInfoCircle } from 'react-icons/fa';
+import { FaArrowRight, FaInfoCircle, FaCheckCircle, FaGraduationCap, FaUserFriends, FaComment } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Interface for Spanish expressions
@@ -68,53 +68,53 @@ const About = () => {
             className="lg:w-1/2"
           >
             <span className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-primary-light text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-              <span className="mr-1">👋</span> Hola, soy Virginia
+              <span className="mr-1">👋</span> Hello, I&apos;m Virginia
             </span>
             
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Tu Profesora<br className="hidden md:block" /> en <span className="text-primary">Málaga</span>
+              Your Teacher<br className="hidden md:block" /> in <span className="text-primary">Málaga</span>
             </h2>
-            
+           
             <div className="prose prose-lg dark:prose-invert mb-8">
               <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-                Enseño español para comunicarte desde el primer día, no solo memorizar reglas. <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it's never too late to start learning" />.
+                I teach Spanish for communication from day one, not just memorizing rules. <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
               </p>
               
               <div className="bg-primary/10 dark:bg-primary/20 p-5 rounded-xl mb-6 border-l-4 border-primary">
                 <p className="text-gray-700 dark:text-gray-300 italic">
-                  &ldquo;Con 10 años de experiencia y +500 alumnos, he creado un método efectivo basado en <span className="font-semibold">conversación práctica</span>. Estarás <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely comfortable/in your element" /> muy pronto.&rdquo;
+                  &ldquo;With 10 years of experience and +500 students, I&apos;ve created an effective method based on <span className="font-semibold">practical conversation</span>. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely at ease" /> very soon.&rdquo;
                 </p>
               </div>
-              
+             
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Clases personalizadas</span> según tus objetivos: trabajo, turismo o residencia.
+                    <span className="font-semibold">Personalized classes</span> based on your goals: work, tourism or residency.
                   </p>
                 </div>
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Ambiente relajado</span> donde equivocarse sin miedo. No te preocupes por <SpanishExpression phrase="meter la pata" literal="sticking in the leg" meaning="making a mistake" />.
+                    <span className="font-semibold">Relaxed environment</span> where you can make mistakes without fear. Don&apos;t worry about <SpanishExpression phrase="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
                   </p>
                 </div>
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Inmersión cultural</span> en la vida local de Málaga. Serás <SpanishExpression phrase="de cine" literal="from the movies" meaning="fantastic/awesome" /> hablando español.
+                    <span className="font-semibold">Cultural immersion</span> in Málaga&apos;s local life. You&apos;ll be <SpanishExpression phrase="de cine" literal="of cinema" meaning="fantastic/amazing" /> speaking Spanish.
                   </p>
                 </div>
               </div>
+             
+              <Link 
+                href="/booking" 
+                className="btn-plan btn-plan-primary"
+              >
+                Book a Free Trial Class
+                <FaArrowRight />
+              </Link>
             </div>
-            
-            <Link 
-              href="/booking" 
-              className="btn-plan btn-plan-primary"
-            >
-              Book a Free Trial Class
-              <FaArrowRight />
-            </Link>
           </motion.div>
           
           <motion.div
@@ -139,7 +139,7 @@ const About = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent"></div>
                   </div>
                 </div>
-                
+             
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl flex flex-col items-center text-center">
                     <FaGraduationCap className="text-primary dark:text-primary-light text-2xl mb-2" />
@@ -159,7 +159,7 @@ const About = () => {
                     <div>
                       <h4 className="font-bold mb-2">Let&apos;s talk about your goals</h4>
                       <p className="text-primary-100">
-                        Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started <SpanishExpression phrase="a todo gas" literal="at full gas" meaning="full speed ahead/with great energy" />!
+                        Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started <SpanishExpression phrase="a todo gas" literal="at full gas" meaning="at full speed" />!
                       </p>
                     </div>
                   </div>
@@ -174,6 +174,61 @@ const About = () => {
               </div>
             </div>
           </motion.div>
+        </div>
+        
+        <div className="flex justify-center mt-16">
+          <div className="bg-white rounded-xl shadow-lg p-8 max-w-4xl w-full border border-gray-100">
+            <div className="text-center mb-6">
+              <span className="flex items-center justify-center gap-2 text-xl mb-2">
+                <span role="img" aria-label="blonde girl">👱‍♀️</span>
+                <span role="img" aria-label="pointing hand">👉</span>
+              </span>
+              <h2 className="text-2xl font-bold mb-4 text-gray-900">
+                Learn fun expressions!
+              </h2>
+              <p className="text-center mb-8 text-gray-700">
+                Start using Spanish idioms to speak <SpanishExpression phrase="a todo gas" literal="at full gas" meaning="at full speed" /> like a native.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="font-bold mb-2 text-accent">Daily expressions</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <span className="mr-2 text-yellow-500">•</span>
+                    <SpanishExpression phrase="dar en el clavo" literal="to hit the nail" meaning="to hit the nail on the head" />
+                  </li>
+                  <li className="flex items-center">
+                    <span className="mr-2 text-yellow-500">•</span>
+                    <SpanishExpression phrase="estar como una cabra" literal="to be like a goat" meaning="to be crazy" />
+                  </li>
+                  <li className="flex items-center">
+                    <span className="mr-2 text-yellow-500">•</span>
+                    <SpanishExpression phrase="ser pan comido" literal="to be eaten bread" meaning="to be a piece of cake" />
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <h3 className="font-bold mb-2 text-accent">Cultural expressions</h3>
+                <ul className="space-y-2">
+                  <li className="flex items-center">
+                    <span className="mr-2 text-yellow-500">•</span>
+                    <SpanishExpression phrase="hacer de tripas corazón" literal="to make heart from guts" meaning="to pluck up courage" />
+                  </li>
+                  <li className="flex items-center">
+                    <span className="mr-2 text-yellow-500">•</span>
+                    <SpanishExpression phrase="ponerse las pilas" literal="to put in the batteries" meaning="to get one&apos;s act together" />
+                  </li>
+                  <li className="flex items-center">
+                    <span className="mr-2 text-yellow-500">•</span>
+                    <SpanishExpression phrase="tomar el pelo" literal="to take the hair" meaning="to pull someone&apos;s leg" />
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="mt-20 max-w-5xl mx-auto">

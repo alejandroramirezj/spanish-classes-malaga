@@ -105,7 +105,7 @@ export default function Hero() {
             {/* Badge premium - más conciso */}
             <div className="inline-flex items-center mb-6 bg-primary/10 px-4 py-2 rounded-full text-primary text-sm font-bold">
               <span className="mr-2 text-accent">✓</span>
-              +1,000 alumnos nos avalan
+              +1,000 students endorse us
             </div>
             
             {/* Título principal - mantenido por ser importante */}
@@ -122,7 +122,7 @@ export default function Hero() {
             
             {/* Subtítulo - reducido y más directo */}
             <div className="text-lg md:text-xl text-gray-700 mb-6 max-w-xl">
-              Aprende a comunicarte en español desde el primer día, no solo a memorizar reglas.
+              Learn to communicate in Spanish from day one, not just memorizing rules.
               <SpanishExpression expression="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
             </div>
 
@@ -131,19 +131,19 @@ export default function Hero() {
               <li className="flex items-start">
                 <span className="text-accent mr-2">✓</span>
                 <div>
-                  <strong>Práctica real:</strong> Pide tu primer &ldquo;tinto de verano&rdquo; como un local.
+                  <strong>Real practice:</strong> Order your first &ldquo;tinto de verano&rdquo; like a local.
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-accent mr-2">✓</span>
                 <div>
-                  <strong>Ambiente relajado:</strong> Aprende sin miedo a <SpanishExpression expression="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
+                  <strong>Relaxed environment:</strong> Learn without fear of <SpanishExpression expression="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
                 </div>
               </li>
               <li className="flex items-start">
                 <span className="text-accent mr-2">✓</span>
                 <div>
-                  <strong>Inmersión cultural:</strong> Experimenta Málaga mientras aprendes español.
+                  <strong>Cultural immersion:</strong> Experience Málaga while learning Spanish.
                 </div>
               </li>
             </ul>
@@ -193,17 +193,17 @@ export default function Hero() {
             {/* Social Proof al estilo Marc Lou */}
             <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
               <div className="p-6">
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Lo que dicen nuestros alumnos</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">What our students say</h3>
                 
                 {/* Métricas principales - valores mantenidos pero textos reducidos */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="bg-primary/5 rounded-xl p-4 text-center">
                     <div className="text-3xl font-bold text-primary">500+</div>
-                    <div className="text-gray-600 text-sm">Alumnos</div>
+                    <div className="text-gray-600 text-sm">Students</div>
                   </div>
                   <div className="bg-accent/5 rounded-xl p-4 text-center">
                     <div className="text-3xl font-bold text-accent">4.9/5</div>
-                    <div className="text-gray-600 text-sm">Valoración</div>
+                    <div className="text-gray-600 text-sm">Rating</div>
                   </div>
                 </div>
                 
@@ -211,13 +211,13 @@ export default function Hero() {
                 <div className="bg-gray-50 p-4 rounded-xl mb-4 relative">
                   <div className="absolute top-2 right-2 text-accent">★★★★★</div>
                   <p className="text-gray-700 italic text-sm mb-2">
-                    &ldquo;Hablé español desde la primera clase. ¡Método increíble!&rdquo;
+                    &ldquo;I spoke Spanish from the first class. Amazing method!&rdquo;
                   </p>
                   <div className="flex items-center">
                     <div className="w-8 h-8 bg-gray-200 rounded-full mr-2 flex items-center justify-center text-gray-500">JM</div>
                     <div>
                       <div className="text-sm font-medium">John Miller</div>
-                      <div className="text-xs text-gray-500">EEUU 🇺🇸</div>
+                      <div className="text-xs text-gray-500">USA 🇺🇸</div>
                     </div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export default function Hero() {
               <div className="absolute top-4 right-4 bg-accent/10 text-accent rounded-full px-3 py-1 text-sm font-bold border border-accent/20">
                 #{currentExpressionIndex + 1}
               </div>
-              <h3 className="text-xl font-bold mb-6 text-gray-900">Expresiones Españolas</h3>
+              <h3 className="text-xl font-bold mb-6 text-gray-900">Spanish Expressions</h3>
               <div className={`transition-opacity duration-300 ${isChanging ? 'opacity-0' : 'opacity-100'}`}>
                 <SpanishExpression 
                   expression={spanishExpressions[currentExpressionIndex].expression}
@@ -304,7 +304,7 @@ export default function Hero() {
         </div>
       </div>
       
-      {/* Botón flotante para móviles */}
+      {/* Floating button for mobile */}
       <div className="md:hidden fixed bottom-6 right-6 z-50">
         <Link 
           href="/booking" 
