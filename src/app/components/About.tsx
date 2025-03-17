@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaInfoCircle, FaCheckCircle, FaGraduationCap, FaUserFriends, FaComment } from 'react-icons/fa';
+import { FaArrowRight, FaInfoCircle, FaCheckCircle } from 'react-icons/fa';
 import Link from 'next/link';
 
 // Interface for Spanish expressions
@@ -59,55 +59,57 @@ const About = () => {
   return (
     <section className="py-20 bg-white dark:bg-gray-900">
       <div className="container mx-auto px-4 md:px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-start gap-12 max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="lg:w-1/2"
+            className="lg:w-1/2 h-full"
           >
-            <span className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-primary-light text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
-              <span className="mr-1">👋</span> Hello, I&apos;m Virginia
-            </span>
-            
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
-              Your Teacher<br className="hidden md:block" /> in <span className="text-primary">Málaga</span>
-            </h2>
-           
-            <div className="prose prose-lg dark:prose-invert mb-8">
-              <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
-                I teach Spanish for communication from day one, not just memorizing rules. <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
-              </p>
+            <div className="sticky top-32">
+              <span className="bg-primary/10 dark:bg-primary/30 text-primary dark:text-primary-light text-sm font-semibold px-4 py-1.5 rounded-full inline-flex items-center mb-4">
+                <span className="mr-1">👋</span> Hello, I&apos;m Virginia
+              </span>
               
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Personalized classes</span> based on your goals: work, tourism or residency.
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Relaxed environment</span> where you can make mistakes without fear. Don&apos;t worry about <SpanishExpression phrase="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
-                  </p>
-                </div>
-                <div className="flex items-start">
-                  <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
-                  <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Cultural immersion</span> in Málaga&apos;s local life. You&apos;ll be <SpanishExpression phrase="de cine" literal="of cinema" meaning="fantastic/amazing" /> speaking Spanish.
-                  </p>
-                </div>
-              </div>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+                Your Teacher<br className="hidden md:block" /> in <span className="text-primary">Málaga</span>
+              </h2>
              
-              <Link 
-                href="/booking" 
-                className="btn-plan btn-plan-primary"
-              >
-                Book a Free Trial Class
-                <FaArrowRight />
-              </Link>
+              <div className="prose prose-lg dark:prose-invert mb-8">
+                <p className="text-xl text-gray-700 dark:text-gray-300 mb-6">
+                  I teach Spanish for communication from day one, not just memorizing rules. <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
+                </p>
+                
+                <div className="space-y-4 mb-8">
+                  <div className="flex items-start">
+                    <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <p className="text-gray-700 dark:text-gray-300">
+                      <span className="font-semibold">Personalized classes</span> based on your goals: work, tourism or residency.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <p className="text-gray-700 dark:text-gray-300">
+                      <span className="font-semibold">Relaxed environment</span> where you can make mistakes without fear. Don&apos;t worry about <SpanishExpression phrase="meter la pata" literal="putting in the leg" meaning="making mistakes" />.
+                    </p>
+                  </div>
+                  <div className="flex items-start">
+                    <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                    <p className="text-gray-700 dark:text-gray-300">
+                      <span className="font-semibold">Cultural immersion</span> in Málaga&apos;s local life. You&apos;ll be <SpanishExpression phrase="de cine" literal="of cinema" meaning="fantastic/amazing" /> speaking Spanish.
+                    </p>
+                  </div>
+                </div>
+               
+                <Link 
+                  href="/booking" 
+                  className="btn-plan btn-plan-primary inline-flex"
+                >
+                  Book a Free Trial Class
+                  <FaArrowRight />
+                </Link>
+              </div>
             </div>
           </motion.div>
           
@@ -116,13 +118,13 @@ const About = () => {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="lg:w-1/2"
+            className="lg:w-1/2 h-full"
           >
-            <div className="relative">
+            <div className="relative h-full">
               <div className="absolute -top-6 -left-6 w-32 h-32 bg-primary/30 rounded-full z-0"></div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-primary/10 rounded-full z-0"></div>
               
-              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-10">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-6 z-10 h-full flex flex-col">
                 <div className="aspect-w-4 aspect-h-3 overflow-hidden rounded-xl mb-6">
                   <div className="w-full h-full relative">
                     <img 
@@ -134,35 +136,10 @@ const About = () => {
                   </div>
                 </div>
              
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl flex flex-col items-center text-center">
-                    <FaGraduationCap className="text-primary dark:text-primary-light text-2xl mb-2" />
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Certified</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">Master in ELE & DELE</p>
-                  </div>
-                  <div className="bg-primary/10 dark:bg-primary/20 p-4 rounded-xl flex flex-col items-center text-center">
-                    <FaUserFriends className="text-primary dark:text-primary-light text-2xl mb-2" />
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Experience</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">+500 students</p>
-                  </div>
-                </div>
-                
                 <div className="bg-primary/10 dark:bg-primary/20 p-5 rounded-xl mb-6 border-l-4 border-primary">
                   <p className="text-gray-700 dark:text-gray-300 italic">
                     &ldquo;With 10 years of experience and +500 students, I&apos;ve created an effective method based on <span className="font-semibold">practical conversation</span>. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely at ease" /> very soon.&rdquo;
                   </p>
-                </div>
-                
-                <div className="bg-gradient-to-br from-primary to-primary-dark p-5 rounded-xl text-white">
-                  <div className="flex items-start mb-4">
-                    <FaComment className="text-white opacity-80 text-2xl mr-4 mt-1" />
-                    <div>
-                      <h4 className="font-bold mb-2">Let&apos;s talk about your goals</h4>
-                      <p className="text-primary-100">
-                        Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started!
-                      </p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
