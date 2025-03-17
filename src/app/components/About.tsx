@@ -80,12 +80,6 @@ const About = () => {
                 I teach Spanish for communication from day one, not just memorizing rules. <SpanishExpression phrase="más vale tarde que nunca" literal="better late than never" meaning="it&apos;s never too late to start" />.
               </p>
               
-              <div className="bg-primary/10 dark:bg-primary/20 p-5 rounded-xl mb-6 border-l-4 border-primary">
-                <p className="text-gray-700 dark:text-gray-300 italic">
-                  &ldquo;With 10 years of experience and +500 students, I&apos;ve created an effective method based on <span className="font-semibold">practical conversation</span>. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely at ease" /> very soon.&rdquo;
-                </p>
-              </div>
-             
               <div className="space-y-4 mb-8">
                 <div className="flex items-start">
                   <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
@@ -153,23 +147,22 @@ const About = () => {
                   </div>
                 </div>
                 
+                <div className="bg-primary/10 dark:bg-primary/20 p-5 rounded-xl mb-6 border-l-4 border-primary">
+                  <p className="text-gray-700 dark:text-gray-300 italic">
+                    &ldquo;With 10 years of experience and +500 students, I&apos;ve created an effective method based on <span className="font-semibold">practical conversation</span>. You&apos;ll be <SpanishExpression phrase="como pez en el agua" literal="like a fish in water" meaning="completely at ease" /> very soon.&rdquo;
+                  </p>
+                </div>
+                
                 <div className="bg-gradient-to-br from-primary to-primary-dark p-5 rounded-xl text-white">
                   <div className="flex items-start mb-4">
                     <FaComment className="text-white opacity-80 text-2xl mr-4 mt-1" />
                     <div>
                       <h4 className="font-bold mb-2">Let&apos;s talk about your goals</h4>
                       <p className="text-primary-100">
-                        Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started <SpanishExpression phrase="a todo gas" literal="at full gas" meaning="at full speed" />!
+                        Do you need to learn Spanish for work, integration, or simply to enjoy Málaga more? Tell me your goals and I&apos;ll design a personalized plan for you. Let&apos;s get started!
                       </p>
                     </div>
                   </div>
-                  <Link 
-                    href="/contact" 
-                    className="btn-plan btn-plan-secondary"
-                  >
-                    Contact me now
-                    <FaArrowRight />
-                  </Link>
                 </div>
               </div>
             </div>
